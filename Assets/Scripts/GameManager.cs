@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +14,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Reload scene when pressing the R key
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

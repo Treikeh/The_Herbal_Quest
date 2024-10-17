@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Max speed the player can move
-    public float moveSpeed = 4.0f;
-    // How fast to player can reacn max speed
+    // How fast the player can move
+    public float maxSpeed = 4.0f;
+    // How fast player reaches max speed
     public float acceleration = 10.0f;
-    // How much force to apply the the player when jumping
+    // Force to apply when jumping
     public float jumpForce = 5.0f;
     // Graound mask
     public LayerMask groundLayer;
@@ -54,8 +54,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = rBody.velocity;
 
         // Set new velocity
-        velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * moveSpeed, acceleration * Time.fixedDeltaTime);
-        velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * moveSpeed, acceleration * Time.fixedDeltaTime);
+        velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * maxSpeed, acceleration * Time.fixedDeltaTime);
+        velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * maxSpeed, acceleration * Time.fixedDeltaTime);
 
         // Apply new velocity
         rBody.velocity = velocity;
