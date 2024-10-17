@@ -16,4 +16,9 @@ public class Health : MonoBehaviour
     {
         
     }
+
+    public void TakeDamage(float damage) {
+        max_health -= damage;
+        Debug.Log(max_health);
+    }
 }

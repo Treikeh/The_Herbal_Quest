@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 957578531}
   - component: {fileID: 957578530}
   m_Layer: 7
-  m_Name: AISDJAOSIJDOIASJODJASOIDJAS
+  m_Name: BurnableObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
