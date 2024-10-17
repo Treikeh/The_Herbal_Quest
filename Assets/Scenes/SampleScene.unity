@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 911465004}
   - component: {fileID: 911465003}
   - component: {fileID: 911465002}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -557,8 +557,8 @@ GameObject:
   - component: {fileID: 957578532}
   - component: {fileID: 957578531}
   - component: {fileID: 957578530}
-  m_Layer: 0
-  m_Name: Burnable
+  m_Layer: 7
+  m_Name: AISDJAOSIJDOIASJODJASOIDJAS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -678,6 +678,7 @@ GameObject:
   - component: {fileID: 1022343097}
   - component: {fileID: 1022343102}
   - component: {fileID: 1022343103}
+  - component: {fileID: 1022343104}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -815,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926bf4e37c5cee74dbe1873358db2526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  maxSpeed: 4
   acceleration: 10
   jumpForce: 5
   groundLayer:
@@ -838,6 +839,27 @@ MonoBehaviour:
   cameraSensitivity: 4
   rotationLimit: 89
   cameraTransform: {fileID: 1853102236}
+--- !u!114 &1022343104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022343096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71618516f6162f34cab1b8df3db7c5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 3
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 64
+  attackDistance: 3
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 128
+  raycastOrigin: {fileID: 1853102236}
 --- !u!1 &1206328437
 GameObject:
   m_ObjectHideFlags: 0
