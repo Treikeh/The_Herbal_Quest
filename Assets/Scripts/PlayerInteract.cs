@@ -23,6 +23,7 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Hello
         // Interact Input
         if (Input.GetKeyDown(KeyCode.E)) {
             Interact();
