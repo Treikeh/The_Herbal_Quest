@@ -9,6 +9,8 @@ public class HudController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Clear interact prompt
+        OnInteractPromptUpdated("");
         PlayerInteract.interactPromptUpdated += OnInteractPromptUpdated;
     }
 

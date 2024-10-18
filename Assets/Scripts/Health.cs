@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, ITakeDamage
 {
-    public float maxHealth = 100f;
+    public float maxHealth = 0f;
     private float currentHealth;
     private void Start()
     {

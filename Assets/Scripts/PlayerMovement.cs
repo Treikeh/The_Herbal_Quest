@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
     // How fast the player can move
     public float maxSpeed = 4.0f;
     // How fast player reaches max speed
     public float acceleration = 10.0f;
     // Force to apply when jumping
     public float jumpForce = 5.0f;
+    public Transform cameraRoot;
+
+    [Header("Ground check")]
+    // How far the ground check should reach
+    public float groundCheckRadius = 0.1f;
     // Graound mask
     public LayerMask groundLayer;
     public Transform groundCheckOrigin;
-    public float groundCheckRadius = 0.1f;
+    private bool isGrounded;
 
     // Direction the player will move inn
     private Vector3 moveDirection;
     // Rigidbody reference
     private Rigidbody rBody;   
-    private bool isGrounded;
     // Start is called before the first frame update
+
     private void Start()
     {
         // Get the rigidbody
@@ -30,10 +36,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // Align moveDirecion to player transform
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        moveDirection = (transform.forward * verticalInput) + (transform.right * horizontalInput);
+        // Align moveDirecion to Camera direction
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        moveDirection = (cameraRoot.transform.forward * verticalInput) + (cameraRoot.transform.right * horizontalInput);
         moveDirection = moveDirection.normalized;
 
         // Jump when pressing Space

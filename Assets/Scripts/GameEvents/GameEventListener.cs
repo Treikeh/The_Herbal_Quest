@@ -12,8 +12,7 @@ public class GameEventListener : MonoBehaviour
     // Response to activate when Event is triggered
     public UnityEvent Response;
 
-    private void OnEnable() {
-        // Add this objefct as an observer to Event
+    private void Start() {
         Event.RegisterListeners(this);
     }
 
@@ -24,6 +23,7 @@ public class GameEventListener : MonoBehaviour
 
     // Activate Response when the Event is triggered
     public void OnEventTriggered() {
+        Debug.Log("GameEventListener " + name + " Responded");
         Response.Invoke();
     }
 }

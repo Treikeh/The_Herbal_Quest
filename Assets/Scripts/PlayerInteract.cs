@@ -6,15 +6,18 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    [Header("Interact")]
     // Distance player can interact with objects
     public float interactDistance = 3f;
     // If the player is looking at an interactable object this will be valid and data can be retrived from it.
     private IInteract currentInteractable;
 
+    [Header("Attack")]
     // // Distance player can attack objects
     public float attackDistance = 3f;
     public float attackDamage = 2f;
 
+    [Header("General")]
     // Where the raycasts will start from
     public Transform raycastOrigin;
 
@@ -22,14 +25,6 @@ public class PlayerInteract : MonoBehaviour
     public delegate void UpdateInteractPrompt(string text);
     public static event UpdateInteractPrompt interactPromptUpdated;
 
-    private void Start()
-    {
-        // Clear the interact prompt when the game starts
-        if (interactPromptUpdated != null)
-            {
-                interactPromptUpdated.Invoke("");
-            }
-    }
     // Update is called once per frame
     void Update()
     {
@@ -81,6 +76,7 @@ public class PlayerInteract : MonoBehaviour
     }
     private void Attack()
     {
+        Debug.Log("Pow");
        // Raycast variables
         RaycastHit rayHit;
         Ray ray = new Ray(raycastOrigin.position, raycastOrigin.transform.forward);

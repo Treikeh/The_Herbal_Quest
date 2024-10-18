@@ -20,6 +20,7 @@ public class GameEvent : ScriptableObject
     }
 
     public void Trigger() {
+        Debug.Log("GameEvent " + name + " Triggered");
         for (int i = listeners.Count - 1; i >= 0; i--) {
             listeners[i].OnEventTriggered();
         }
