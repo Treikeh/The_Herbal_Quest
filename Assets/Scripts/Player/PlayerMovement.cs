@@ -42,19 +42,22 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = moveDirection.normalized;
 
         // Jump when pressing Space
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             Jump();
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         // Check if player is grounded
         isGrounded = Physics.CheckSphere(groundCheckOrigin.position, groundCheckRadius, groundLayer);
         // Apply movement
         Movement();
     }
 
-    private void Movement() {
+    private void Movement()
+    {
         // Get the old rigidbody velocity
         Vector3 velocity = rBody.velocity;
 
@@ -66,8 +69,10 @@ public class PlayerMovement : MonoBehaviour
         rBody.velocity = velocity;
     }
 
-    private void Jump() {
-        if (isGrounded) {
+    private void Jump()
+    {
+        if (isGrounded)
+        {
             rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }

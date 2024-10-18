@@ -25,7 +25,8 @@ public class GameEventListener : MonoBehaviour
     }
 
     // Activate Response when the Event is triggered
-    public void OnEventTriggered() {
+    public void OnEventTriggered()
+    {
         Debug.Log("GameEventListener " + name + " Responded");
         Response.Invoke();
     }

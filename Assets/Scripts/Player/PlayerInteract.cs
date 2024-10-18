@@ -31,7 +31,8 @@ public class PlayerInteract : MonoBehaviour
         // Disable currentInteractable in case the player is no longer looking at an interactable object
         // Also make sure we have a currentInteractable to disable
         // You can do this in the raycast if statment at any point where it doesn't hit an interactable object
-        if (currentInteractable != null) {
+        if (currentInteractable != null)
+        {
             // Clear ui text element
             UpdateInteractPrompt?.Invoke("");
             currentInteractable = null;
@@ -42,9 +43,11 @@ public class PlayerInteract : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
         // If the raycast collides with anything within interactionDistance
-        if (Physics.Raycast(ray, out rayHit, interactDistance)) {
+        if (Physics.Raycast(ray, out rayHit, interactDistance))
+        {
             // Check if collider has the Iinteractable interface
-            if (rayHit.collider.TryGetComponent(out IInteract interactableObject)) {
+            if (rayHit.collider.TryGetComponent(out IInteract interactableObject))
+            {
                 currentInteractable = interactableObject;
                 // Update ui element to match interaction prompt
                 UpdateInteractPrompt?.Invoke(interactableObject.interactPrompt);
