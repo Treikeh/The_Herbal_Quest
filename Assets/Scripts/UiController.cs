@@ -7,19 +7,16 @@ public class HudController : MonoBehaviour
 {
     // Text object that displays the player interact prompt
     [SerializeField] private TMP_Text interactPrompt;
-    [SerializeField] private GameObject winScreen;
 
+    // Subscribe to events
     void OnEnable()
     {
-        // Subscribe to events
-        GameManager.GameWon += OnGameWon;
         PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
     }
 
+    // Unsubscribe to events
     private void OnDisable()
     {
-        // Unsubscribe to events
-        GameManager.GameWon -= OnGameWon;
         PlayerInteract.UpdateInteractPrompt -= OnUpdateInteractPrompt;
     }
 
@@ -33,11 +30,5 @@ public class HudController : MonoBehaviour
     void OnUpdateInteractPrompt(string new_prompt)
     {
         interactPrompt.text = new_prompt;
-    }
-
-    // What this script does when the player has won
-    void OnGameWon()
-    {
-        winScreen.SetActive(true);
     }
 }

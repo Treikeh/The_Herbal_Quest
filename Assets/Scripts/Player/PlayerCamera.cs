@@ -15,18 +15,6 @@ public class PlayerCamera : MonoBehaviour
     // Object to rotate camera up and down
     [SerializeField] private Transform cameraPitch;
 
-    // Subscribe to events
-    void OnEnable()
-    {
-        GameManager.GameWon += DisableCamera;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        GameManager.GameWon -= DisableCamera;
-    }
-
     private void Start()
     {
         // Lock mouse cursor
@@ -51,7 +39,7 @@ public class PlayerCamera : MonoBehaviour
     }
 
     // Disable camera controls
-    private void DisableCamera()
+    public void DisableCamera()
     {
         // Show mouse cursor
         Cursor.lockState = CursorLockMode.None;

@@ -27,18 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rBody;   
     // Start is called before the first frame update
 
-    // Subscribe to events
-    void OnEnable()
-    {
-        GameManager.GameWon += DisableMovement;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        GameManager.GameWon -= DisableMovement;
-    }
-
     private void Start()
     {
         // Get the rigidbody

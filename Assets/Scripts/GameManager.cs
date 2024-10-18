@@ -11,15 +11,8 @@ public class GameManager : MonoBehaviour
     // How many plants to collect
     [SerializeField] private int plantsToPickUp;
     
-    // Event to trigger when the player has won
-    public static event Action GameWon;
-
-    // Make this a singleton
-    public static GameManager Instance;
-    void Awake()
-    {
-        Instance = this;
-    }
+    // Event to trigger when all plants have been picked up
+    [SerializeField] private GameEvent AllPlantsPickedUpEvent;
 
     void Start() {
         // Limit frame rate
@@ -41,7 +34,7 @@ public class GameManager : MonoBehaviour
         plantsToPickUp --;
         if (plantsToPickUp <= 0)
         {
-            GameWon?.Invoke();
+            AllPlantsPickedUpEvent.Trigger();
         }
     }
 }
