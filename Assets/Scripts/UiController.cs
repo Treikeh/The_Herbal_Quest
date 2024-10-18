@@ -11,6 +11,7 @@ public class HudController : MonoBehaviour
     // Subscribe to events
     void OnEnable()
     {
+        // Not the biggest fan of having a reference to the PlayerInteract class, but i don't know of a better way of doing this
         PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
     }
 
