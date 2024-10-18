@@ -8,19 +8,28 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // A list of all the plants that the player needs to collect during this level
-    public List<String> plantsToCollect = new List<String>();
+    public static GameManager Instance;
+    void Awake()
+    {
+        Instance = this;
+    }
 
+    private void Start() {
+        // Limit frame rate
+        Application.targetFrameRate = 90;
+    }
     // Update is called once per frame
     void Update()
     {
         // Reload scene when pressing the R key
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
-    public void HerbPickedUp(String herbName) {
+    public void HerbPickedUp(String herbName)
+    {
         Debug.Log(herbName);
     }
 }
