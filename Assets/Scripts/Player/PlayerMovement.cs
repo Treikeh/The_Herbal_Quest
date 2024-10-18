@@ -27,13 +27,24 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rBody;   
     // Start is called before the first frame update
 
+    // Subscribe to events
+    void OnEnable()
+    {
+        GameManager.GameWon += DisableMovement;
+    }
+
+    // Unsubscribe to events
+    private void OnDisable()
+    {
+        GameManager.GameWon -= DisableMovement;
+    }
+
     private void Start()
     {
         // Get the rigidbody
         rBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         // Align moveDirecion to Camera direction
@@ -71,5 +82,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded) {
             rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+    }
+
+    // Disable movement
+    public void DisableMovement()
+    {
+        rBody.velocity = Vector3.zero;
+        enabled = false;
     }
 }

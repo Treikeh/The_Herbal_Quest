@@ -1,44 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
     [Header("Interact")]
     // Distance player can interact with objects
-    public float interactDistance = 3f;
+    [SerializeField] private float interactDistance = 3f;
     // If the player is looking at an interactable object this will be valid and data can be retrived from it.
     private IInteract currentInteractable;
+    // Event used to update the UI interact prompt
+    public static event Action<string> UpdateInteractPrompt;
 
-    [Header("Attack")]
-    // // Distance player can attack objects
-    public float attackDistance = 3f;
-    public float attackDamage = 2f;
-
-    [Header("General")]
-    // Where the raycasts will start from
-    public Transform raycastOrigin;
-
-    // Delegate and Event to update the UI interact prompt
-    public delegate void UpdateInteractPrompt(string text);
-    public static event UpdateInteractPrompt interactPromptUpdated;
-
-    // Update is called once per frame
     void Update()
     {
-        // Interact Input
+        // Check for interactable object
         CheckInteraction();
+        // If has interactable object and is pressing E
         if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
         {
+            // Interact with the interactable object
             currentInteractable.Interact();
-        }
-
-        // Attack input
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
         }
     }
 
@@ -50,16 +33,13 @@ public class PlayerInteract : MonoBehaviour
         // You can do this in the raycast if statment at any point where it doesn't hit an interactable object
         if (currentInteractable != null) {
             // Clear ui text element
-            if (interactPromptUpdated != null)
-            {
-                interactPromptUpdated.Invoke("");
-            }
+            UpdateInteractPrompt?.Invoke("");
             currentInteractable = null;
         }
-        
+
         // Raycast variables
         RaycastHit rayHit;
-        Ray ray = new Ray(raycastOrigin.position, raycastOrigin.transform.forward);
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
         // If the raycast collides with anything within interactionDistance
         if (Physics.Raycast(ray, out rayHit, interactDistance)) {
@@ -67,28 +47,8 @@ public class PlayerInteract : MonoBehaviour
             if (rayHit.collider.TryGetComponent(out IInteract interactableObject)) {
                 currentInteractable = interactableObject;
                 // Update ui element to match interaction prompt
-                if (interactPromptUpdated != null)
-                {
-                    interactPromptUpdated.Invoke(interactableObject.interactPrompt);
-                }
+                UpdateInteractPrompt?.Invoke(interactableObject.interactPrompt);
             } // Here and bellow you can add an else statment to disable currentInteractable
-        }
-    }
-    private void Attack()
-    {
-        Debug.Log("Pow");
-       // Raycast variables
-        RaycastHit rayHit;
-        Ray ray = new Ray(raycastOrigin.position, raycastOrigin.transform.forward);
-        
-        // Check if raycast hits
-        if (Physics.Raycast(ray, out rayHit, attackDistance))
-        {
-            // Check if hit collider has ITakeDamage interface
-            if (rayHit.collider.TryGetComponent(out ITakeDamage damagObject))
-            {
-                damagObject.TakeDamage(attackDamage);
-            }
         }
     }
 }

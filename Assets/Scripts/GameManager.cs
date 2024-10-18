@@ -9,24 +9,23 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     // How many plants to collect
-    public int plantsToPickUp;
+    [SerializeField] private int plantsToPickUp;
+    
+    // Event to trigger when the player has won
+    public static event Action GameWon;
 
-    public GameEvent gameWon;
-
+    // Make this a singleton
     public static GameManager Instance;
     void Awake()
     {
         Instance = this;
     }
 
-    private void Start() {
+    void Start() {
         // Limit frame rate
         Application.targetFrameRate = 90;
-        // Lock mouse cursor
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
     }
-    // Update is called once per frame
+
     void Update()
     {
         // Reload scene when pressing the R key
@@ -42,10 +41,7 @@ public class GameManager : MonoBehaviour
         plantsToPickUp --;
         if (plantsToPickUp <= 0)
         {
-            gameWon.Trigger();
-            // Show mouse cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            GameWon?.Invoke();
         }
     }
 }

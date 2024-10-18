@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6442974550083299834}
   m_Layer: 0
-  m_Name: CameraRoot
+  m_Name: CameraYaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 2248492849335529754}
   - component: {fileID: 6868628512768450063}
   - component: {fileID: 1739818853348972728}
+  - component: {fileID: 2359335860086564864}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -414,8 +415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSensitivity: 400
   rotationLimit: 89
-  cameraRoot: {fileID: 6442974550083299834}
-  playerCamera: {fileID: 4606320057859315345}
+  cameraYaw: {fileID: 6442974550083299834}
+  cameraPitch: {fileID: 4606320057859315345}
 --- !u!114 &1739818853348972728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +430,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactDistance: 2
-  attackDistance: 2
+--- !u!114 &2359335860086564864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458034354928960628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8217b27d12dec469f2e308ca5b09fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 3
   attackDamage: 2
-  raycastOrigin: {fileID: 4606320057859315345}

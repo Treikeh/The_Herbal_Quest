@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Health : MonoBehaviour, ITakeDamage
 {
-    public float maxHealth = 0f;
+    // The maximum amount of health this object can have
+    public float maxHealth = 10f;
+    // How much health this object has
     private float currentHealth;
+
     private void Start()
     {
+        // Start object at max health
         currentHealth = maxHealth;
     }
+
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
-        Debug.Log(currentHealth);
         if (currentHealth <= 0.0f)
         {
             Destroy(gameObject);
