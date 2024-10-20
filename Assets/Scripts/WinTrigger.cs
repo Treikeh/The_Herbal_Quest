@@ -12,7 +12,7 @@ public class WinTrigger : MonoBehaviour
         // Check to make it's a player
         if (other.tag == "Player")
         {
-            GameWonEvent.Trigger();
+            GameWonEvent.TriggerEvent();
         }
     }
 }

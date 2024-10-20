@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput1 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerMovement pMovement;
+    private PlayerCamera pCamera;
+    private PlayerInteract pInteract;
+    private PlayerAttck pAttack;
+
+    private void Start()
     {
-        
+        pMovement = GetComponent<PlayerMovement>();
+        pCamera = GetComponent<PlayerCamera>();
+        pInteract = GetComponent<PlayerInteract>();
+        pAttack = GetComponent<PlayerAttck>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        //
     }
 }

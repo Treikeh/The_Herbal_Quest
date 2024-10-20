@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class HudController : MonoBehaviour
+public class UiController : MonoBehaviour
 {
+    // Text to display how many plants have been picked up
+    [SerializeField] private TMP_Text objectiveText;
     // Text object that displays the player interact prompt
     [SerializeField] private TMP_Text interactPrompt;
 
     // Subscribe to events
-    void OnEnable()
+    private void OnEnable()
     {
+        GameManager.WhenPickedUp += OnPlantPickedUp;
         // Not the biggest fan of having a reference to the PlayerInteract class, but i don't know of a better way of doing this
         PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
     }
@@ -18,6 +21,7 @@ public class HudController : MonoBehaviour
     // Unsubscribe to events
     private void OnDisable()
     {
+        GameManager.WhenPickedUp -= OnPlantPickedUp;
         PlayerInteract.UpdateInteractPrompt -= OnUpdateInteractPrompt;
     }
 
@@ -27,8 +31,12 @@ public class HudController : MonoBehaviour
         OnUpdateInteractPrompt("");
     }
 
-    // What to do when the interact prompt needs to be updated
-    void OnUpdateInteractPrompt(string new_prompt)
+    private void OnPlantPickedUp(int havePickedUp, int toPickUp)
+    {
+        objectiveText.text = "Plants to pick up " + havePickedUp.ToString() + " / " + toPickUp.ToString();
+    }
+
+    private void OnUpdateInteractPrompt(string new_prompt)
     {
         interactPrompt.text = new_prompt;
     }

@@ -3,30 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu]
 
-// This combined with the GameEventListener component can be used for global events like when the player dies or when restarting a level
+// When combined with the GameEventObserver this asset can be used to create and trigger global game events
+// For example, disabling player input and showing the game over screen when the player is kileld
+
 public class GameEvent : ScriptableObject
 {
     // All objects that are observing this event
-    private List<GameEventListener> listeners = new List<GameEventListener>();
+    private List<GameEventObserver> observers = new List<GameEventObserver>();
 
     // Add new object to list of observers
-    public void RegisterListeners(GameEventListener listener)
+    public void AddObserver(GameEventObserver observer)
     {
-        listeners.Add(listener);
+        observers.Add(observer);
     }
 
     // Remove object from list of observers
-    public void UnregisterListener(GameEventListener listener)
+    public void RemoveObserver(GameEventObserver observer)
     {
-        listeners.Remove(listener);
+        observers.Remove(observer);
     }
 
-    public void Trigger()
+    // Call this method when you want this GameEvent to be triggered
+    public void TriggerEvent()
     {
+        // Debug log to see which and when a event is triggered.
         Debug.Log("GameEvent " + name + " Triggered");
-        for (int i = listeners.Count - 1; i >= 0; i--)
+        // When this event is triggered, go through every observer it has and activate their response
+        // The observers list is read one at the time from back to front.
+        //NOTE: To make this code easier to read it could be a good idea to change the name of variable "i" to something more descriptive
+        for (int i = observers.Count -1; i >= 0; i--)
         {
-            listeners[i].OnEventTriggered();
+            observers[i].RespondToEvent();
         }
     }
 }

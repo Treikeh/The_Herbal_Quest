@@ -10,10 +10,11 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float interactDistance = 3f;
     // If the player is looking at an interactable object this will be valid and data can be retrived from it.
     private IInteract currentInteractable;
+
     // Event used to update the UI interact prompt
     public static event Action<string> UpdateInteractPrompt;
 
-    void Update()
+    private void Update()
     {
         // Check for interactable object
         CheckInteraction();
