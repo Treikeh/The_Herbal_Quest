@@ -4,46 +4,47 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    // How fast to rotate camera
-    public float cameraSensitivity = 4f;
+    public PlayerData playerData;
+
     // How far up and down the camera can be rotated
     public float rotationLimit = 89f;
-    // How far up and down the camera has been rotated
-    private float y_rotation;
     // Object to rotate camera left and right
     [SerializeField] private Transform cameraYaw;
     // Object to rotate camera up and down
     [SerializeField] private Transform cameraPitch;
 
-    private void Start()
+    // Vector to track rotation
+    private Vector2 rotation;
+
+    // Subscribe to events
+    private void OnEnable()
     {
-        // Lock mouse cursor
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
+        playerData.Events.OnLookInput += UpdateLookInput;
+    }
+
+    // Unsubscribe to events
+    private void OnDisable()
+    {
+        playerData.Events.OnLookInput -= UpdateLookInput;
     }
 
     void Update()
     {
         // Rotate camera left and right
-        float x_rotation = Input.GetAxis("Mouse X") * (cameraSensitivity * Time.deltaTime);
-        cameraYaw.Rotate(Vector3.up * x_rotation);
+        cameraYaw.Rotate(Vector3.up * rotation.x);
 
         // Rotate camera up and down
-        y_rotation -= Input.GetAxis("Mouse Y") * (cameraSensitivity * Time.deltaTime);
-        // Limit how far up and down the camera can rotate
-        y_rotation = Mathf.Clamp(y_rotation, -rotationLimit, rotationLimit);
-        // Convert y_rotation to Quaternion
-        var yQuat = Quaternion.AngleAxis(y_rotation, Vector3.right);
+        // Convert rotation.y to Quaternion
+        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.right);
         // Set camera pitch
         cameraPitch.localRotation = yQuat;
     }
 
-    // Disable camera controls
-    public void DisableCamera()
+    private void UpdateLookInput(Vector2 lookInput)
     {
-        // Show mouse cursor
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        enabled = false;
+        rotation.x = lookInput.x;
+        rotation.y -= lookInput.y;
+        // Limit how far up and down the camera can rotate
+        rotation.y = Mathf.Clamp(rotation.y, -rotationLimit, rotationLimit);
     }
 }

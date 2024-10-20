@@ -10,21 +10,6 @@ public class UiController : MonoBehaviour
     // Text object that displays the player interact prompt
     [SerializeField] private TMP_Text interactPrompt;
 
-    // Subscribe to events
-    private void OnEnable()
-    {
-        GameManager.WhenPickedUp += OnPlantPickedUp;
-        // Not the biggest fan of having a reference to the PlayerInteract class, but i don't know of a better way of doing this
-        PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        GameManager.WhenPickedUp -= OnPlantPickedUp;
-        PlayerInteract.UpdateInteractPrompt -= OnUpdateInteractPrompt;
-    }
-
     private void Start()
     {
         // Clear interact prompt
@@ -39,5 +24,20 @@ public class UiController : MonoBehaviour
     private void OnUpdateInteractPrompt(string new_prompt)
     {
         interactPrompt.text = new_prompt;
+    }
+
+    // Subscribe to events
+    private void OnEnable()
+    {
+        GameManager.WhenPickedUp += OnPlantPickedUp;
+        // Not the biggest fan of having a reference to the PlayerInteract class, but i don't know of a better way of doing this
+        PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
+    }
+
+    // Unsubscribe to events
+    private void OnDisable()
+    {
+        GameManager.WhenPickedUp -= OnPlantPickedUp;
+        PlayerInteract.UpdateInteractPrompt -= OnUpdateInteractPrompt;
     }
 }

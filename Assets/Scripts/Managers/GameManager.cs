@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         // Limit frame rate
         Application.targetFrameRate = 90;
-        // Reset everything that needs this info like the Ui
+        // Reset everything that needs this info, like the Ui
         WhenPickedUp?.Invoke(havePickedUp, toPickUp);
     }
 

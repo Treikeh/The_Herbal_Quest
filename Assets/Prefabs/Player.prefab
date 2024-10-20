@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33351b8bfd4fc7e429e41bbcc666f4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
 --- !u!114 &2248492849335529754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926bf4e37c5cee74dbe1873358db2526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
   maxSpeed: 4
   acceleration: 10
   jumpForce: 5
@@ -426,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a522d186ee1bf41804c3aae0847ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSensitivity: 400
+  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
   rotationLimit: 89
   cameraYaw: {fileID: 6442974550083299834}
   cameraPitch: {fileID: 4606320057859315345}
@@ -442,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71618516f6162f34cab1b8df3db7c5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
   interactDistance: 2
 --- !u!114 &2359335860086564864
 MonoBehaviour:
@@ -455,5 +458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8217b27d12dec469f2e308ca5b09fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
   attackDistance: 3
   attackDamage: 2

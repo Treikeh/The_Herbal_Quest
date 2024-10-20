@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    public PlayerData playerData;
+
     [Header("Interact")]
     // Distance player can interact with objects
     [SerializeField] private float interactDistance = 3f;
@@ -14,21 +16,21 @@ public class PlayerInteract : MonoBehaviour
     // Event used to update the UI interact prompt
     public static event Action<string> UpdateInteractPrompt;
 
-    private void Update()
+       // Subscribe to events
+    private void OnEnable()
     {
-        // Check for interactable object
-        CheckInteraction();
-        // If has interactable object and is pressing E
-        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
-        {
-            // Interact with the interactable object
-            currentInteractable.Interact();
-        }
+        playerData.Events.OnInteraction += OnInteraction;
     }
 
-    // Check if the player is looking at an interactable object
-    private void CheckInteraction()
+    // Unsubscribe to events
+    private void OnDisable()
     {
+        playerData.Events.OnInteraction -= OnInteraction;
+    }
+
+    private void Update()
+    {
+        // Check if the player is looking at an interactable object
         // Disable currentInteractable in case the player is no longer looking at an interactable object
         // Also make sure we have a currentInteractable to disable
         // You can do this in the raycast if statment at any point where it doesn't hit an interactable object
@@ -53,6 +55,15 @@ public class PlayerInteract : MonoBehaviour
                 // Update ui element to match interaction prompt
                 UpdateInteractPrompt?.Invoke(interactableObject.interactPrompt);
             } // Here and bellow you can add an else statment to disable currentInteractable
+        }
+    }
+
+    // Interact with interactable object
+    private void OnInteraction()
+    {
+        if (currentInteractable != null)
+        {
+            currentInteractable.Interact();
         }
     }
 }

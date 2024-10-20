@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu]
 
 // When combined with the GameEventObserver this asset can be used to create and trigger global game events
 // For example, disabling player input and showing the game over screen when the player is kileld
 
+[CreateAssetMenu]
 public class GameEvent : ScriptableObject
 {
     // All objects that are observing this event

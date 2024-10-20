@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerData playerData;
+    
     [Header("Movement")]
     // How fast the player can move
     public float maxSpeed = 4.0f;
@@ -27,37 +29,32 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rBody;   
     // Start is called before the first frame update
 
+// Subscribe to events
+    private void OnEnable()
+    {
+        playerData.Events.OnMoveInput += UpdateMoveInput;
+        playerData.Events.OnJumpInput += Jump;
+    }
+
+    // Unsubscribe to events
+    private void OnDisable()
+    {
+        playerData.Events.OnMoveInput -= UpdateMoveInput;
+        playerData.Events.OnJumpInput -= Jump;
+    }
+
     private void Start()
     {
         // Get the rigidbody
         rBody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        // Align moveDirecion to Camera direction
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        moveDirection = (cameraRoot.transform.forward * verticalInput) + (cameraRoot.transform.right * horizontalInput);
-        moveDirection = moveDirection.normalized;
-
-        // Jump when pressing Space
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-    }
-
     private void FixedUpdate()
     {
         // Check if player is grounded
         isGrounded = Physics.CheckSphere(groundCheckOrigin.position, groundCheckRadius, groundLayer);
-        // Apply movement
-        Movement();
-    }
 
-    private void Movement()
-    {
+        // Apply movement
         // Get the old rigidbody velocity
         Vector3 velocity = rBody.velocity;
 
@@ -69,18 +66,17 @@ public class PlayerMovement : MonoBehaviour
         rBody.velocity = velocity;
     }
 
+    private void UpdateMoveInput(Vector2 moveInput)
+    {
+        moveDirection = (cameraRoot.transform.forward * moveInput.y) + (cameraRoot.transform.right * moveInput.x);
+        moveDirection = moveDirection.normalized;
+    }
+
     private void Jump()
     {
         if (isGrounded)
         {
             rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-    }
-
-    // Disable movement
-    public void DisableMovement()
-    {
-        rBody.velocity = Vector3.zero;
-        enabled = false;
     }
 }
