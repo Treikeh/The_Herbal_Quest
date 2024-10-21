@@ -4,24 +4,9 @@ using UnityEngine;
 
 public class PlayerAttck : MonoBehaviour
 {
-    public PlayerData playerData;
-
-    [Header("Attack")]
     // // Distance player can attack objects
     [SerializeField] private float attackDistance = 3f;
     [SerializeField] private float attackDamage = 2f;
-
-    // Subscribe to events
-    private void OnEnable()
-    {
-        playerData.Events.OnAttacking += OnAttacking;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        playerData.Events.OnAttacking -= OnAttacking;
-    }
 
 
     private void Update()
@@ -30,7 +15,7 @@ public class PlayerAttck : MonoBehaviour
         //TODO
     }
 
-    private void OnAttacking()
+    public void AttackObject()
     {
        // Raycast variables
         RaycastHit rayHit;

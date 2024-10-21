@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    public PlayerData playerData;
-
-    [Header("Interact")]
     // Distance player can interact with objects
     [SerializeField] private float interactDistance = 3f;
     // If the player is looking at an interactable object this will be valid and data can be retrived from it.
@@ -15,19 +12,6 @@ public class PlayerInteract : MonoBehaviour
 
     // Event used to update the UI interact prompt
     public static event Action<string> UpdateInteractPrompt;
-
-       // Subscribe to events
-    private void OnEnable()
-    {
-        playerData.Events.OnInteraction += OnInteraction;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        playerData.Events.OnInteraction -= OnInteraction;
-    }
-
 
     private void Update()
     {
@@ -60,7 +44,7 @@ public class PlayerInteract : MonoBehaviour
     }
 
     // Interact with interactable object
-    private void OnInteraction()
+    public void InteractWithObject()
     {
         if (currentInteractable != null)
         {

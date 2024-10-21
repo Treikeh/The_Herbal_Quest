@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public PlayerData playerData;
-    
     [Header("Movement")]
     // How fast the player can move
     public float maxSpeed = 4.0f;
@@ -27,21 +25,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     // Rigidbody reference
     private Rigidbody rBody;   
-    // Start is called before the first frame update
-
-// Subscribe to events
-    private void OnEnable()
-    {
-        playerData.Events.OnMoveInput += UpdateMoveInput;
-        playerData.Events.OnJumpInput += Jump;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        playerData.Events.OnMoveInput -= UpdateMoveInput;
-        playerData.Events.OnJumpInput -= Jump;
-    }
 
 
     private void Start()
@@ -67,13 +50,13 @@ public class PlayerMovement : MonoBehaviour
         rBody.velocity = velocity;
     }
 
-    private void UpdateMoveInput(Vector2 moveInput)
+    public void UpdateMoveInput(Vector2 moveInput)
     {
         moveDirection = (cameraRoot.transform.forward * moveInput.y) + (cameraRoot.transform.right * moveInput.x);
         moveDirection = moveDirection.normalized;
     }
 
-    private void Jump()
+    public void Jump()
     {
         if (isGrounded)
         {

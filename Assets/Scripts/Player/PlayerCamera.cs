@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public PlayerData playerData;
-
     // How far up and down the camera can be rotated
     public float rotationLimit = 89f;
     // Object to rotate camera left and right
@@ -15,18 +13,6 @@ public class PlayerCamera : MonoBehaviour
 
     // Vector to track rotation
     private Vector2 rotation;
-
-    // Subscribe to events
-    private void OnEnable()
-    {
-        playerData.Events.OnLookInput += UpdateLookInput;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        playerData.Events.OnLookInput -= UpdateLookInput;
-    }
 
 
     void Update()
@@ -41,7 +27,7 @@ public class PlayerCamera : MonoBehaviour
         cameraPitch.localRotation = yQuat;
     }
 
-    private void UpdateLookInput(Vector2 lookInput)
+    public void UpdateLookInput(Vector2 lookInput)
     {
         rotation.x = lookInput.x;
         rotation.y -= lookInput.y;

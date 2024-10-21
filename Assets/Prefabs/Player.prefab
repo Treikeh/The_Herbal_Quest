@@ -253,8 +253,8 @@ GameObject:
   - component: {fileID: 584728401647743818}
   - component: {fileID: 572116564635088606}
   - component: {fileID: 1372232262768746947}
-  - component: {fileID: 2248492849335529754}
   - component: {fileID: 6868628512768450063}
+  - component: {fileID: 2248492849335529754}
   - component: {fileID: 1739818853348972728}
   - component: {fileID: 2359335860086564864}
   m_Layer: 0
@@ -394,28 +394,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
---- !u!114 &2248492849335529754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8458034354928960628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 926bf4e37c5cee74dbe1873358db2526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
-  maxSpeed: 4
-  acceleration: 10
-  jumpForce: 5
-  cameraRoot: {fileID: 6442974550083299834}
-  groundCheckRadius: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  groundCheckOrigin: {fileID: 1366508676321557544}
+  OnLookInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6868628512768450063}
+        m_TargetAssemblyTypeName: PlayerCamera, Assembly-CSharp
+        m_MethodName: UpdateLookInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnMoveInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2248492849335529754}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: UpdateMoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnJumpInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2248492849335529754}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnInteractInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1739818853348972728}
+        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
+        m_MethodName: InteractWithObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnAttackInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2359335860086564864}
+        m_TargetAssemblyTypeName: PlayerAttck, Assembly-CSharp
+        m_MethodName: AttackObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6868628512768450063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,10 +481,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a522d186ee1bf41804c3aae0847ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
   rotationLimit: 89
   cameraYaw: {fileID: 6442974550083299834}
   cameraPitch: {fileID: 4606320057859315345}
+--- !u!114 &2248492849335529754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458034354928960628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926bf4e37c5cee74dbe1873358db2526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 4
+  acceleration: 10
+  jumpForce: 5
+  cameraRoot: {fileID: 6442974550083299834}
+  groundCheckRadius: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckOrigin: {fileID: 1366508676321557544}
 --- !u!114 &1739818853348972728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71618516f6162f34cab1b8df3db7c5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
   interactDistance: 2
 --- !u!114 &2359335860086564864
 MonoBehaviour:
@@ -458,6 +530,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8217b27d12dec469f2e308ca5b09fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
   attackDistance: 3
   attackDamage: 2
