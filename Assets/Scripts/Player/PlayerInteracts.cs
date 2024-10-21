@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteracts : MonoBehaviour
 {
     // Distance player can interact with objects
     [SerializeField] private float interactDistance = 3f;

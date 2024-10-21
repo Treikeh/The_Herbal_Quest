@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour
+public class PlayerCameras : MonoBehaviour
 {
     // How far up and down the camera can be rotated
     public float rotationLimit = 89f;

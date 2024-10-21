@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttck : MonoBehaviour
+public class PlayerAttcks : MonoBehaviour
 {
     // // Distance player can attack objects
     [SerializeField] private float attackDistance = 3f;

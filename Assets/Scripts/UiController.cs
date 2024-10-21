@@ -14,13 +14,13 @@ public class UiController : MonoBehaviour
     private void OnEnable()
     {
         // Not the biggest fan of having a reference to the PlayerInteract class, but i don't know of a better way of doing this
-        PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
+        PlayerInteracts.UpdateInteractPrompt += OnUpdateInteractPrompt;
     }
 
     // Unsubscribe to events
     private void OnDisable()
     {
-        PlayerInteract.UpdateInteractPrompt -= OnUpdateInteractPrompt;
+        PlayerInteracts.UpdateInteractPrompt -= OnUpdateInteractPrompt;
     }
 
 

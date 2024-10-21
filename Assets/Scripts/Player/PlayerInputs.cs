@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputs : MonoBehaviour
 {
-    public PlayerData playerData;
+    public PlayerDatas playerData;
 
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     // By doing it this way the different player components doesn't have to keep references to other player components which ->
     // <- keeps the code decoupled and (arguably) easier to work with
     // For example, When the player presses the WASD keys to move the this component takes that info and sends it to the ->
-    // <- PlayerMovement component using the OnMoveInput action
+    // <- PlayerMovement component using the OnMoveInput action 
     public UnityEvent<Vector2> OnLookInput;
     public UnityEvent<Vector2> OnMoveInput;
     public UnityEvent OnJumpInput;

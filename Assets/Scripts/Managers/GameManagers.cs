@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 // This component is responsable for handling game systems like winning, losing and progression
 
-public class GameManager : MonoBehaviour
+public class GameManagers : MonoBehaviour
 {
     // How many collectables the player need to pick up before they can exit the level
     [SerializeField] private int toPickUp;

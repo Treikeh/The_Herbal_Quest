@@ -253,10 +253,10 @@ GameObject:
   - component: {fileID: 584728401647743818}
   - component: {fileID: 572116564635088606}
   - component: {fileID: 1372232262768746947}
-  - component: {fileID: 6868628512768450063}
-  - component: {fileID: 2248492849335529754}
-  - component: {fileID: 1739818853348972728}
-  - component: {fileID: 2359335860086564864}
+  - component: {fileID: 9122584422225649218}
+  - component: {fileID: 8674669434731279820}
+  - component: {fileID: 3554031400154148928}
+  - component: {fileID: 1204643134367123069}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -397,7 +397,7 @@ MonoBehaviour:
   OnLookInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6868628512768450063}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCamera, Assembly-CSharp
         m_MethodName: UpdateLookInput
         m_Mode: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   OnMoveInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2248492849335529754}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: UpdateMoveInput
         m_Mode: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
   OnJumpInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2248492849335529754}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 1
@@ -442,7 +442,7 @@ MonoBehaviour:
   OnInteractInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1739818853348972728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
         m_MethodName: InteractWithObject
         m_Mode: 1
@@ -457,7 +457,7 @@ MonoBehaviour:
   OnAttackInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2359335860086564864}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerAttck, Assembly-CSharp
         m_MethodName: AttackObject
         m_Mode: 1
@@ -469,7 +469,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6868628512768450063
+--- !u!114 &9122584422225649218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,9 +482,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationLimit: 89
-  cameraYaw: {fileID: 6442974550083299834}
-  cameraPitch: {fileID: 4606320057859315345}
---- !u!114 &2248492849335529754
+  cameraYaw: {fileID: 0}
+  cameraPitch: {fileID: 0}
+--- !u!114 &8674669434731279820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,13 +499,13 @@ MonoBehaviour:
   maxSpeed: 4
   acceleration: 10
   jumpForce: 5
-  cameraRoot: {fileID: 6442974550083299834}
+  cameraRoot: {fileID: 0}
   groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
-  groundCheckOrigin: {fileID: 1366508676321557544}
---- !u!114 &1739818853348972728
+    m_Bits: 0
+  groundCheckOrigin: {fileID: 0}
+--- !u!114 &3554031400154148928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -517,8 +517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71618516f6162f34cab1b8df3db7c5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 2
---- !u!114 &2359335860086564864
+  interactDistance: 3
+--- !u!114 &1204643134367123069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
