@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
 
+
     private void Start()
     {
         // Lock mouse cursor

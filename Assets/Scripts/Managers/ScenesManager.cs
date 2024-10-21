@@ -27,12 +27,9 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
-    private void Update()
+
+    public void ReloadLevel()
     {
-        // Reload scene when pressing the R key
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

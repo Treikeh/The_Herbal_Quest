@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         playerData.Events.OnJumpInput -= Jump;
     }
 
+
     private void Start()
     {
         // Get the rigidbody

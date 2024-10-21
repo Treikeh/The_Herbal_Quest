@@ -2,36 +2,56 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // This component is responsable for handling game systems like winning, losing and progression
 
 public class GameManager : MonoBehaviour
 {
-    // How many plants the player needs to pcik up before they can exit the level
+    // How many collectables the player need to pick up before they can exit the level
     [SerializeField] private int toPickUp;
-    // How many plants the player has picked up
+    // How many collectables the player has picked up
     private int havePickedUp = 0;
-    // Event to trigger when the player picks up a plant
-    public static event Action<int, int> WhenPickedUp;
-    
-    // Event to trigger when all plants have been picked up
-    [SerializeField] private GameEvent AllPlantsPickedUpEvent;
+
+    // Event to trigger when the player picks up a collectable
+    public UnityEvent<int, int> OnCollectablePickedUp;
+    // Event to trigger when all plants have bee
+    public UnityEvent OnAllCollectablesPickedUp;
+    public UnityEvent OnLevelEnded;
+
+    // Subscribe to events
+    private void OnEnable()
+    {
+        Collectable.OnPickUp += OnCollectablePickUp;
+    }
+
+    // Unsubscribe to events
+    private void OnDisable()
+    {
+        Collectable.OnPickUp -= OnCollectablePickUp;
+    }
+
 
     private void Start()
     {
         // Limit frame rate
         Application.targetFrameRate = 90;
         // Reset everything that needs this info, like the Ui
-        WhenPickedUp?.Invoke(havePickedUp, toPickUp);
+        OnCollectablePickedUp.Invoke(havePickedUp, toPickUp);
     }
 
-    public void PickUpPlant()
+    public void OnCollectablePickUp()
     {
         havePickedUp++;
-        WhenPickedUp?.Invoke(havePickedUp, toPickUp);
+        OnCollectablePickedUp.Invoke(havePickedUp, toPickUp);
         if (havePickedUp >= toPickUp)
         {
-            AllPlantsPickedUpEvent.TriggerEvent();
+            OnAllCollectablesPickedUp.Invoke();
         }
+    }
+
+    public void EndLevel()
+    {
+        OnLevelEnded.Invoke();
     }
 }

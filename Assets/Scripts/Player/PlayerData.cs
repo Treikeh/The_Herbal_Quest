@@ -10,7 +10,11 @@ public class PlayerData : ScriptableObject
     public float cameraSensitivity = 10f;
 }
 
-// This struct holds helper actions that help with keeping player components decoupled
+// This struct holds actions that player components can use to comunicate with each other without having to store a references to another player component
+// By doing it this way the different player components doesn't have to keep references to other player components which ->
+// <- keeps the code decoupled and (arguably) easier to work with
+// For example, When the player presses the WASD keys to move the PlayerInput component takes that info and sends it to the ->
+// <- PlayerMovement component using the OnMoveInput action
 public struct PlayerEvents
 {
     // Movement actions

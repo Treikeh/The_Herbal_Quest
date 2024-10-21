@@ -28,6 +28,7 @@ public class PlayerCamera : MonoBehaviour
         playerData.Events.OnLookInput -= UpdateLookInput;
     }
 
+
     void Update()
     {
         // Rotate camera left and right

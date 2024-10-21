@@ -28,6 +28,7 @@ public class PlayerInteract : MonoBehaviour
         playerData.Events.OnInteraction -= OnInteraction;
     }
 
+
     private void Update()
     {
         // Check if the player is looking at an interactable object

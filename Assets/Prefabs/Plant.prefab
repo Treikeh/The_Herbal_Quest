@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1739738353111747737}
   - component: {fileID: 2819830560065234159}
   - component: {fileID: 8482130890133746353}
+  - component: {fileID: 2559649619793004213}
+  - component: {fileID: 4403916680873728722}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -62,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2b1ca305f68bacd4698b5c6c842dcb98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,3 +109,43 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &2559649619793004213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949642285501860790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8c7638e2789e043965ddaf6cccd801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4403916680873728722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949642285501860790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7070a9b9ccec242a2ec405c2344a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prompt: Pick Up
+  OnInteracted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2559649619793004213}
+        m_TargetAssemblyTypeName: Collectable, Assembly-CSharp
+        m_MethodName: PickUpCollectable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

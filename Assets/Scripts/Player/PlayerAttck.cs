@@ -23,6 +23,13 @@ public class PlayerAttck : MonoBehaviour
         playerData.Events.OnAttacking -= OnAttacking;
     }
 
+
+    private void Update()
+    {
+        // Check if we are looking at an attackable object so that we can update the hud to display an attack icon
+        //TODO
+    }
+
     private void OnAttacking()
     {
        // Raycast variables
@@ -33,9 +40,9 @@ public class PlayerAttck : MonoBehaviour
         if (Physics.Raycast(ray, out rayHit, attackDistance))
         {
             // Check if hit collider has ITakeDamage interface
-            if (rayHit.collider.TryGetComponent(out ITakeDamage damagObject))
+            if (rayHit.collider.TryGetComponent(out ITakeDamage attackTarget))
             {
-                damagObject.TakeDamage(attackDamage);
+                attackTarget.TakeDamage(attackDamage);
             }
         }
     }
