@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4715815aeacd8084eae841996b96121a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toPickUp: 0
+  toPickUp: 2
   OnCollectablePickedUp:
     m_PersistentCalls:
       m_Calls:
