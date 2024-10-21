@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
-    // ScenesManager Singleton reference variable
     public static ScenesManager Instance {get; private set;}
 
     private void Awake()
     {
+        // Make this gameObject the ScenesManager singleton
         if (Instance == null)
         {
             Instance = this;
@@ -19,17 +19,22 @@ public class ScenesManager : MonoBehaviour
         }
         else
         {
+            // If a ScenesManager already exists destroy this gameObject to avoid duplicates
             Destroy(gameObject);
             return;
         }
-
-        // If a ScenesManager already exists destroy this game object
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
     }
 
+
+    public void LoadSpecificLevel(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void ReloadLevel()
     {
