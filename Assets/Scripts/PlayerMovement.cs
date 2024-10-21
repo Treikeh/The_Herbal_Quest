@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float acceleration = 10.0f;
     // Force to apply when jumping
     public float jumpForce = 5.0f;
-    public Transform cameraRoot;
+    public Transform moveTransform;
 
     [Header("Ground check")]
     // How far the ground check should reach
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdateMoveInput(Vector2 moveInput)
     {
-        moveDirection = (cameraRoot.transform.forward * moveInput.y) + (cameraRoot.transform.right * moveInput.x);
+        moveDirection = (moveTransform.transform.forward * moveInput.y) + (moveTransform.transform.right * moveInput.x);
         moveDirection = moveDirection.normalized;
     }
 

@@ -397,7 +397,7 @@ MonoBehaviour:
   OnLookInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 9122584422225649218}
         m_TargetAssemblyTypeName: PlayerCamera, Assembly-CSharp
         m_MethodName: UpdateLookInput
         m_Mode: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   OnMoveInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8674669434731279820}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: UpdateMoveInput
         m_Mode: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
   OnJumpInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8674669434731279820}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 1
@@ -442,7 +442,7 @@ MonoBehaviour:
   OnInteractInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3554031400154148928}
         m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
         m_MethodName: InteractWithObject
         m_Mode: 1
@@ -457,7 +457,7 @@ MonoBehaviour:
   OnAttackInput:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1204643134367123069}
         m_TargetAssemblyTypeName: PlayerAttck, Assembly-CSharp
         m_MethodName: AttackObject
         m_Mode: 1
@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationLimit: 89
-  cameraYaw: {fileID: 0}
-  cameraPitch: {fileID: 0}
+  cameraYaw: {fileID: 6442974550083299834}
+  cameraPitch: {fileID: 4606320057859315345}
 --- !u!114 &8674669434731279820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,12 +499,12 @@ MonoBehaviour:
   maxSpeed: 4
   acceleration: 10
   jumpForce: 5
-  cameraRoot: {fileID: 0}
+  moveTransform: {fileID: 6442974550083299834}
   groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  groundCheckOrigin: {fileID: 0}
+    m_Bits: 8
+  groundCheckOrigin: {fileID: 1366508676321557544}
 --- !u!114 &3554031400154148928
 MonoBehaviour:
   m_ObjectHideFlags: 0
