@@ -9,7 +9,7 @@ public class PlayerAttck : MonoBehaviour
     [SerializeField] private float attackDamage = 2f;
 
     private ITakeDamage attackTarget;
-    
+
     public static event Action<bool> UpdateCrosshair;
 
 
