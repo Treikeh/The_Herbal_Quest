@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8c7638e2789e043965ddaf6cccd801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpSound: 
+  pickUpSound: pickUp1
 --- !u!114 &4403916680873728722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7070a9b9ccec242a2ec405c2344a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prompt: Pick Up
+  prompt: Pick Up
   OnInteracted:
     m_PersistentCalls:
       m_Calls:

@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33351b8bfd4fc7e429e41bbcc666f4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 2e834f5e6758d374188331b926533eff, type: 2}
+  cameraSensitivity: 400
   OnLookInput:
     m_PersistentCalls:
       m_Calls:
@@ -444,7 +444,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3554031400154148928}
         m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
-        m_MethodName: InteractWithObject
+        m_MethodName: InteractWithTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -459,7 +459,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1204643134367123069}
         m_TargetAssemblyTypeName: PlayerAttck, Assembly-CSharp
-        m_MethodName: AttackObject
+        m_MethodName: AttackTarget
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -496,9 +496,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926bf4e37c5cee74dbe1873358db2526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
+  walkSpeed: 4
   acceleration: 10
   jumpForce: 5
+  walkSound: walk
+  jumpSound: jump
   moveTransform: {fileID: 6442974550083299834}
   groundCheckRadius: 0.1
   groundLayer:
@@ -532,3 +534,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 3
   attackDamage: 2
+  hitSound: attackHit
+  missSound: attackMiss

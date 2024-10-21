@@ -7,11 +7,12 @@ public class PlayerAttck : MonoBehaviour
 {
     [SerializeField] private float attackDistance = 3f;
     [SerializeField] private float attackDamage = 2f;
+
     // Sounds
     public string hitSound;
     public string missSound;
 
-    private ITakeDamage attackTarget;
+    private Health attackTarget;
 
     public static event Action<bool> UpdateCrosshair;
 
@@ -22,7 +23,7 @@ public class PlayerAttck : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit rayHit, attackDistance))
         {
-            if (rayHit.collider.TryGetComponent(out ITakeDamage target))
+            if (rayHit.collider.TryGetComponent(out Health target))
             {
                 attackTarget = target;
                 // Update ui to display attack icon
@@ -49,16 +50,16 @@ public class PlayerAttck : MonoBehaviour
         }
     }
 
-    public void AttackObject()
+    public void AttackTarget()
     {
         if (attackTarget != null)
         {
             attackTarget.TakeDamage(attackDamage);
-            AudioManager.Instance.PlaySound(hitSound, Camera.main.transform);
+            AudioManager.Instance.PlaySound(hitSound);
         }
         else
         {
-            AudioManager.Instance.PlaySound(missSound, Camera.main.transform);
+            AudioManager.Instance.PlaySound(missSound);
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
-    public PlayerData playerData;
+    public float cameraSensitivity = 400f;
 
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -42,8 +42,8 @@ public class PlayerInput : MonoBehaviour
         // Camera Input
         lookInput = Vector2.zero;
 
-        lookInput.x = Input.GetAxis("Mouse X") * (playerData.cameraSensitivity * Time.deltaTime);
-        lookInput.y = Input.GetAxis("Mouse Y") * (playerData.cameraSensitivity * Time.deltaTime);
+        lookInput.x = Input.GetAxis("Mouse X") * (cameraSensitivity * Time.deltaTime);
+        lookInput.y = Input.GetAxis("Mouse Y") * (cameraSensitivity * Time.deltaTime);
 
         OnLookInput.Invoke(lookInput);
 

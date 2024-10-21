@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -33,7 +32,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string soundName, Transform transform = default)
+    public void PlaySound(string soundName)
     {
         Sound s =Array.Find(sounds, sound => sound.name == soundName);
         if (s == null)
@@ -41,7 +40,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + soundName + " not found");
             return;
         }
-        s.transform = transform;
         s.source.Play();
     }
 }

@@ -7,25 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
-    public static ScenesManager Instance {get; private set;}
-
-    private void Awake()
-    {
-        // Make this gameObject the ScenesManager singleton
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            // If a ScenesManager already exists destroy this gameObject to avoid duplicates
-            Destroy(gameObject);
-            return;
-        }
-    }
-
-
     public void LoadSpecificLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

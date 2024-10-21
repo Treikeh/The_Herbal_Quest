@@ -7,7 +7,7 @@ public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private float interactDistance = 3f;
 
-    private IInteract currentInteractable;
+    private Interactable interactTarget;
 
     public static event Action<string> UpdateInteractPrompt;
 
@@ -19,39 +19,39 @@ public class PlayerInteract : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit rayHit, interactDistance))
         {
             // Check if collider has the Iinteractable interface
-            if (rayHit.collider.TryGetComponent(out IInteract target))
+            if (rayHit.collider.TryGetComponent(out Interactable target))
             {
-                currentInteractable = target;
+                interactTarget = target;
                 // Update ui element to match interaction prompt
-                UpdateInteractPrompt?.Invoke(target.interactPrompt);
+                UpdateInteractPrompt?.Invoke(target.Prompt);
             }
             else
             {
-                ClearInteractable();
+                ClearInteractTarget();
             }
         }
         else
         {
-            ClearInteractable();
+            ClearInteractTarget();
         }
     }
 
-    private void ClearInteractable()
+    private void ClearInteractTarget()
     {
-        if (currentInteractable != null)
+        if (interactTarget != null)
         {
             // Clear ui text element
             UpdateInteractPrompt?.Invoke("");
-            currentInteractable = null;
+            interactTarget = null;
         }
     }
 
     // Called when player presses the Interact input
-    public void InteractWithObject()
+    public void InteractWithTarget()
     {
-        if (currentInteractable != null)
+        if (interactTarget != null)
         {
-            currentInteractable.Interact();
+            interactTarget.Interact();
         }
     }
 }

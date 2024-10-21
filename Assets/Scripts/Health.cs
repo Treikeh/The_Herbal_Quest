@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Health : MonoBehaviour, ITakeDamage
+public class Health : MonoBehaviour
 {
-    // The maximum amount of health this object can have
     [SerializeField] private float maxHealth = 10f;
-    // How much health this object has
     private float currentHealth;
 
-    // Send an event 
     public UnityEvent<float, float> OnHit;
     public UnityEvent OnKilled;
 
@@ -23,9 +20,11 @@ public class Health : MonoBehaviour, ITakeDamage
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+        OnHit.Invoke(currentHealth, maxHealth);
+        // Check if ded
         if (currentHealth <= 0.0f)
         {
-            Destroy(gameObject);
+            OnKilled.Invoke();
         }
     }
 }
