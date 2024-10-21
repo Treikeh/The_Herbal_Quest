@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerInputs : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
-    public PlayerDatas playerData;
+    public PlayerData playerData;
 
     private Vector2 moveInput;
     private Vector2 lookInput;

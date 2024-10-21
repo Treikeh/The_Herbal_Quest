@@ -5,7 +5,7 @@ using UnityEngine;
 // Stores data about the player
 
 [CreateAssetMenu]
-public class PlayerDatas : ScriptableObject
+public class PlayerData : ScriptableObject
 {
     public float cameraSensitivity = 10f;
 }
