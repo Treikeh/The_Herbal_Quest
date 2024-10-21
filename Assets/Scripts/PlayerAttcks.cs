@@ -7,6 +7,9 @@ public class PlayerAttck : MonoBehaviour
 {
     [SerializeField] private float attackDistance = 3f;
     [SerializeField] private float attackDamage = 2f;
+    // Sounds
+    public string hitSound;
+    public string missSound;
 
     private ITakeDamage attackTarget;
 
@@ -51,10 +54,11 @@ public class PlayerAttck : MonoBehaviour
         if (attackTarget != null)
         {
             attackTarget.TakeDamage(attackDamage);
+            AudioManager.Instance.PlaySound(hitSound, Camera.main.transform);
         }
         else
         {
-            //
+            AudioManager.Instance.PlaySound(missSound, Camera.main.transform);
         }
     }
 }

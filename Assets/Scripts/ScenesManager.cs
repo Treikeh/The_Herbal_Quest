@@ -12,11 +12,14 @@ public class ScenesManager : MonoBehaviour
 
     private void Awake()
     {
-        // If there isn't aleady a ScenesManager make this GameObject the ScenesManager
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
             return;
         }
 

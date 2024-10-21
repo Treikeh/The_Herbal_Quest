@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
+    public string pickUpSound;
     public static event Action OnPickUp;
 
     public void PickUpCollectable()
