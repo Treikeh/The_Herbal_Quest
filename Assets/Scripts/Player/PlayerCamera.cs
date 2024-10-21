@@ -21,6 +21,7 @@ public class PlayerCamera : MonoBehaviour
         // Lock mouse cursor
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+        playerData.cameraTransform = cameraPitch;
     }
 
     public void OnLook(InputValue inputValue)

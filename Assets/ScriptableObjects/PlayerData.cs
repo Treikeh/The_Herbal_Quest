@@ -9,6 +9,8 @@ public class PlayerData : ScriptableObject
     // Camera
     public float cameraSensitivity = 10f;
     public float cameraRotationLimit = 89f;
+    [HideInInspector]
+    public Transform cameraTransform;
     // Movement
     public float walkSpeed = 5f;
     public float acceleration = 10f;

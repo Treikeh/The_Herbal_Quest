@@ -13,7 +13,7 @@ public class PlayerInteract : MonoBehaviour
     private void Update()
     {
         // Check if the player is looking at an interactable object
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray ray = new Ray(playerData.cameraTransform.position, playerData.cameraTransform.forward);
         if (Physics.Raycast(ray, out RaycastHit rayHit, playerData.interactDistance))
         {
             // Check if collider has the Iinteractable interface
