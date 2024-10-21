@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     public PlayerData playerData;
+    public StringAsset interactPrompt;
 
     private Interactable interactTarget;
 
@@ -20,30 +21,22 @@ public class PlayerInteract : MonoBehaviour
             if (rayHit.collider.TryGetComponent(out Interactable target))
             {
                 interactTarget = target;
-                playerData.interactPrompt = target.Prompt;
+                interactPrompt.value = target.Prompt;
             }
-            else
+            else if (interactTarget != null) // Clear if rayHit collider does not have an interactable component
             {
-                ClearInteractTarget();
+                interactTarget = null;
+                interactPrompt.value = "";
             }
         }
-        else
+        else if (interactTarget != null) // Clear if raycast is not hitting anything
         {
-            ClearInteractTarget();
-        }
-    }
-
-    private void ClearInteractTarget()
-    {
-        if (interactTarget != null)
-        {
-            // Clear ui text element
-            playerData.interactPrompt = "";
             interactTarget = null;
+            interactPrompt.value = "";
         }
     }
 
-    // Called when player presses the Interact input
+    // Called when player presses the Interact button
     public void OnInteract()
     {
         if (interactTarget != null)

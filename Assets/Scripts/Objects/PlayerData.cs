@@ -22,8 +22,4 @@ public class PlayerData : ScriptableObject
     // Interaction
     public float interactDistance = 2f; // Is also used for Attack distance
     public float attackDamage = 2f;
-    [HideInInspector]
-    public string interactPrompt;
-    [HideInInspector]
-    public bool displayAttackIcon;
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     // Event to trigger when all plants have bee
     public UnityEvent OnAllCollectablesPickedUp;
     public UnityEvent OnLevelEnded;
+    
 
     // Subscribe to events
     private void OnEnable()

@@ -9,9 +9,10 @@ public class UiController : MonoBehaviour
     // Text to display how many plants have been picked up
     [SerializeField] private TMP_Text objectiveText;
     // Text object that displays the player interact prompt
-    [SerializeField] private TMP_Text interactPrompt;
+    [SerializeField] private TMP_Text interactPromptText;
 
-    public PlayerData playerData;
+    public StringAsset interactPrompt;
+    public BoolAsset displayAttackIcon;
 
     public Image crosshairImage;
 
@@ -21,8 +22,8 @@ public class UiController : MonoBehaviour
 
     private void Update()
     {
-        interactPrompt.text = playerData.interactPrompt;
-        if (playerData.displayAttackIcon)
+        interactPromptText.text = interactPrompt.value;
+        if (displayAttackIcon.value)
         {
             crosshairImage.sprite = attackIndicator;
         }

@@ -6,11 +6,11 @@ using UnityEngine;
 public class PlayerAttck : MonoBehaviour
 {
     public PlayerData playerData;
+    public BoolAsset displayAttackIcon;
 
     // Sounds should be moved
     public string hitSound;
     public string missSound;
-
     private Health attackTarget;
 
 
@@ -23,28 +23,22 @@ public class PlayerAttck : MonoBehaviour
             if (rayHit.collider.TryGetComponent(out Health target))
             {
                 attackTarget = target;
-                playerData.displayAttackIcon = true;
+                displayAttackIcon.value = true;
             }
-            else
+            else if (attackTarget != null) // Clear if rayHit collider does not have an health component
             {
-                ClearAttackTarget();
+                attackTarget = null;
+                displayAttackIcon.value = false;
             }
         }
-        else
-        {
-            ClearAttackTarget();
-        }
-    }
-
-    private void ClearAttackTarget()
-    {
-        if (attackTarget != null)
+        else if (attackTarget != null) // Clear if raycast is not hitting anything
         {
             attackTarget = null;
-            playerData.displayAttackIcon = false;
+            displayAttackIcon.value = false;
         }
     }
 
+    // Called when player presses the Attack button
     public void OnAttack()
     {
         if (attackTarget != null)

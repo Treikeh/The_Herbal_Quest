@@ -442,7 +442,6 @@ MonoBehaviour:
   walkSound: walk
   jumpSound: jump
   moveTransform: {fileID: 6442974550083299834}
-  groundCheckRadius: 0.1
   groundCheckOrigin: {fileID: 1366508676321557544}
 --- !u!114 &3554031400154148928
 MonoBehaviour:
@@ -457,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
+  interactPrompt: {fileID: 11400000, guid: 21e5e7e08afaaca4f9b90d5989015c88, type: 2}
 --- !u!114 &1204643134367123069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,5 +470,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
+  displayAttackIcon: {fileID: 11400000, guid: afb971e1826d9b644a03e9a9c9fa9c61, type: 2}
   hitSound: attackHit
   missSound: attackMiss
