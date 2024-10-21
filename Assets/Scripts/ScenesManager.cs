@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // This script is responsible for changing and loading scenes
 
 public class ScenesManager : MonoBehaviour
-{
+{   
     public void LoadSpecificLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

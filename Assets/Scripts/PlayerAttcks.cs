@@ -5,29 +5,25 @@ using UnityEngine;
 
 public class PlayerAttck : MonoBehaviour
 {
-    [SerializeField] private float attackDistance = 3f;
-    [SerializeField] private float attackDamage = 2f;
+    public PlayerData playerData;
 
-    // Sounds
+    // Sounds should be moved
     public string hitSound;
     public string missSound;
 
     private Health attackTarget;
-
-    public static event Action<bool> UpdateCrosshair;
 
 
     private void Update()
     {
         // Check if the player is looking at an attackable object
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit rayHit, attackDistance))
+        if (Physics.Raycast(ray, out RaycastHit rayHit, playerData.interactDistance))
         {
             if (rayHit.collider.TryGetComponent(out Health target))
             {
                 attackTarget = target;
-                // Update ui to display attack icon
-                UpdateCrosshair?.Invoke(true);
+                playerData.displayAttackIcon = true;
             }
             else
             {
@@ -44,17 +40,16 @@ public class PlayerAttck : MonoBehaviour
     {
         if (attackTarget != null)
         {
-            // Update ui to display normal crosshair
-            UpdateCrosshair?.Invoke(false);
             attackTarget = null;
+            playerData.displayAttackIcon = false;
         }
     }
 
-    public void AttackTarget()
+    public void OnAttack()
     {
         if (attackTarget != null)
         {
-            attackTarget.TakeDamage(attackDamage);
+            attackTarget.TakeDamage(playerData.attackDamage);
             AudioManager.Instance.PlaySound(hitSound);
         }
         else

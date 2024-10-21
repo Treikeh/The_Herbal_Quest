@@ -1,37 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
-    // How far up and down the camera can be rotated
-    public float rotationLimit = 89f;
+    public PlayerData playerData;
+
     // Object to rotate camera left and right
-    [SerializeField] private Transform cameraYaw;
+    public Transform cameraYaw;
     // Object to rotate camera up and down
-    [SerializeField] private Transform cameraPitch;
+    public Transform cameraPitch;
 
     // Vector to track rotation
     private Vector2 rotation;
 
 
-    void Update()
+    private void Start()
     {
-        // Rotate camera left and right
-        cameraYaw.Rotate(Vector3.up * rotation.x);
-
-        // Rotate camera up and down
-        // Convert rotation.y to Quaternion
-        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.right);
-        // Set camera pitch
-        cameraPitch.localRotation = yQuat;
+        // Lock mouse cursor
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
-    public void UpdateLookInput(Vector2 lookInput)
+    public void OnLook(InputValue inputValue)
     {
-        rotation.x = lookInput.x;
-        rotation.y -= lookInput.y;
+        Vector2 lookInput = inputValue.Get<Vector2>();
+
+        rotation.x = lookInput.x * (playerData.cameraSensitivity * Time.deltaTime);
+        rotation.y -= lookInput.y * (playerData.cameraSensitivity * Time.deltaTime);
         // Limit how far up and down the camera can rotate
-        rotation.y = Mathf.Clamp(rotation.y, -rotationLimit, rotationLimit);
+        rotation.y = Mathf.Clamp(rotation.y, -playerData.cameraRotationLimit, playerData.cameraRotationLimit);
+        // Convert rotation.y to Quaternion
+        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.right);
+
+        // Apply rotation
+        cameraYaw.Rotate(Vector3.up * rotation.x);
+        cameraPitch.localRotation = yQuat;
     }
 }

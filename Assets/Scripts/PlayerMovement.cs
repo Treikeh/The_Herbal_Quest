@@ -1,32 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
-    // How fast the player can move
-    public float walkSpeed = 4.0f;
-    // How fast player reaches max speed
-    public float acceleration = 10.0f;
-    // Force to apply when jumping
-    public float jumpForce = 5.0f;
-    // Sounds
+    public PlayerData playerData;
+
+    // Sounds should be moved
     public string walkSound;
     public string jumpSound;
+
     public Transform moveTransform;
-
-    [Header("Ground check")]
-    // How far the ground check should reach
-    public float groundCheckRadius = 0.1f;
-    // Graound mask
-    public LayerMask groundLayer;
     public Transform groundCheckOrigin;
-    private bool isGrounded;
 
-    // Direction the player will move inn
+    private Vector2 moveInput;
     private Vector3 moveDirection;
-    // Rigidbody reference
     private Rigidbody rBody;   
 
 
@@ -36,34 +25,39 @@ public class PlayerMovement : MonoBehaviour
         rBody = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        moveDirection = (moveTransform.transform.forward * moveInput.y) + (moveTransform.transform.right * moveInput.x);
+        moveDirection = moveDirection.normalized;
+    }
+
     private void FixedUpdate()
     {
         // Check if player is grounded
-        isGrounded = Physics.CheckSphere(groundCheckOrigin.position, groundCheckRadius, groundLayer);
+        playerData.isGrounded = Physics.CheckSphere(groundCheckOrigin.position, playerData.groundCheckRadius, playerData.groundLayer);
 
         // Apply movement
         // Get the old rigidbody velocity
         Vector3 velocity = rBody.velocity;
 
         // Set new velocity
-        velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * walkSpeed, acceleration * Time.fixedDeltaTime);
-        velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * walkSpeed, acceleration * Time.fixedDeltaTime);
+        velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * playerData.walkSpeed, playerData.acceleration * Time.fixedDeltaTime);
+        velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * playerData.walkSpeed, playerData.acceleration * Time.fixedDeltaTime);
 
         // Apply new velocity
         rBody.velocity = velocity;
     }
 
-    public void UpdateMoveInput(Vector2 moveInput)
+    public void OnMove(InputValue inputValue)
     {
-        moveDirection = (moveTransform.transform.forward * moveInput.y) + (moveTransform.transform.right * moveInput.x);
-        moveDirection = moveDirection.normalized;
+        moveInput = inputValue.Get<Vector2>();
     }
 
-    public void Jump()
+    public void OnJump()
     {
-        if (isGrounded)
+        if (playerData.isGrounded)
         {
-            rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rBody.AddForce(Vector3.up * playerData.jumpForce, ForceMode.Impulse);
         }
     }
 }

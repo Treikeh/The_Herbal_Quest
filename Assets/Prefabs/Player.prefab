@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 3689946703548277895}
   - component: {fileID: 584728401647743818}
   - component: {fileID: 572116564635088606}
-  - component: {fileID: 1372232262768746947}
+  - component: {fileID: 6145786571307756919}
   - component: {fileID: 9122584422225649218}
   - component: {fileID: 8674669434731279820}
   - component: {fileID: 3554031400154148928}
@@ -381,7 +381,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1372232262768746947
+--- !u!114 &6145786571307756919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,85 +390,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 8458034354928960628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33351b8bfd4fc7e429e41bbcc666f4c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSensitivity: 400
-  OnLookInput:
+  m_Actions: {fileID: -944628639613478452, guid: 116b150652f91274295a1e2f7a0b4c60, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9122584422225649218}
-        m_TargetAssemblyTypeName: PlayerCamera, Assembly-CSharp
-        m_MethodName: UpdateLookInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnMoveInput:
+      m_Calls: []
+  m_DeviceRegainedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8674669434731279820}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: UpdateMoveInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnJumpInput:
+      m_Calls: []
+  m_ControlsChangedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8674669434731279820}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnInteractInput:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3554031400154148928}
-        m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
-        m_MethodName: InteractWithTarget
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnAttackInput:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1204643134367123069}
-        m_TargetAssemblyTypeName: PlayerAttck, Assembly-CSharp
-        m_MethodName: AttackTarget
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &9122584422225649218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a522d186ee1bf41804c3aae0847ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationLimit: 89
+  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
   cameraYaw: {fileID: 6442974550083299834}
   cameraPitch: {fileID: 4606320057859315345}
 --- !u!114 &8674669434731279820
@@ -496,16 +438,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926bf4e37c5cee74dbe1873358db2526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  acceleration: 10
-  jumpForce: 5
+  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
   walkSound: walk
   jumpSound: jump
   moveTransform: {fileID: 6442974550083299834}
   groundCheckRadius: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
   groundCheckOrigin: {fileID: 1366508676321557544}
 --- !u!114 &3554031400154148928
 MonoBehaviour:
@@ -519,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71618516f6162f34cab1b8df3db7c5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactDistance: 3
+  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
 --- !u!114 &1204643134367123069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8217b27d12dec469f2e308ca5b09fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 3
-  attackDamage: 2
+  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
   hitSound: attackHit
   missSound: attackMiss
