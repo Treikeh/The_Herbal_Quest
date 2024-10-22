@@ -5,10 +5,14 @@ using UnityEngine;
 public class BurnableObject : MonoBehaviour
 {
     public float durnDuration = 3f;
+    private bool isBurning = false;
 
     public void StartBurning()
     {
-        StartCoroutine(BurnOverTime());
+        if (isBurning != true)
+        {
+            StartCoroutine(BurnOverTime());
+        }
     }
 
     private IEnumerator BurnOverTime()

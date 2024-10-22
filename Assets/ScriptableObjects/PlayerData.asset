@@ -13,20 +13,5 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   cameraSensitivity: 10
-  cameraRotationLimit: 89
-  cameraTransform: {fileID: 0}
-  walkSpeed: 5
-  acceleration: 10
-  jumpForce: 5
-  walkSound: 
-  jumpSound: playerJump
-  isGrounded: 1
-  groundCheckRadius: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  interactDistance: 2
-  attackDamage: 2
-  canAttack: 1
-  attackHitSound: attackHit
-  attackMissSound: attackMiss
+  interactPrompt: 
+  displayAttackIcon: 0

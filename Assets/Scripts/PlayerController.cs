@@ -42,6 +42,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        // Hide mouse cursor
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
+        playerData.interactPrompt = "";
+        playerData.displayAttackIcon = false;
+        
         rBody = GetComponent<Rigidbody>();
     }
 
@@ -194,6 +201,19 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+// GameEvents Responses
+
+    public void OnExtinguishTorch()
+    {
+        //
+    }
+
+    public void OnLightTorch()
+    {
+        //
+    }
+
 
 // IEnumerators
 

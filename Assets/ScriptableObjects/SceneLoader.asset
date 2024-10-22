@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb6e0c91e0750347be6943fa348cd70, type: 3}
   m_Name: SceneLoader
   m_EditorClassIdentifier: 
+  isGamePaused: {fileID: 11400000, guid: 2502891bdbcb0ed4b8b2fed4ac189b90, type: 2}

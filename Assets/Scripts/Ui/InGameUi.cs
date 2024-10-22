@@ -1,56 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class InGameUi : MonoBehaviour
 {
-    public PlayerData playerData;
-    // Text to display how many plants have been picked up
-    [SerializeField] private TMP_Text objectiveText;
-    // Text object that displays the player interact prompt
-    [SerializeField] private TMP_Text interactPromptText;
+    public BoolAsset isGamePaused;
+    public UnityEvent OnGamePaused;
+    public UnityEvent OnGameResumed;
+    
 
-    public Image crosshairImage;
-
-    public Sprite crosshiarSprite;
-    public Sprite attackIndicator;
-
-
-    private void Start()
+    public void OnPause()
     {
-        HideMouseCursor();
-    }
-
-    private void Update()
-    {
-        interactPromptText.text = playerData.interactPrompt;
-        if (playerData.displayAttackIcon)
+        if (isGamePaused.value == true)
         {
-            crosshairImage.sprite = attackIndicator;
+            // Resume Game
+            OnGameResumed.Invoke();
+            isGamePaused.value = false;
+            Time.timeScale = 1f;
         }
         else
         {
-            crosshairImage.sprite = crosshiarSprite;
+            // Pause Game
+            OnGamePaused.Invoke();
+            isGamePaused.value = true;
+            Time.timeScale = 0f;
         }
-    }
-
-    public void OnPlantPickedUp(int havePickedUp, int toPickUp)
-    {
-        objectiveText.text = "Plants to pick up " + havePickedUp.ToString() + " / " + toPickUp.ToString();
-    }
-
-    public void ShowMouseCursor()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    public void HideMouseCursor()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
     }
 }
