@@ -15,6 +15,8 @@ public class PlayerData : ScriptableObject
     public float walkSpeed = 5f;
     public float acceleration = 10f;
     public float jumpForce = 5f;
+    public string walkSound;
+    public string jumpSound;
     // Ground check
     public bool isGrounded;
     public float groundCheckRadius = 0.1f;
@@ -22,4 +24,7 @@ public class PlayerData : ScriptableObject
     // Interaction
     public float interactDistance = 2f; // Is also used for Attack distance
     public float attackDamage = 2f;
+    public bool canAttack;
+    public string attackHitSound;
+    public string attackMissSound;
 }

@@ -6,11 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerData playerData;
-
-    // Sounds should be moved
-    public string walkSound;
-    public string jumpSound;
-
     public Transform moveTransform;
     public Transform groundCheckOrigin;
 
@@ -58,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerData.isGrounded)
         {
             rBody.AddForce(Vector3.up * playerData.jumpForce, ForceMode.Impulse);
+            AudioManager.Instance.PlaySound(playerData.jumpSound);
         }
     }
 }

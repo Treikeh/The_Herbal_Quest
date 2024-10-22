@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 763faca72dd692e428ba7aa58a736712, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  cameraSensitivity: 25
+  cameraSensitivity: 10
   cameraRotationLimit: 89
+  cameraTransform: {fileID: 0}
   walkSpeed: 5
   acceleration: 10
   jumpForce: 5
+  walkSound: 
+  jumpSound: playerJump
   isGrounded: 1
+  groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   interactDistance: 2
   attackDamage: 2
-  interactPrompt: 
-  crosshair: {fileID: 0}
+  canAttack: 1
+  attackHitSound: attackHit
+  attackMissSound: attackMiss

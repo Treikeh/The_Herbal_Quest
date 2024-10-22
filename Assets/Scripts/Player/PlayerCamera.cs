@@ -18,9 +18,6 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
-        // Lock mouse cursor
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
         playerData.cameraTransform = cameraPitch;
     }
 
@@ -38,11 +35,5 @@ public class PlayerCamera : MonoBehaviour
         // Apply rotation
         cameraYaw.Rotate(Vector3.up * rotation.x);
         cameraPitch.localRotation = yQuat;
-    }
-
-    public void ShowMouseCursor()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 }

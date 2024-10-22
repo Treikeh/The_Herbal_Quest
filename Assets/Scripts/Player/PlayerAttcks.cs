@@ -8,9 +8,6 @@ public class PlayerAttck : MonoBehaviour
     public PlayerData playerData;
     public BoolAsset displayAttackIcon;
 
-    // Sounds should be moved
-    public string hitSound;
-    public string missSound;
     private Health attackTarget;
 
 
@@ -41,14 +38,31 @@ public class PlayerAttck : MonoBehaviour
     // Called when player presses the Attack button
     public void OnAttack()
     {
-        if (attackTarget != null)
+        if (!playerData.canAttack)
         {
-            attackTarget.TakeDamage(playerData.attackDamage);
-            AudioManager.Instance.PlaySound(hitSound);
+            Debug.Log("Player can't attack");
+            return;
         }
         else
         {
-            AudioManager.Instance.PlaySound(missSound);
+            playerData.canAttack = false;
+            StartCoroutine(AttackDelay());
+            
+            if (attackTarget != null)
+            {
+                attackTarget.TakeDamage(playerData.attackDamage);
+                AudioManager.Instance.PlaySound(playerData.attackHitSound);
+            }
+            else
+            {
+                AudioManager.Instance.PlaySound(playerData.attackMissSound);
+            }
         }
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        playerData.canAttack = true;
     }
 }
