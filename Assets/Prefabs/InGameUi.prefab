@@ -418,8 +418,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9f9351f4ad8236d439781bb327c8c541, type: 2}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
+        m_TargetAssemblyTypeName: GlobalMethods, Assembly-CSharp
         m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
@@ -821,8 +821,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9f9351f4ad8236d439781bb327c8c541, type: 2}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
+        m_TargetAssemblyTypeName: GlobalMethods, Assembly-CSharp
         m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1319,7 +1319,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: a3e3cf48a5861944fb1eb243dda79fad, type: 2}
+      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
         m_TargetAssemblyTypeName: UtilityMethods, Assembly-CSharp
         m_MethodName: ShowMouseCursor
         m_Mode: 1
@@ -1358,7 +1358,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: a3e3cf48a5861944fb1eb243dda79fad, type: 2}
+      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
         m_TargetAssemblyTypeName: UtilityMethods, Assembly-CSharp
         m_MethodName: HideMouseCursor
         m_Mode: 1
@@ -1410,7 +1410,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: a3e3cf48a5861944fb1eb243dda79fad, type: 2}
+      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
         m_TargetAssemblyTypeName: UtilityMethods, Assembly-CSharp
         m_MethodName: ShowMouseCursor
         m_Mode: 1
@@ -1618,9 +1618,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1535112753438000492}
-        m_TargetAssemblyTypeName: InGameUi, Assembly-CSharp
-        m_MethodName: OnPause
+      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
+        m_TargetAssemblyTypeName: GlobalMethods, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2704,8 +2704,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9f9351f4ad8236d439781bb327c8c541, type: 2}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
+        m_TargetAssemblyTypeName: GlobalMethods, Assembly-CSharp
         m_MethodName: ReloadScene
         m_Mode: 1
         m_Arguments:

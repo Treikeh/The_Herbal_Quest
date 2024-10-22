@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnEnterTriggerEvent : MonoBehaviour
+// Use this component when a gameObject needs to trigger a GameEvent entering a trigger
+
+public class OnEnterEventTrigger : MonoBehaviour
 {
     public string objectTag;
     public UnityEvent response;
+
 
     private void OnTriggerEnter(Collider other)
     {
