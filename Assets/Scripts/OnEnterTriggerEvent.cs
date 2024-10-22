@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WinTrigger : MonoBehaviour
+public class OnEnterTriggerEvent : MonoBehaviour
 {
-    public UnityEvent PlayerEnteredTrigger;
+    public string objectTag;
+    public UnityEvent response;
 
     private void OnTriggerEnter(Collider other)
     {
         // Check to make it's a player
-        if (other.tag == "Player")
+        if (other.tag == objectTag)
         {
-            PlayerEnteredTrigger.Invoke();
+            response.Invoke();
         }
     }
 }

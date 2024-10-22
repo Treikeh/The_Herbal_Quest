@@ -17,20 +17,6 @@ public class GameManager : MonoBehaviour
     public UnityEvent<int, int> OnCollectablePickedUp;
     // Event to trigger when all plants have bee
     public UnityEvent OnAllCollectablesPickedUp;
-    public UnityEvent OnLevelEnded;
-    
-
-    // Subscribe to events
-    private void OnEnable()
-    {
-        Collectable.OnPickUp += OnCollectablePickUp;
-    }
-
-    // Unsubscribe to events
-    private void OnDisable()
-    {
-        Collectable.OnPickUp -= OnCollectablePickUp;
-    }
 
 
     private void Start()
@@ -49,10 +35,5 @@ public class GameManager : MonoBehaviour
         {
             OnAllCollectablesPickedUp.Invoke();
         }
-    }
-
-    public void EndLevel()
-    {
-        OnLevelEnded.Invoke();
     }
 }

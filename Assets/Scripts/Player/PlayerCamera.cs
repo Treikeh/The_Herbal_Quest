@@ -39,4 +39,10 @@ public class PlayerCamera : MonoBehaviour
         cameraYaw.Rotate(Vector3.up * rotation.x);
         cameraPitch.localRotation = yQuat;
     }
+
+    public void ShowMouseCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }
