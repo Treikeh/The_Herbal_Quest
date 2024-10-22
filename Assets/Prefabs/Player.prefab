@@ -253,11 +253,7 @@ GameObject:
   - component: {fileID: 584728401647743818}
   - component: {fileID: 572116564635088606}
   - component: {fileID: 6145786571307756919}
-  - component: {fileID: 9122584422225649218}
-  - component: {fileID: 8674669434731279820}
-  - component: {fileID: 3554031400154148928}
-  - component: {fileID: 1204643134367123069}
-  - component: {fileID: 6699074147649106581}
+  - component: {fileID: 1083355326068586845}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -412,7 +408,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &9122584422225649218
+--- !u!114 &1083355326068586845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,68 +417,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 8458034354928960628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a522d186ee1bf41804c3aae0847ab8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5974b3d83d5ac0e4983f18737323d118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamePaused: {fileID: 11400000, guid: 2502891bdbcb0ed4b8b2fed4ac189b90, type: 2}
   playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
+  rayDistance: 2
+  cameraRotationLimit: 89
   cameraYaw: {fileID: 6442974550083299834}
   cameraPitch: {fileID: 4606320057859315345}
---- !u!114 &8674669434731279820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8458034354928960628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 926bf4e37c5cee74dbe1873358db2526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
-  moveTransform: {fileID: 6442974550083299834}
+  walkSpeed: 5
+  acceleration: 10
+  jumpForce: 5
+  jumpSound: playerJump
+  isGrounded: 0
+  groundCheckRadius: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   groundCheckOrigin: {fileID: 1366508676321557544}
---- !u!114 &3554031400154148928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8458034354928960628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71618516f6162f34cab1b8df3db7c5ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
-  interactPrompt: {fileID: 11400000, guid: 21e5e7e08afaaca4f9b90d5989015c88, type: 2}
---- !u!114 &1204643134367123069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8458034354928960628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f8217b27d12dec469f2e308ca5b09fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
-  displayAttackIcon: {fileID: 11400000, guid: afb971e1826d9b644a03e9a9c9fa9c61, type: 2}
---- !u!114 &6699074147649106581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8458034354928960628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d910c4a5cdb2947b40732bdde2fbdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 5d5c113591ed6f84c94acc33409c77fc, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls: []
+  attackDamage: 5
+  attackSpeed: 0.5
+  attackHitSound: attackHit
+  attackMissSound: attackMiss

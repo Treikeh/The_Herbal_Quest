@@ -930,8 +930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectiveText: {fileID: 6641145919476478859}
   interactPromptText: {fileID: 4927219338305063664}
-  interactPrompt: {fileID: 11400000, guid: 21e5e7e08afaaca4f9b90d5989015c88, type: 2}
-  displayAttackIcon: {fileID: 11400000, guid: afb971e1826d9b644a03e9a9c9fa9c61, type: 2}
+  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
   crosshairImage: {fileID: 6070430636566783537}
   crosshiarSprite: {fileID: 21300000, guid: ca50f50335719ae4fa4e156ee96e388e, type: 3}
   attackIndicator: {fileID: 21300000, guid: 7a15c5b17ff687549a065cf3a641f3ad, type: 3}

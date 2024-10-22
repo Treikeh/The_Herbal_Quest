@@ -7,13 +7,11 @@ using UnityEngine.InputSystem;
 
 public class InGameUi : MonoBehaviour
 {
+    public PlayerData playerData;
     // Text to display how many plants have been picked up
     [SerializeField] private TMP_Text objectiveText;
     // Text object that displays the player interact prompt
     [SerializeField] private TMP_Text interactPromptText;
-
-    public StringAsset interactPrompt;
-    public BoolAsset displayAttackIcon;
 
     public Image crosshairImage;
 
@@ -28,8 +26,8 @@ public class InGameUi : MonoBehaviour
 
     private void Update()
     {
-        interactPromptText.text = interactPrompt.value;
-        if (displayAttackIcon.value)
+        interactPromptText.text = playerData.interactPrompt;
+        if (playerData.displayAttackIcon)
         {
             crosshairImage.sprite = attackIndicator;
         }
