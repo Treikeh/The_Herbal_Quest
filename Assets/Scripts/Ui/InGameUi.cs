@@ -10,6 +10,11 @@ public class InGameUi : MonoBehaviour
     public UnityEvent OnGameResumed;
     
 
+    private void OnApplicationQuit()
+    {
+        isGamePaused.value = false;
+    }
+
     public void OnPause()
     {
         if (isGamePaused.value == true)

@@ -163,6 +163,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump()
     {
+        if (isGamePaused.value)
+        {
+            return;
+        }
+        
         if (isGrounded)
         {
             rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -172,6 +177,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract()
     {
+        if (isGamePaused.value)
+        {
+            return;
+        }
+
         if (interactTarget != null)
         {
             interactTarget.Interact();
@@ -180,6 +190,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
+        if (isGamePaused.value)
+        {
+            return;
+        }
+
         if (!canAttack)
         {
             Debug.Log("Player can't attack");

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GlobalMethods : ScriptableObject
 {
     public BoolAsset isGamePaused;
-
+    
 
     // Scene loader
 

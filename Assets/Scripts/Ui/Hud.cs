@@ -29,6 +29,6 @@ public class Hud : MonoBehaviour
 
     public void OnPlantPickedUp(int havePickedUp, int toPickUp)
     {
-        objectiveText.text = "Plants to pick up " + havePickedUp.ToString() + " / " + toPickUp.ToString();
+        objectiveText.text = "You have picked up " + havePickedUp.ToString() + " / " + toPickUp.ToString() + " plants";
     }
 }
