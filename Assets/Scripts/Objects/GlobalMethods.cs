@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// This script is probably the biggest sin i have commited in this code base, but it works better than a SceneManager gameObject singleton
-
 [CreateAssetMenu]
-public class SceneLoader : ScriptableObject
+public class GlobalMethods : ScriptableObject
 {
     public BoolAsset isGamePaused;
+
+
+    // Scene loader
 
     public void LoadSpecificScene(string sceneName)
     {
@@ -40,6 +41,25 @@ public class SceneLoader : ScriptableObject
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         ResetPause();
+    }
+
+// Other
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ShowMouseCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void HideMouseCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     // Rest pause when switching scenes
