@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu]
 public class GlobalMethods : ScriptableObject
 {
-    public BoolAsset isGamePaused;
-    public BoolAsset isGameOver;
-
-
     private void OnEnable()
     {
         // Reset values when a new scene is loaded
@@ -65,11 +61,11 @@ public class GlobalMethods : ScriptableObject
         Cursor.visible = false;
     }
 
-    // Rest pause when switching scenes
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Rest pause when switching scenes
         Time.timeScale = 1f;
-        isGamePaused.value = false;
-        isGameOver.value = false;
+        GameManager.isGameOver = false;
+        GameManager.isGamePaused = false;
     }
 }

@@ -253,7 +253,7 @@ MonoBehaviour:
   OnInteracted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 26750d986519130489b4a8a81e300e61, type: 2}
+      - m_Target: {fileID: 11400000, guid: 59a325c2aa8b52e44951d235ca1596ed, type: 2}
         m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
         m_MethodName: TriggerEvent
         m_Mode: 1

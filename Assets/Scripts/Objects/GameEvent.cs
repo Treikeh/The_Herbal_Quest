@@ -9,16 +9,16 @@ using UnityEngine;
 public class GameEvent : ScriptableObject
 {
     // All objects that are observing this event
-    private List<GameEventObserver> observers = new List<GameEventObserver>();
+    private List<GameEventsObserver> observers = new List<GameEventsObserver>();
 
     // Add new object to list of observers
-    public void AddObserver(GameEventObserver observer)
+    public void AddObserver(GameEventsObserver observer)
     {
         observers.Add(observer);
     }
 
     // Remove object from list of observers
-    public void RemoveObserver(GameEventObserver observer)
+    public void RemoveObserver(GameEventsObserver observer)
     {
         observers.Remove(observer);
     }
@@ -33,7 +33,7 @@ public class GameEvent : ScriptableObject
         //NOTE: To make this code easier to read it could be a good idea to change the name of variable "i" to something more descriptive
         for (int i = observers.Count -1; i >= 0; i--)
         {
-            observers[i].RespondToEvent();
+            observers[i].RespondToEvent(name);
         }
     }
 }

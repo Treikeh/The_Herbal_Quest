@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public BoolAsset isGamePaused;
     public PlayerData playerData;
 
     [Header("Camera")]
@@ -54,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isGamePaused.value)
+        if (GameManager.isGamePaused == true)
         {
             return;
         }
@@ -81,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isGamePaused.value)
+        if (GameManager.isGamePaused == true)
         {
             return;
         }
@@ -163,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump()
     {
-        if (isGamePaused.value)
+        if (GameManager.isGamePaused == true)
         {
             return;
         }

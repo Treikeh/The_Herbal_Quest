@@ -418,9 +418,9 @@ GameObject:
   - component: {fileID: 572116564635088606}
   - component: {fileID: 6145786571307756919}
   - component: {fileID: 1083355326068586845}
-  - component: {fileID: 7041975412711252784}
   - component: {fileID: 4506944473570211425}
   - component: {fileID: 6442050870083813925}
+  - component: {fileID: 6930480680417546918}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -587,7 +587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5974b3d83d5ac0e4983f18737323d118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGamePaused: {fileID: 11400000, guid: 2502891bdbcb0ed4b8b2fed4ac189b90, type: 2}
   playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
   rayDistance: 2
   cameraRotationLimit: 89
@@ -609,34 +608,6 @@ MonoBehaviour:
   attackMissSound: {fileID: 8300000, guid: 430441b64a2c22844a69389f4396c114, type: 3}
   attackAudioSource: {fileID: 4506944473570211425}
   attackAnimations: {fileID: 6442050870083813925}
---- !u!114 &7041975412711252784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8458034354928960628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d910c4a5cdb2947b40732bdde2fbdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: ecfc0f86bbf531141a7883ff7f6e59f1, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6145786571307756919}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: DeactivateInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!82 &4506944473570211425
 AudioSource:
   m_ObjectHideFlags: 0
@@ -754,3 +725,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6930480680417546918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458034354928960628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d910c4a5cdb2947b40732bdde2fbdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Events:
+  - title: GameOver
+    gameEvent: {fileID: 11400000, guid: 01a38505c8b29fd448a724966c17bdd2, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls: []
+  - title: GameWon
+    gameEvent: {fileID: 11400000, guid: ecfc0f86bbf531141a7883ff7f6e59f1, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls: []
+  AnyResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6145786571307756919}
+        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
+        m_MethodName: DeactivateInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

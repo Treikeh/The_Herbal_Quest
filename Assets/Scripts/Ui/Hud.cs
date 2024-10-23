@@ -7,6 +7,7 @@ using TMPro;
 public class Hud : MonoBehaviour
 {
     public PlayerData playerData;
+    public StringAsset objectiveString;
 
     public TMP_Text objectiveText;
     public TMP_Text interactPromptText;
@@ -16,6 +17,7 @@ public class Hud : MonoBehaviour
 
     public void Update()
     {
+        objectiveText.text = objectiveString.value;
         interactPromptText.text = playerData.interactPrompt;
         if (playerData.displayAttackIcon)
         {
@@ -25,10 +27,5 @@ public class Hud : MonoBehaviour
         {
             crosshairImage.sprite = crosshiarSprite;
         }
-    }
-
-    public void OnPlantPickedUp(int havePickedUp, int toPickUp)
-    {
-        objectiveText.text = "You have picked up " + havePickedUp.ToString() + " / " + toPickUp.ToString() + " plants";
     }
 }

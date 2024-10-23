@@ -5,31 +5,31 @@ using UnityEngine.Events;
 
 public class InGameUi : MonoBehaviour
 {
-    public BoolAsset isGamePaused;
-    public BoolAsset isGameOver;
     public UnityEvent OnGamePaused;
     public UnityEvent OnGameResumed;
 
 
     public void OnPause()
     {
-        if (isGameOver.value == true)
+        if (GameManager.isGameOver == true)
         {
             return;
         }
 
-        if (isGamePaused.value == true)
+        if (GameManager.isGamePaused == true)
         {
             // Resume Game
             OnGameResumed.Invoke();
-            isGamePaused.value = false;
+            GameManager.isGamePaused = false;
+            //isGamePaused.value = false;
             Time.timeScale = 1f;
         }
         else
         {
             // Pause Game
             OnGamePaused.Invoke();
-            isGamePaused.value = true;
+            GameManager.isGamePaused = true;
+            //isGamePaused.value = true;
             Time.timeScale = 0f;
         }
     }
