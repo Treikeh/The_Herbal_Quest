@@ -8,32 +8,17 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    // How many collectables the player need to pick up before they can exit the level
-    [SerializeField] private int toPickUp;
-    // How many collectables the player has picked up
-    private int havePickedUp = 0;
-
-    // Event to trigger when the player picks up a collectable
-    public UnityEvent<int, int> OnCollectablePickedUp;
-    // Event to trigger when all plants have bee
-    public UnityEvent OnAllCollectablesPickedUp;
+    public BoolAsset isGameOver;
 
 
     private void Start()
     {
         // Limit frame rate
         Application.targetFrameRate = 90;
-        // Reset everything that needs this info, like the Ui
-        OnCollectablePickedUp.Invoke(havePickedUp, toPickUp);
     }
 
-    public void OnCollectablePickUp()
+    public void OnGameOver()
     {
-        havePickedUp++;
-        OnCollectablePickedUp.Invoke(havePickedUp, toPickUp);
-        if (havePickedUp >= toPickUp)
-        {
-            OnAllCollectablesPickedUp.Invoke();
-        }
+        isGameOver.value = true;
     }
 }

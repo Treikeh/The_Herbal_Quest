@@ -6,17 +6,18 @@ using UnityEngine.Events;
 public class InGameUi : MonoBehaviour
 {
     public BoolAsset isGamePaused;
+    public BoolAsset isGameOver;
     public UnityEvent OnGamePaused;
     public UnityEvent OnGameResumed;
-    
 
-    private void OnApplicationQuit()
-    {
-        isGamePaused.value = false;
-    }
 
     public void OnPause()
     {
+        if (isGameOver.value == true)
+        {
+            return;
+        }
+
         if (isGamePaused.value == true)
         {
             // Resume Game

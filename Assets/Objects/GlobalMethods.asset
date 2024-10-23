@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GlobalMethods
   m_EditorClassIdentifier: 
   isGamePaused: {fileID: 11400000, guid: 2502891bdbcb0ed4b8b2fed4ac189b90, type: 2}
+  isGameOver: {fileID: 11400000, guid: 824733efa70bc3c46bc87feb4753b0a7, type: 2}

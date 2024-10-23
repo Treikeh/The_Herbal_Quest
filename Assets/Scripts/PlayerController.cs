@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// I have never heard of single responsibility
-
 public class PlayerController : MonoBehaviour
 {
     public BoolAsset isGamePaused;
@@ -19,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5f;
     public float acceleration = 10f;
     public float jumpForce = 5f;
-    public string jumpSound;
+    public AudioClip jumpSound;
     [Header("Ground check")]
     public bool isGrounded;
     public float groundCheckRadius = 0.1f;
@@ -28,8 +26,10 @@ public class PlayerController : MonoBehaviour
     [Header("Attacking")]
     public float attackDamage = 5f;
     public float attackSpeed = 0.5f;
-    public string attackHitSound;
-    public string attackMissSound;
+    public AudioClip attackHitSound;
+    public AudioClip attackMissSound;
+    public AudioSource attackAudioSource;
+    public Animator attackAnimations;
     
     private Vector2 lookInput;
     private Vector2 cameraRotation;
@@ -171,13 +171,14 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            AudioManager.Instance.PlaySound(jumpSound);
+            AudioSource.PlayClipAtPoint(jumpSound, gameObject.transform.position);
         }
     }
 
     public void OnInteract()
     {
-        if (isGamePaused.value)
+        // Disable interacting when the cursor is visable
+        if (Cursor.visible == true)
         {
             return;
         }
@@ -190,7 +191,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
-        if (isGamePaused.value)
+        // Disable attacking when the cursor is visable
+        if (Cursor.visible == true)
         {
             return;
         }
@@ -204,15 +206,16 @@ public class PlayerController : MonoBehaviour
         {
             canAttack = false;
             StartCoroutine(AttackDelay());
+            attackAnimations.Play("AttackAnim", -1, 0f);
             
             if (attackTarget != null)
             {
                 attackTarget.TakeDamage(attackDamage);
-                AudioManager.Instance.PlaySound(attackHitSound);
+                attackAudioSource.PlayOneShot(attackHitSound);
             }
             else
             {
-                AudioManager.Instance.PlaySound(attackMissSound);
+                attackAudioSource.PlayOneShot(attackMissSound);
             }
         }
     }

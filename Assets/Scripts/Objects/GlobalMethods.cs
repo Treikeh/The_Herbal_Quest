@@ -7,7 +7,14 @@ using UnityEngine.SceneManagement;
 public class GlobalMethods : ScriptableObject
 {
     public BoolAsset isGamePaused;
-    
+    public BoolAsset isGameOver;
+
+
+    private void OnEnable()
+    {
+        // Reset values when a new scene is loaded
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
     // Scene loader
 
@@ -21,26 +28,22 @@ public class GlobalMethods : ScriptableObject
         else
         {
             SceneManager.LoadScene(sceneName);
-            ResetPause();
         }
     }
 
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        ResetPause();
     }
 
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        ResetPause();
     }
 
     public void LoadNextBuildScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        ResetPause();
     }
 
 // Other
@@ -63,9 +66,10 @@ public class GlobalMethods : ScriptableObject
     }
 
     // Rest pause when switching scenes
-    private void ResetPause()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        isGamePaused.value = false;
         Time.timeScale = 1f;
+        isGamePaused.value = false;
+        isGameOver.value = false;
     }
 }
