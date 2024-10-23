@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheckOrigin;
     [Header("Attacking")]
-    public float attackDamage = 5f;
     public float attackSpeed = 0.5f;
     public AudioClip attackHitSound;
     public AudioClip attackMissSound;
@@ -47,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
         playerData.interactPrompt = "";
         playerData.displayAttackIcon = false;
+        playerData.attackDamage = playerData.DefaultDamage;
         
         rBody = GetComponent<Rigidbody>();
     }
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
             
             if (attackTarget != null)
             {
-                attackTarget.TakeDamage(attackDamage);
+                attackTarget.TakeDamage(playerData.attackDamage);
                 attackAudioSource.PlayOneShot(attackHitSound);
             }
             else

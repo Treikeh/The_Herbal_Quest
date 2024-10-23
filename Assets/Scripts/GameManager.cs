@@ -52,16 +52,16 @@ public class GameManager : MonoBehaviour
 
     private void UpdateObjectiveString()
     {
-        string description = objectives[currentObjective].description;
+        string title = objectives[currentObjective].title;
         if (objectives[currentObjective].displayValues == true)
         {
             string maxValue = objectives[currentObjective].maxValue.ToString();
             string currentValue = objectives[currentObjective].currentValue.ToString();
-            objectiveString.value = description + currentValue + " / " + maxValue;
+            objectiveString.value = title + currentValue + " / " + maxValue;
         }
         else
         {
-            objectiveString.value = description;
+            objectiveString.value = title;
         }
     }
 }
@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
 public class Objective
 {
     public string title;
-    public string description;
     public int maxValue;
     public int currentValue;
     public bool displayValues = false;
