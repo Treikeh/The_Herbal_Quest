@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: bc1d09b9427c81c468db2504166c358d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -96,8 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: edf85e6173de7cd48ac73e4f5f51eca3, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: ff1c81840b7de2e41b1f62cf5037c417, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5648,17 +5648,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 89.916, z: 0}
---- !u!114 &703123899 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7561713683856196868, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
-  m_PrefabInstance: {fileID: 33678636}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85559ab82272cc54893c63e02fda73da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -6066,50 +6055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4715815aeacd8084eae841996b96121a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toPickUp: 2
   isGameOver: {fileID: 11400000, guid: 824733efa70bc3c46bc87feb4753b0a7, type: 2}
-  OnCollectablePickedUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 703123899}
-        m_TargetAssemblyTypeName: Hud, Assembly-CSharp
-        m_MethodName: OnPlantPickedUp
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnAllCollectablesPickedUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 193948611}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1811182859}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Return to tea house
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1206328441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6356,17 +6302,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1811182859 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6641145919476478859, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
-  m_PrefabInstance: {fileID: 33678636}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1851303369
 PrefabInstance:
   m_ObjectHideFlags: 0
