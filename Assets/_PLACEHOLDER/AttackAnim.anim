@@ -28,7 +28,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: 119.031006, y: -20.421997, z: 93.846}
+        value: {x: 121.466, y: -47.356995, z: 62.4}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -47,7 +47,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -63,7 +63,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: 0.476, y: -0.41985637, z: 0.913}
+        value: {x: 0.55261886, y: -0.34908065, z: 1.086}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -82,7 +82,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -94,7 +94,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 799683093
+      path: 3704092551
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -103,7 +103,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 799683093
+      path: 3704092551
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -148,7 +148,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 0.476
+        value: 0.55261886
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -168,7 +168,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -187,7 +187,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: -0.41985637
+        value: -0.34908065
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -207,7 +207,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -226,7 +226,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 0.913
+        value: 1.086
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -246,7 +246,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -265,7 +265,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 119.031006
+        value: 121.466
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -285,10 +285,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
-    flags: 0
+    flags: 16
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -304,7 +304,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: -20.421997
+        value: -47.356995
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -324,10 +324,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
-    flags: 0
+    flags: 16
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -343,7 +343,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 93.846
+        value: 62.4
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -363,10 +363,10 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
-    flags: 0
+    flags: 16
   m_EulerEditorCurves:
   - serializedVersion: 2
     curve:
@@ -376,7 +376,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -388,7 +388,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -400,7 +400,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: CameraYaw/PlayerCamera/Hand
+    path: CameraYaw/CameraPitch/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0

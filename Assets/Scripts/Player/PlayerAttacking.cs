@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerAttacking : MonoBehaviour
 {
     public PlayerData playerData;
-    public Light flameLight;
-    public GameObject torch;
     public Transform cameraPitch;
-    public bool startWithTorch = true;
-    public float rayDistance = 2f;
+    public GameObject torch;
+    public Light flameLight;
+    public bool startWithTorchActive = true;
+    public float attackDistance = 2f;
     public float attackSpeed = 0.5f;
     public AudioClip attackHitSound;
     public AudioClip attackMissSound;
@@ -24,7 +24,7 @@ public class PlayerAttacking : MonoBehaviour
     private void Start()
     {
         playerData.displayAttackIcon = false;
-        if (startWithTorch)
+        if (startWithTorchActive)
         {
             torch.SetActive(true);
             canAttack = true;
@@ -48,7 +48,7 @@ public class PlayerAttacking : MonoBehaviour
     private void CheckForAttackable()
     {
         Ray ray = new Ray(cameraPitch.position, cameraPitch.forward);
-        if (Physics.Raycast(ray, out RaycastHit rayHit, rayDistance))
+        if (Physics.Raycast(ray, out RaycastHit rayHit, attackDistance))
         {
             if (rayHit.collider.TryGetComponent(out IHitable target))
             {

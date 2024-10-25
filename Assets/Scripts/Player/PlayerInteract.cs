@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     public PlayerData playerData;
-    public float rayDistance = 2f;
     public Transform cameraPitch;
+    public float interactDistance = 2f;
 
     private Interactable interactTarget;
 
@@ -24,7 +24,7 @@ public class PlayerInteract : MonoBehaviour
     private void CheckForInteractable()
     {
         Ray ray = new Ray(cameraPitch.position, cameraPitch.forward);
-        if (Physics.Raycast(ray, out RaycastHit rayHit, rayDistance))
+        if (Physics.Raycast(ray, out RaycastHit rayHit, interactDistance))
         {
             if (rayHit.collider.TryGetComponent(out Interactable target))
             {
