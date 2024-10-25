@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttacking : MonoBehaviour
 {
-    public PlayerData playerData;
-    public Transform cameraPitch;
+    public SharedData sharedData;
+    public Transform head;
     public GameObject torch;
     public Light flameLight;
     public bool startWithTorchActive = true;
@@ -23,7 +23,7 @@ public class PlayerAttacking : MonoBehaviour
 
     private void Start()
     {
-        playerData.displayAttackIcon = false;
+        sharedData.displayAttackIcon = false;
         if (startWithTorchActive)
         {
             torch.SetActive(true);
@@ -47,24 +47,24 @@ public class PlayerAttacking : MonoBehaviour
     // Check if the player is looking at an attackable object
     private void CheckForAttackable()
     {
-        Ray ray = new Ray(cameraPitch.position, cameraPitch.forward);
+        Ray ray = new Ray(head.position, head.forward);
         if (Physics.Raycast(ray, out RaycastHit rayHit, attackDistance))
         {
             if (rayHit.collider.TryGetComponent(out IHitable target))
             {
                 attackTarget = target;
-                playerData.displayAttackIcon = true;
+                sharedData.displayAttackIcon = true;
             }
             else if (attackTarget != null) // Clear if rayHit collider does not have an health component
             {
                 attackTarget = null;
-                playerData.displayAttackIcon = false;
+                sharedData.displayAttackIcon = false;
             }
         }
         else if (attackTarget != null) // Clear if raycast is not hitting anything
         {
             attackTarget = null;
-            playerData.displayAttackIcon = false;
+            sharedData.displayAttackIcon = false;
         }
     }
 
@@ -84,7 +84,7 @@ public class PlayerAttacking : MonoBehaviour
             
             if (attackTarget != null)
             {
-                attackTarget.Hit(playerData.torchLit);
+                attackTarget.Hit(flameLight.enabled);
                 attackAudioSource.PlayOneShot(attackHitSound);
             }
             else
@@ -110,7 +110,6 @@ public class PlayerAttacking : MonoBehaviour
         if (torch.activeInHierarchy && !flameLight.enabled)
         {
             flameLight.enabled = true;
-            playerData.torchLit = true;
             // Play sound
         }
     }
@@ -120,7 +119,6 @@ public class PlayerAttacking : MonoBehaviour
         if (torch.activeInHierarchy && flameLight.enabled)
         {
             flameLight.enabled = false;
-            playerData.torchLit = false;
             // Play sound
         }
     }

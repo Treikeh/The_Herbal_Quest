@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    public StringAsset objectiveString;
+    public SharedData sharedData;
     public List<Objective> objectives = new List<Objective>();
 
     public static bool isGameOver;
@@ -28,9 +28,7 @@ public class GameManager : MonoBehaviour
     public void AddObjectiveProgress()
     {
         if (isGameOver)
-        {
-            return;
-        }
+            { return; }
 
         objectives[currentObjective].currentValue++;
         // Check if currentObjective is completed
@@ -39,19 +37,13 @@ public class GameManager : MonoBehaviour
             objectives[currentObjective].OnObjectiveCompleted.Invoke();
             currentObjective++;
             // Check if all objectives are completed
-            if (currentObjective >= objectives.Count)
-            {
-                isGameOver = true;
-            }
+            if (currentObjective >= objectives.Count) 
+                { isGameOver = true; }
             else
-            {
-                UpdateObjectiveString();
-            }
+                { UpdateObjectiveString(); }
         }
         else
-        {
-            UpdateObjectiveString();
-        }
+            { UpdateObjectiveString(); }
     }
 
     private void UpdateObjectiveString()
@@ -61,11 +53,11 @@ public class GameManager : MonoBehaviour
         {
             string maxValue = objectives[currentObjective].maxValue.ToString();
             string currentValue = objectives[currentObjective].currentValue.ToString();
-            objectiveString.value = title + currentValue + " / " + maxValue;
+            sharedData.objectiveText = title + currentValue + " / " + maxValue;
         }
         else
         {
-            objectiveString.value = title;
+            sharedData.objectiveText = title;
         }
     }
 }

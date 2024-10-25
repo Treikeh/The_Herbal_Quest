@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public PlayerData playerData;
-    public float cameraRotationLimit = 89f;
-    public Transform cameraYaw;
-    public Transform cameraPitch;
+    public float sensitivity = 10f;
+    public float rotationLimit = 89f;
+    public Transform orientation;
+    public Transform head;
 
     private Vector2 lookInput;
-    private Vector2 cameraRotation;
+    private Vector2 rotation;
 
 
     private void Start()
@@ -24,16 +24,16 @@ public class PlayerCamera : MonoBehaviour
     private void Update()
     {
         // Camera rotation
-        cameraRotation.x = lookInput.x * (playerData.cameraSensitivity * Time.deltaTime);
-        cameraRotation.y -= lookInput.y * (playerData.cameraSensitivity * Time.deltaTime);
+        rotation.x = lookInput.x * (sensitivity * Time.deltaTime);
+        rotation.y -= lookInput.y * (sensitivity * Time.deltaTime);
         // Limit how far up and down the camera can rotate
-        cameraRotation.y = Mathf.Clamp(cameraRotation.y, -cameraRotationLimit, cameraRotationLimit);
+        rotation.y = Mathf.Clamp(rotation.y, -rotationLimit, rotationLimit);
         // Convert rotation.y to Quaternion
-        var yQuat = Quaternion.AngleAxis(cameraRotation.y, Vector3.right);
+        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.right);
 
         // Apply rotation
-        cameraYaw.Rotate(Vector3.up * cameraRotation.x);
-        cameraPitch.localRotation = yQuat;
+        orientation.Rotate(Vector3.up * rotation.x);
+        head.localRotation = yQuat;
     }
 
     public void OnLook(InputValue value)

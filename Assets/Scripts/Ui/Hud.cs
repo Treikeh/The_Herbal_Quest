@@ -6,8 +6,7 @@ using TMPro;
 
 public class Hud : MonoBehaviour
 {
-    public PlayerData playerData;
-    public StringAsset objectiveString;
+    public SharedData sharedData;
 
     public TMP_Text objectiveText;
     public TMP_Text interactPromptText;
@@ -17,15 +16,12 @@ public class Hud : MonoBehaviour
 
     public void Update()
     {
-        objectiveText.text = objectiveString.value;
-        interactPromptText.text = playerData.interactPrompt;
-        if (playerData.displayAttackIcon)
-        {
-            crosshairImage.sprite = attackIndicator;
-        }
+        objectiveText.text = sharedData.objectiveText;
+        interactPromptText.text = sharedData.interactPrompt;
+        // Attack icon
+        if (sharedData.displayAttackIcon)
+            { crosshairImage.sprite = attackIndicator; }
         else
-        {
-            crosshairImage.sprite = crosshiarSprite;
-        }
+            { crosshairImage.sprite = crosshiarSprite; }
     }
 }

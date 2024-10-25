@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4715815aeacd8084eae841996b96121a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectiveString: {fileID: 11400000, guid: e5f0ce685d3008943814eeb2745ca19d, type: 2}
+  sharedData: {fileID: 11400000, guid: 7b3b5589f86d67044ae823a2c9444ce6, type: 2}
   objectives:
   - title: 'Plants to pick up '
     maxValue: 1
@@ -54,21 +54,6 @@ MonoBehaviour:
     OnObjectiveCompleted:
       m_PersistentCalls:
         m_Calls: []
-  AllObjectivesCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: ecfc0f86bbf531141a7883ff7f6e59f1, type: 2}
-        m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
-        m_MethodName: TriggerEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7334383464411673029
 MonoBehaviour:
   m_ObjectHideFlags: 0
