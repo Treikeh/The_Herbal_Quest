@@ -1,36 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class BurnableObject : MonoBehaviour, IHitable
+public class BurnableObject : MonoBehaviour
 {
     public float durnDuration = 3f;
-    public UnityEvent OnStartBurning;
-
     private bool isBurning = false;
-
-
-public void Hit(bool startBurning)
-    {
-        if (startBurning && !isBurning)
-        {
-            StartBurning();
-        }
-        else
-        {
-            Debug.Log("Torch not lit or object allready burning");
-        }
-    }
 
     public void StartBurning()
     {
-        isBurning = true;
-        OnStartBurning.Invoke();
-        StartCoroutine(BurningCorutine());
+        if (isBurning != true)
+        {
+            StartCoroutine(BurnOverTime());
+        }
     }
 
-    private IEnumerator BurningCorutine()
+    private IEnumerator BurnOverTime()
     {
         Debug.Log("Start burning");
         yield return new WaitForSeconds(durnDuration);
