@@ -11,8 +11,8 @@ public class Torch : MonoBehaviour
     {
         if (flameLight.enabled == false)
         {
-            playerData.attackDamage = playerData.DefaultDamage;
             flameLight.enabled = true;
+            playerData.torchLit = true;
             // Play sound
         }
     }
@@ -21,8 +21,8 @@ public class Torch : MonoBehaviour
     {
         if (flameLight.enabled == true)
         {
-            playerData.attackDamage = 0;
             flameLight.enabled = false;
+            playerData.torchLit = false;
             // Play sound
         }
     }
