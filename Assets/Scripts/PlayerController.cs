@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheckOrigin;
     [Header("Attacking")]
+    public bool startWithTorch;
     public float attackSpeed = 0.5f;
     public AudioClip attackHitSound;
     public AudioClip attackMissSound;
@@ -34,8 +35,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 moveDirection;
     private Interactable interactTarget;
-    private bool canAttack = true;
-    private Health attackTarget;
+    private bool canAttack;
+    private IHitable attackTarget;
     private Rigidbody rBody;
 
     private void Start()
@@ -46,7 +47,16 @@ public class PlayerController : MonoBehaviour
 
         playerData.interactPrompt = "";
         playerData.displayAttackIcon = false;
-        playerData.attackDamage = playerData.DefaultDamage;
+        if (startWithTorch)
+        {
+            canAttack = true;
+            playerData.torchLit = true;
+        }
+        else
+        {
+            canAttack = false;
+            playerData.torchLit = false;
+        }
         
         rBody = GetComponent<Rigidbody>();
     }
@@ -130,7 +140,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(cameraPitch.position, cameraPitch.forward);
         if (Physics.Raycast(ray, out RaycastHit rayHit, rayDistance))
         {
-            if (rayHit.collider.TryGetComponent(out Health target))
+            if (rayHit.collider.TryGetComponent(out IHitable target))
             {
                 attackTarget = target;
                 playerData.displayAttackIcon = true;
@@ -209,7 +219,7 @@ public class PlayerController : MonoBehaviour
             
             if (attackTarget != null)
             {
-                attackTarget.TakeDamage(playerData.attackDamage);
+                attackTarget.Hit(playerData.torchLit);
                 attackAudioSource.PlayOneShot(attackHitSound);
             }
             else
@@ -219,18 +229,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-// GameEvents Responses
 
-    public void OnExtinguishTorch()
+    public void OnTorchPickedUp(bool torchLit)
     {
-        //
+        canAttack = true;
+        playerData.torchLit = true;
     }
-
-    public void OnLightTorch()
-    {
-        //
-    }
-
 
 // IEnumerators
 
