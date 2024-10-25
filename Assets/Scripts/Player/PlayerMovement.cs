@@ -5,25 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
     public float walkSpeed = 5f;
     public float acceleration = 10f;
-    public float maxSlopeAngle = 45f;
-    public float jumpForce = 5f;
-    public float jumpBufferDuration = 0.2f;
-    public Transform cameraYaw;
-    public AudioClip jumpSound;
-
-    [Header("Ground check")]
-    public bool isGrounded = true;
-    public float groundCheckRadius = 0.1f;
+    public float groundDrag = 1f;
+    public float groundCheckDistance = 0.75f;
     public LayerMask groundLayer;
-    public Transform groundCheckOrigin;
+    public Transform orientation;
 
     private Rigidbody rBody;
-    public bool canJump;
-    private float jumpBufferCount;
-    private RaycastHit slopeHit;
+    private bool isGrounded;
     private Vector2 moveInput;
     private Vector3 moveDirection;
 
@@ -35,36 +25,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Align moveInput to face cameraPitch Direction
-        moveDirection = (cameraYaw.transform.forward * moveInput.y) + (cameraYaw.transform.right * moveInput.x);
-        moveDirection = moveDirection.normalized;
+        // Ground check
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
 
-        canJump = isGrounded;
-        jumpBufferCount -= Time.deltaTime;
-        if (canJump && jumpBufferCount > 0f)
+        LimitVelocity();
+
+        // Apply drag when grounded
+        if (isGrounded)
         {
-            jumpBufferCount = 0f;
-            rBody.velocity = new Vector3(rBody.velocity.x, jumpForce, rBody.velocity.z);
-            AudioSource.PlayClipAtPoint(jumpSound, gameObject.transform.position);
+            rBody.drag = groundDrag;
+            rBody.useGravity = false;
+        }
+        // If airborne disable drag
+        else
+        {
+            rBody.drag = 0f;
+            rBody.useGravity = true;
         }
     }
 
     private void FixedUpdate()
     {
-        // Check if player is grounded
-        isGrounded = Physics.CheckSphere(groundCheckOrigin.position, groundCheckRadius, groundLayer);;
-        rBody.useGravity = !isGrounded;
-
-        // Apply movement
-        // Get the old rigidbody velocity
-        Vector3 velocity = rBody.velocity;
-
-        // Set new velocity
-        velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * walkSpeed, acceleration * Time.fixedDeltaTime);
-        velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * walkSpeed, acceleration * Time.fixedDeltaTime);
-
-        // Apply new velocity
-        rBody.velocity = velocity;
+        // Move player
+        moveDirection = orientation.forward * moveInput.y + orientation.right * moveInput.x;
+        Debug.Log(moveDirection.magnitude);
+        rBody.AddForce(moveDirection.normalized * walkSpeed * acceleration, ForceMode.Force);
     }
 
     public void OnMove(InputValue value)
@@ -72,12 +57,14 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
-    public void OnJump()
+    private void LimitVelocity()
     {
-        if (!GameManager.isGamePaused)
+        Vector3 xzVelocity = new Vector3(rBody.velocity.x, 0.0f, rBody.velocity.z);
+        // Limit velocity if greater than walk speed
+        if (xzVelocity.magnitude > walkSpeed)
         {
-            canJump = false;
-            jumpBufferCount = jumpBufferDuration;
+            Vector3 newVelocity = xzVelocity.normalized * walkSpeed;
+            rBody.velocity = new Vector3(newVelocity.x, rBody.velocity.y, newVelocity.z);
         }
     }
 }
