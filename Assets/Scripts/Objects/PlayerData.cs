@@ -9,10 +9,5 @@ public class PlayerData : ScriptableObject
     public float cameraSensitivity;
     public string interactPrompt;
     public bool displayAttackIcon;
-    [HideInInspector] public float attackDamage;
-    [SerializeField] private float defaultDamage;
-    public float DefaultDamage
-    {
-        get{ return defaultDamage; }
-    }
+    public bool torchLit = true;
 }
