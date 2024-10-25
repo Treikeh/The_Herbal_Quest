@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheckOrigin;
     [Header("Attacking")]
-    public bool startWithTorch;
+    public bool startWithTorch = true;
+    public GameObject torch;
+    public Light flameLight;
     public float attackSpeed = 0.5f;
     public AudioClip attackHitSound;
     public AudioClip attackMissSound;
@@ -49,13 +51,13 @@ public class PlayerController : MonoBehaviour
         playerData.displayAttackIcon = false;
         if (startWithTorch)
         {
+            torch.SetActive(true);
             canAttack = true;
-            playerData.torchLit = true;
         }
         else
         {
+            torch.SetActive(false);
             canAttack = false;
-            playerData.torchLit = false;
         }
         
         rBody = GetComponent<Rigidbody>();
@@ -69,7 +71,10 @@ public class PlayerController : MonoBehaviour
         }
         
         CheckForInteractable();
-        CheckForAttackable();
+        if (torch.activeInHierarchy)
+        {
+            CheckForAttackable();
+        }
 
         // Camera rotation
         cameraRotation.x = lookInput.x * (playerData.cameraSensitivity * Time.deltaTime);
@@ -229,14 +234,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+// Game events //
 
-    public void OnTorchPickedUp(bool torchLit)
+    public void PickUpTorch()
     {
-        canAttack = true;
-        playerData.torchLit = true;
+        if (!torch.activeInHierarchy)
+        {
+            torch.SetActive(true);
+            canAttack = true;
+        }
     }
 
-// IEnumerators
+    public void LightTorch()
+    {
+        if (torch.activeInHierarchy && !flameLight.enabled)
+        {
+            flameLight.enabled = true;
+            playerData.torchLit = true;
+            // Play sound
+        }
+    }
+
+    public void ExtinguishTorch()
+    {
+        if (torch.activeInHierarchy && flameLight.enabled)
+        {
+            flameLight.enabled = false;
+            playerData.torchLit = false;
+            // Play sound
+        }
+    }
+
+// IEnumerators //
 
     // Delay when the player can attack again
     private IEnumerator AttackDelay()

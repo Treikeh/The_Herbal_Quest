@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 {
     public StringAsset objectiveString;
     public List<Objective> objectives = new List<Objective>();
-    public UnityEvent AllObjectivesCompleted;
 
     public static bool isGameOver;
     public static bool isGamePaused;
@@ -27,6 +26,11 @@ public class GameManager : MonoBehaviour
 
     public void AddObjectiveProgress()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         objectives[currentObjective].currentValue++;
         // Check if currentObjective is completed
         if (objectives[currentObjective].currentValue >= objectives[currentObjective].maxValue)
@@ -36,7 +40,6 @@ public class GameManager : MonoBehaviour
             // Check if all objectives are completed
             if (currentObjective >= objectives.Count)
             {
-                AllObjectivesCompleted.Invoke();
                 isGameOver = true;
             }
             else
