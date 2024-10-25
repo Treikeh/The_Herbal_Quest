@@ -432,7 +432,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheckOrigin: {fileID: 1366508676321557544}
-  attackDamage: 5
   attackSpeed: 0.5
   attackHitSound: {fileID: 8300000, guid: 0f5ff4c41a8275c4da92351be8f2afd4, type: 3}
   attackMissSound: {fileID: 8300000, guid: 430441b64a2c22844a69389f4396c114, type: 3}
@@ -604,6 +603,10 @@ PrefabInstance:
     - target: {fileID: 2817973218528676772, guid: 2b672f07e64ae8a41818fe4ace5c7f49, type: 3}
       propertyPath: m_Name
       value: Torch
+      objectReference: {fileID: 0}
+    - target: {fileID: 2817973218528676772, guid: 2b672f07e64ae8a41818fe4ace5c7f49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8479472613758685631, guid: 2b672f07e64ae8a41818fe4ace5c7f49, type: 3}
       propertyPath: m_LocalPosition.x
