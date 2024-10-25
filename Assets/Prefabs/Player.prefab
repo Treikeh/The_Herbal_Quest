@@ -449,6 +449,9 @@ GameObject:
   - component: {fileID: 584728401647743818}
   - component: {fileID: 572116564635088606}
   - component: {fileID: 6145786571307756919}
+  - component: {fileID: 7254170990352161588}
+  - component: {fileID: 1407213214087182317}
+  - component: {fileID: 6368320216801873729}
   - component: {fileID: 1083355326068586845}
   - component: {fileID: 4506944473570211425}
   - component: {fileID: 6442050870083813925}
@@ -474,8 +477,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6442974550083299834}
   - {fileID: 1366508676321557544}
+  - {fileID: 6442974550083299834}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3406349688346811782
@@ -608,6 +611,60 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7254170990352161588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458034354928960628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d39519d2b1809840a0ea6e85c2062f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
+  cameraRotationLimit: 89
+  cameraYaw: {fileID: 6442974550083299834}
+  cameraPitch: {fileID: 4606320057859315345}
+--- !u!114 &1407213214087182317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458034354928960628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388ac426f048caa408b84a59317b30f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 5
+  acceleration: 10
+  jumpForce: 5
+  cameraYaw: {fileID: 6442974550083299834}
+  jumpSound: {fileID: 8300000, guid: 5f263daa1e23fc34d903ca01eaea53cf, type: 3}
+  isGrounded: 0
+  groundCheckRadius: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckOrigin: {fileID: 1366508676321557544}
+--- !u!114 &6368320216801873729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458034354928960628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d4955ee14ce3b4cb5ce2c46f2ee82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
+  rayDistance: 2
+  cameraPitch: {fileID: 4606320057859315345}
 --- !u!114 &1083355326068586845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,23 +678,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
-  rayDistance: 2
-  cameraRotationLimit: 89
-  cameraYaw: {fileID: 6442974550083299834}
-  cameraPitch: {fileID: 4606320057859315345}
-  walkSpeed: 5
-  acceleration: 10
-  jumpForce: 5
-  jumpSound: {fileID: 8300000, guid: 5f263daa1e23fc34d903ca01eaea53cf, type: 3}
-  isGrounded: 0
-  groundCheckRadius: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  groundCheckOrigin: {fileID: 1366508676321557544}
-  startWithTorch: 1
-  torch: {fileID: 5541510662700793428}
   flameLight: {fileID: 21252444082562454}
+  torch: {fileID: 5541510662700793428}
+  cameraPitch: {fileID: 4606320057859315345}
+  startWithTorch: 1
+  rayDistance: 2
   attackSpeed: 0.5
   attackHitSound: {fileID: 8300000, guid: 0f5ff4c41a8275c4da92351be8f2afd4, type: 3}
   attackMissSound: {fileID: 8300000, guid: 430441b64a2c22844a69389f4396c114, type: 3}
