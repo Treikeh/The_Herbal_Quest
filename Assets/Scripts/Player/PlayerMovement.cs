@@ -7,13 +7,21 @@ public class PlayerMovement : MonoBehaviour
 {
     public float walkSpeed = 5f;
     public float acceleration = 10f;
-    public float groundDrag = 1f;
-    public float groundCheckDistance = 0.75f;
+    public float maxFloorAngle = 40f;
+    public float groundCheckDistance = 1.3f;
     public LayerMask groundLayer;
+    public float  jumpForce = 5f;
+    public float jumpCooldown = 0.25f;
+    public float jumpBufferDuration = 0.2f;
+    public AudioClip jumpSound;
     public Transform orientation;
 
     private Rigidbody rBody;
+    private RaycastHit groundHit;
     private bool isGrounded;
+    private bool canJump = true;
+    private bool exitGround;
+    private float jumpBufferCount;
     private Vector2 moveInput;
     private Vector3 moveDirection;
 
@@ -26,45 +34,84 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // Ground check
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
+        isGrounded = IsOnWalkableSlope();
+        // Disable gravity while grounded
+        rBody.useGravity = !isGrounded;
 
-        LimitVelocity();
+        // Align moveDirection to orientation
+        moveDirection = (orientation.forward * moveInput.y + orientation.right * moveInput.x).normalized;
 
-        // Apply drag when grounded
-        if (isGrounded)
+        // Jump while jump buffer active
+        jumpBufferCount -= Time.deltaTime;
+        if (isGrounded && canJump && jumpBufferCount > 0f)
         {
-            rBody.drag = groundDrag;
-            rBody.useGravity = false;
-        }
-        // If airborne disable drag
-        else
-        {
-            rBody.drag = 0f;
-            rBody.useGravity = true;
+            canJump = false;
+            exitGround = true;
+            jumpBufferCount = 0f;
+            // Reset jump after a short duration
+            Invoke(nameof(ResetJump), jumpCooldown);
+            rBody.velocity = new Vector3(rBody.velocity.x, jumpForce, rBody.velocity.z);
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
     }
 
     private void FixedUpdate()
     {
-        // Move player
-        moveDirection = orientation.forward * moveInput.y + orientation.right * moveInput.x;
-        Debug.Log(moveDirection.magnitude);
-        rBody.AddForce(moveDirection.normalized * walkSpeed * acceleration, ForceMode.Force);
+        Vector3 velocity = rBody.velocity;
+
+        if (isGrounded && !exitGround)
+        {
+            Vector3 slopeDirection = GetSlopeMoveDirection();
+            velocity.x = Mathf.Lerp(velocity.x, slopeDirection.x * walkSpeed, acceleration * Time.fixedDeltaTime);
+            velocity.y = Mathf.Lerp(velocity.y, slopeDirection.y * walkSpeed, acceleration * Time.fixedDeltaTime);
+            velocity.z = Mathf.Lerp(velocity.z, slopeDirection.z * walkSpeed, acceleration * Time.fixedDeltaTime);
+        }
+        else
+        {
+            velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * walkSpeed, acceleration * Time.fixedDeltaTime);
+            velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * walkSpeed, acceleration * Time.fixedDeltaTime);
+        }
+
+        rBody.velocity = velocity;
     }
 
+    // Move input
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
     }
 
-    private void LimitVelocity()
+    // Jump input
+    public void OnJump()
     {
-        Vector3 xzVelocity = new Vector3(rBody.velocity.x, 0.0f, rBody.velocity.z);
-        // Limit velocity if greater than walk speed
-        if (xzVelocity.magnitude > walkSpeed)
+        if (!GameManager.isGamePaused)
+            { jumpBufferCount = jumpBufferDuration; }
+    }
+
+    private void ResetJump()
+    {
+        canJump = true;
+        exitGround = false;
+    }
+
+    // Check if player is on a slope shallow enough to walk on
+    private bool IsOnWalkableSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, groundCheckDistance, groundLayer))
         {
-            Vector3 newVelocity = xzVelocity.normalized * walkSpeed;
-            rBody.velocity = new Vector3(newVelocity.x, rBody.velocity.y, newVelocity.z);
+            float floorAngle = Vector3.Angle(groundHit.normal, Vector3.up);
+            return floorAngle < maxFloorAngle;
         }
+        return false;
+    }
+
+    // Align moveDirection to ground normal
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, groundHit.normal);
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3.down * groundCheckDistance));
     }
 }

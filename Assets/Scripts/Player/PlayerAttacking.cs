@@ -6,16 +6,16 @@ using UnityEngine.InputSystem;
 public class PlayerAttacking : MonoBehaviour
 {
     public SharedData sharedData;
+    public bool startWithTorchActive = true;
+    public float attackSpeed = 0.5f;
+    public float attackDistance = 2f;
     public Transform head;
     public GameObject torch;
     public Light flameLight;
-    public bool startWithTorchActive = true;
-    public float attackDistance = 2f;
-    public float attackSpeed = 0.5f;
+    public Animator attackAnimations;
     public AudioClip attackHitSound;
     public AudioClip attackMissSound;
     public AudioSource attackAudioSource;
-    public Animator attackAnimations;
 
     private bool canAttack;
     private IHitable attackTarget;

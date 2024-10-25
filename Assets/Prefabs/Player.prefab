@@ -522,11 +522,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   acceleration: 10
-  groundDrag: 76.6
-  groundCheckDistance: 0.75
+  maxFloorAngle: 40
+  groundCheckDistance: 1.3
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  jumpForce: 5
+  jumpCooldown: 0.25
+  jumpBufferDuration: 0.2
+  jumpSound: {fileID: 8300000, guid: 5f263daa1e23fc34d903ca01eaea53cf, type: 3}
   orientation: {fileID: 6442974550083299834}
 --- !u!114 &1465677612240801404
 MonoBehaviour:
@@ -556,16 +560,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedData: {fileID: 11400000, guid: 7b3b5589f86d67044ae823a2c9444ce6, type: 2}
+  startWithTorchActive: 1
+  attackSpeed: 0.5
+  attackDistance: 2
   head: {fileID: 3573294445430577333}
   torch: {fileID: 6189334396496575286}
   flameLight: {fileID: 4531662442468496816}
-  startWithTorchActive: 1
-  attackDistance: 2
-  attackSpeed: 0.5
+  attackAnimations: {fileID: 6442050870083813925}
   attackHitSound: {fileID: 8300000, guid: 0f5ff4c41a8275c4da92351be8f2afd4, type: 3}
   attackMissSound: {fileID: 8300000, guid: 430441b64a2c22844a69389f4396c114, type: 3}
   attackAudioSource: {fileID: 4506944473570211425}
-  attackAnimations: {fileID: 6442050870083813925}
 --- !u!82 &4506944473570211425
 AudioSource:
   m_ObjectHideFlags: 0
