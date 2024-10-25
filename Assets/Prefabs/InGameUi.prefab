@@ -4005,8 +4005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85559ab82272cc54893c63e02fda73da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 9ff27c2e1d06a49438d2447cf8e6869a, type: 2}
-  objectiveString: {fileID: 11400000, guid: e5f0ce685d3008943814eeb2745ca19d, type: 2}
+  sharedData: {fileID: 11400000, guid: 7b3b5589f86d67044ae823a2c9444ce6, type: 2}
   objectiveText: {fileID: 6641145919476478859}
   interactPromptText: {fileID: 4927219338305063664}
   crosshairImage: {fileID: 6070430636566783537}
