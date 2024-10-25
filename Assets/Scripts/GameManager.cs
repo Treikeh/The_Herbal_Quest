@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 // This component is responsable for handling game systems like winning, losing and progression
+// This is a simple test
 
 public class GameManager : MonoBehaviour
 {
