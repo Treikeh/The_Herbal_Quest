@@ -522,7 +522,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 5
   acceleration: 10
+  maxSlopeAngle: 30
   jumpForce: 5
+  jumpBufferDuration: 0.2
   cameraYaw: {fileID: 6442974550083299834}
   jumpSound: {fileID: 8300000, guid: 5f263daa1e23fc34d903ca01eaea53cf, type: 3}
   isGrounded: 0
@@ -531,6 +533,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheckOrigin: {fileID: 1366508676321557544}
+  canJump: 0
 --- !u!114 &1465677612240801404
 MonoBehaviour:
   m_ObjectHideFlags: 0

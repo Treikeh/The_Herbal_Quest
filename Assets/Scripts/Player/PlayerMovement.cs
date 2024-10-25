@@ -8,17 +8,22 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float walkSpeed = 5f;
     public float acceleration = 10f;
+    public float maxSlopeAngle = 45f;
     public float jumpForce = 5f;
+    public float jumpBufferDuration = 0.2f;
     public Transform cameraYaw;
     public AudioClip jumpSound;
 
     [Header("Ground check")]
-    public bool isGrounded;
+    public bool isGrounded = true;
     public float groundCheckRadius = 0.1f;
     public LayerMask groundLayer;
     public Transform groundCheckOrigin;
 
     private Rigidbody rBody;
+    public bool canJump;
+    private float jumpBufferCount;
+    private RaycastHit slopeHit;
     private Vector2 moveInput;
     private Vector3 moveDirection;
 
@@ -33,12 +38,22 @@ public class PlayerMovement : MonoBehaviour
         // Align moveInput to face cameraPitch Direction
         moveDirection = (cameraYaw.transform.forward * moveInput.y) + (cameraYaw.transform.right * moveInput.x);
         moveDirection = moveDirection.normalized;
+
+        canJump = isGrounded;
+        jumpBufferCount -= Time.deltaTime;
+        if (canJump && jumpBufferCount > 0f)
+        {
+            jumpBufferCount = 0f;
+            rBody.velocity = new Vector3(rBody.velocity.x, jumpForce, rBody.velocity.z);
+            AudioSource.PlayClipAtPoint(jumpSound, gameObject.transform.position);
+        }
     }
 
     private void FixedUpdate()
     {
         // Check if player is grounded
-        isGrounded = Physics.CheckSphere(groundCheckOrigin.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics.CheckSphere(groundCheckOrigin.position, groundCheckRadius, groundLayer);;
+        rBody.useGravity = !isGrounded;
 
         // Apply movement
         // Get the old rigidbody velocity
@@ -52,17 +67,17 @@ public class PlayerMovement : MonoBehaviour
         rBody.velocity = velocity;
     }
 
-    public void OnJump()
-    {
-        if (isGrounded && !GameManager.isGamePaused)
-        {
-            rBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            AudioSource.PlayClipAtPoint(jumpSound, gameObject.transform.position);
-        }
-    }
-
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+
+    public void OnJump()
+    {
+        if (!GameManager.isGamePaused)
+        {
+            canJump = false;
+            jumpBufferCount = jumpBufferDuration;
+        }
     }
 }
