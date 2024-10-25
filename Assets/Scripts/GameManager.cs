@@ -2,50 +2,80 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 // This component is responsable for handling game systems like winning, losing and progression
+// This is a simple test
 
 public class GameManager : MonoBehaviour
 {
-    // How many plants to collect
-    public int plantsToPickUp;
+    public StringAsset objectiveString;
+    public List<Objective> objectives = new List<Objective>();
 
-    public GameEvent gameWon;
+    public static bool isGameOver;
+    public static bool isGamePaused;
 
-    public static GameManager Instance;
-    void Awake()
+    private int currentObjective = 0;
+
+
+    private void Start()
     {
-        Instance = this;
-    }
-
-    private void Start() {
         // Limit frame rate
         Application.targetFrameRate = 90;
-        // Lock mouse cursor
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
+        UpdateObjectiveString();
     }
-    // Update is called once per frame
-    void Update()
+
+    public void AddObjectiveProgress()
     {
-        // Reload scene when pressing the R key
-        if (Input.GetKeyDown(KeyCode.R))
+        if (isGameOver)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            return;
+        }
+
+        objectives[currentObjective].currentValue++;
+        // Check if currentObjective is completed
+        if (objectives[currentObjective].currentValue >= objectives[currentObjective].maxValue)
+        {
+            objectives[currentObjective].OnObjectiveCompleted.Invoke();
+            currentObjective++;
+            // Check if all objectives are completed
+            if (currentObjective >= objectives.Count)
+            {
+                isGameOver = true;
+            }
+            else
+            {
+                UpdateObjectiveString();
+            }
+        }
+        else
+        {
+            UpdateObjectiveString();
         }
     }
 
-    // Check if all the plants have been picked up
-    public void PlantPickedUp()
+    private void UpdateObjectiveString()
     {
-        plantsToPickUp --;
-        if (plantsToPickUp <= 0)
+        string title = objectives[currentObjective].title;
+        if (objectives[currentObjective].displayValues == true)
         {
-            gameWon.Trigger();
-            // Show mouse cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            string maxValue = objectives[currentObjective].maxValue.ToString();
+            string currentValue = objectives[currentObjective].currentValue.ToString();
+            objectiveString.value = title + currentValue + " / " + maxValue;
+        }
+        else
+        {
+            objectiveString.value = title;
         }
     }
+}
+
+[System.Serializable]
+public class Objective
+{
+    public string title;
+    public int maxValue;
+    public int currentValue;
+    public bool displayValues = false;
+    public UnityEvent OnObjectiveCompleted;
 }

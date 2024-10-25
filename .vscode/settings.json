@@ -51,5 +51,9 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "3d_platformer_exam.sln"
+    "dotnet.defaultSolution": "The_Herbal_Quest.sln",
+    "workbench.colorCustomizations": {
+        //"editor.lineHighlightBorder": "#0000" // #RGBA. can also #RRGGBBAA, #RGB, #RRGGBB
+
+    }
 }
