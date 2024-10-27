@@ -9,11 +9,15 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameStates {
+        Running,
+        Paused,
+        Finished,
+    }
+
+    [HideInInspector] public static GameStates currenctGameState;
     public SharedData sharedData;
     public List<Objective> objectives = new List<Objective>();
-
-    public static bool isGameOver;
-    public static bool isGamePaused;
 
     private int currentObjective = 0;
 
@@ -27,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void AddObjectiveProgress()
     {
-        if (isGameOver)
+        if (currenctGameState == GameStates.Running)
             { return; }
 
         objectives[currentObjective].currentValue++;
@@ -38,7 +42,7 @@ public class GameManager : MonoBehaviour
             currentObjective++;
             // Check if all objectives are completed
             if (currentObjective >= objectives.Count) 
-                { isGameOver = true; }
+                { currenctGameState = GameStates.Finished; }
             else
                 { UpdateObjectiveString(); }
         }

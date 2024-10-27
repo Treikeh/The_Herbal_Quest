@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     // Jump input
     public void OnJump()
     {
-        if (!GameManager.isGamePaused)
+        if (GameManager.currenctGameState == GameManager.GameStates.Running)
             { jumpBufferCount = jumpBufferDuration; }
     }
 

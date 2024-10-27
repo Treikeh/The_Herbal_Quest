@@ -7,7 +7,7 @@ public class PlayerAttacking : MonoBehaviour
 {
     public SharedData sharedData;
     public bool startWithTorchActive = true;
-    public float attackSpeed = 0.5f;
+    public float attackDelay = 0.5f;
     public float attackDistance = 2f;
     public Transform head;
     public GameObject torch;
@@ -39,29 +39,29 @@ public class PlayerAttacking : MonoBehaviour
     private void Update()
     {
         if (torch.activeInHierarchy)
-        {
-            CheckForAttackable();
-        }
+            { CheckForAttackable(); }
     }
 
     // Check if the player is looking at an attackable object
     private void CheckForAttackable()
     {
-        Ray ray = new Ray(head.position, head.forward);
-        if (Physics.Raycast(ray, out RaycastHit rayHit, attackDistance))
+        if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, attackDistance))
         {
             if (rayHit.collider.TryGetComponent(out IHitable target))
             {
                 attackTarget = target;
                 sharedData.displayAttackIcon = true;
             }
-            else if (attackTarget != null) // Clear if rayHit collider does not have an health component
-            {
-                attackTarget = null;
-                sharedData.displayAttackIcon = false;
-            }
+            else
+                { ClearAttackTarget(); }
         }
-        else if (attackTarget != null) // Clear if raycast is not hitting anything
+        else
+            { ClearAttackTarget(); }
+    }
+
+    private void ClearAttackTarget()
+    {
+        if (attackTarget != null)
         {
             attackTarget = null;
             sharedData.displayAttackIcon = false;
@@ -70,18 +70,15 @@ public class PlayerAttacking : MonoBehaviour
 
     public void OnAttack()
     {
-        // Disable attacking when the cursor is visable
-        if (Cursor.visible)
+        if (canAttack && !Cursor.visible)
         {
-            Debug.Log("Player can't attack");
-            return;
-        }
-        else if (canAttack)
-        {
+            // Disable attacking
             canAttack = false;
-            StartCoroutine(AttackDelay());
+            // Reset attack after a short duration
+            Invoke(nameof(ResetAttack), attackDelay);
             attackAnimations.Play("AttackAnim", -1, 0f);
             
+            // Reactons to what the player hits
             if (attackTarget != null)
             {
                 attackTarget.Hit(flameLight.enabled);
@@ -93,6 +90,9 @@ public class PlayerAttacking : MonoBehaviour
             }
         }
     }
+
+    private void ResetAttack()
+        { canAttack = true; }
 
 // Game events //
 
@@ -121,14 +121,5 @@ public class PlayerAttacking : MonoBehaviour
             flameLight.enabled = false;
             // Play sound
         }
-    }
-
-// IEnumerators //
-
-    // Delay when the player can attack again
-    private IEnumerator AttackDelay()
-    {
-        yield return new WaitForSeconds(attackSpeed);
-        canAttack = true;
     }
 }

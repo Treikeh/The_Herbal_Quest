@@ -65,7 +65,6 @@ public class GlobalMethods : ScriptableObject
     {
         // Rest pause when switching scenes
         Time.timeScale = 1f;
-        GameManager.isGameOver = false;
-        GameManager.isGamePaused = false;
+        GameManager.currenctGameState = GameManager.GameStates.Running;
     }
 }
