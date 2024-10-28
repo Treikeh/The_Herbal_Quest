@@ -6497,7 +6497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262c082a850733340a593c26c96731c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durnDuration: 3
+  burnDuration: 3
   OnStartBurning:
     m_PersistentCalls:
       m_Calls:
@@ -6578,10 +6578,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1083355326068586845, guid: a6bfbb17248cb0640b43ae9c31effcca, type: 3}
-      propertyPath: startWithTorchActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7608015390787821994, guid: a6bfbb17248cb0640b43ae9c31effcca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.11941624
@@ -6961,6 +6957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7334383464411673029, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: Events.Array.data[0].response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1206328440}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: objectives.Array.size
       value: 2

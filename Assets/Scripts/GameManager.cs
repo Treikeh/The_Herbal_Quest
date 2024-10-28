@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void AddObjectiveProgress()
     {
-        if (currenctGameState == GameStates.Running)
+        if (currenctGameState != GameStates.Running)
             { return; }
 
         objectives[currentObjective].currentValue++;

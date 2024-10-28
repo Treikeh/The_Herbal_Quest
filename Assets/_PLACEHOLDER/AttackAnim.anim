@@ -28,7 +28,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: 121.466, y: -47.356995, z: 62.4}
+        value: {x: 116.884995, y: -34.289978, z: 76.851}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -47,7 +47,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -63,7 +63,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: 0.55261886, y: -0.34908065, z: 1.086}
+        value: {x: 0.5499747, y: -0.3726457, z: 1.140877}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -82,7 +82,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -94,7 +94,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3704092551
+      path: 668454888
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -103,7 +103,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3704092551
+      path: 668454888
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -148,7 +148,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 0.55261886
+        value: 0.5499747
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -168,7 +168,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -187,7 +187,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: -0.34908065
+        value: -0.3726457
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -207,7 +207,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -226,7 +226,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 1.086
+        value: 1.140877
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -246,7 +246,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -265,7 +265,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 121.466
+        value: 116.884995
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -285,7 +285,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -304,7 +304,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: -47.356995
+        value: -34.289978
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -324,7 +324,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -343,7 +343,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: 62.4
+        value: 76.851
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -363,7 +363,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -375,8 +375,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: CameraYaw/CameraPitch/Torch
+    attribute: m_LocalEulerAngles.z
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -388,7 +388,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: CameraYaw/CameraPitch/Torch
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -399,8 +399,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: CameraYaw/CameraPitch/Torch
+    attribute: m_LocalEulerAngles.x
+    path: Orientation/Head/Torch
     classID: 4
     script: {fileID: 0}
     flags: 0
