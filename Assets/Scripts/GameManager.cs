@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 // This component is responsable for handling game systems like winning, losing and progression
 // This is a simple test
@@ -20,6 +21,26 @@ public class GameManager : MonoBehaviour
     public List<Objective> objectives = new List<Objective>();
 
     private int currentObjective = 0;
+
+
+    private void OnEnable()
+    {
+        // Reset values when a new scene is loaded
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        // Reset values when a new scene is loaded
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Rest pause when switching scenes
+        Time.timeScale = 1f;
+        currenctGameState = GameStates.Running;
+    }
 
 
     private void Start()

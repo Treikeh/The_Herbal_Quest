@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttacking : MonoBehaviour
 {
-    public SharedData sharedData;
     public bool startWithTorchActive = true;
     public float attackDelay = 0.5f;
     public float attackDistance = 2f;
+    
+    public SharedData sharedData;
     public Transform head;
     public GameObject torch;
     public Light flameLight;
@@ -18,7 +19,7 @@ public class PlayerAttacking : MonoBehaviour
     public AudioSource attackAudioSource;
 
     private bool canAttack;
-    private IHitable attackTarget;
+    private BurnableObject attackTarget;
 
 
     private void Start()
@@ -47,7 +48,7 @@ public class PlayerAttacking : MonoBehaviour
     {
         if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, attackDistance))
         {
-            if (rayHit.collider.TryGetComponent(out IHitable target))
+            if (rayHit.collider.TryGetComponent(out BurnableObject target))
             {
                 attackTarget = target;
                 sharedData.displayAttackIcon = true;
@@ -68,6 +69,7 @@ public class PlayerAttacking : MonoBehaviour
         }
     }
 
+    // INPUT
     public void OnAttack()
     {
         if (canAttack && !Cursor.visible)
@@ -94,7 +96,7 @@ public class PlayerAttacking : MonoBehaviour
     private void ResetAttack()
         { canAttack = true; }
 
-// Game events //
+    // GAME EVENTS //
 
     public void PickUpTorch()
     {
