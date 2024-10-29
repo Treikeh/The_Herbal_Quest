@@ -5,19 +5,19 @@ using UnityEngine.Events;
 
 public class BurnableObject : MonoBehaviour
 {
-    public float burnDuration = 3f;
-    public UnityEvent OnStartBurning;
+    [SerializeField] private float BurnDuration = 3f;
+    private bool _isBurning = false;
 
-    private bool isBurning = false;
+    public UnityEvent OnStartBurning;
 
 
 public void Hit(bool startBurning)
     {
-        if (startBurning && !isBurning)
+        if (startBurning && !_isBurning)
         {
-            isBurning = true;
+            _isBurning = true;
             OnStartBurning.Invoke();
-            Invoke(nameof(BurningFinished), burnDuration);
+            Invoke(nameof(BurningFinished), BurnDuration);
         }
         else
         {

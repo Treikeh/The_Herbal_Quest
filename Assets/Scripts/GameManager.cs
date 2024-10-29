@@ -15,12 +15,13 @@ public class GameManager : MonoBehaviour
         Paused,
         Finished,
     }
-
+    
     [HideInInspector] public static GameStates currenctGameState;
-    public SharedData sharedData;
-    public List<Objective> objectives = new List<Objective>();
+    [SerializeField] private List<Objective> _objectives = new List<Objective>();
 
-    private int currentObjective = 0;
+    private int _currentObjective = 0;
+
+    public static Action<string> UpdateObjectiveText;
 
 
     private void OnEnable()
@@ -55,14 +56,14 @@ public class GameManager : MonoBehaviour
         if (currenctGameState != GameStates.Running)
             { return; }
 
-        objectives[currentObjective].currentValue++;
-        // Check if currentObjective is completed
-        if (objectives[currentObjective].currentValue >= objectives[currentObjective].maxValue)
+        _objectives[_currentObjective].CurrentValue++;
+        // Check if _currentObjective is completed
+        if (_objectives[_currentObjective].CurrentValue >= _objectives[_currentObjective].MaxValue)
         {
-            objectives[currentObjective].OnObjectiveCompleted.Invoke();
-            currentObjective++;
-            // Check if all objectives are completed
-            if (currentObjective >= objectives.Count) 
+            _objectives[_currentObjective].OnObjectiveCompleted.Invoke();
+            _currentObjective++;
+            // Check if all _objectives are completed
+            if (_currentObjective >= _objectives.Count) 
                 { currenctGameState = GameStates.Finished; }
             else
                 { UpdateObjectiveString(); }
@@ -73,16 +74,16 @@ public class GameManager : MonoBehaviour
 
     private void UpdateObjectiveString()
     {
-        string title = objectives[currentObjective].title;
-        if (objectives[currentObjective].displayValues == true)
+        string Title = _objectives[_currentObjective].Title;
+        if (_objectives[_currentObjective].DisplayValues == true)
         {
-            string maxValue = objectives[currentObjective].maxValue.ToString();
-            string currentValue = objectives[currentObjective].currentValue.ToString();
-            sharedData.objectiveText = title + currentValue + " / " + maxValue;
+            string MaxValue = _objectives[_currentObjective].MaxValue.ToString();
+            string CurrentValue = _objectives[_currentObjective].CurrentValue.ToString();
+            UpdateObjectiveText?.Invoke(Title + CurrentValue + " / " + MaxValue);
         }
         else
         {
-            sharedData.objectiveText = title;
+            UpdateObjectiveText?.Invoke(Title);
         }
     }
 }
@@ -90,9 +91,9 @@ public class GameManager : MonoBehaviour
 [System.Serializable]
 public class Objective
 {
-    public string title;
-    public int maxValue;
-    public int currentValue;
-    public bool displayValues = false;
+    public string Title;
+    public int MaxValue;
+    public int CurrentValue;
+    public bool DisplayValues = false;
     public UnityEvent OnObjectiveCompleted;
 }

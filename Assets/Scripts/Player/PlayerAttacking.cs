@@ -1,56 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttacking : MonoBehaviour
 {
-    public bool startWithTorchActive = true;
-    public float attackDelay = 0.5f;
-    public float attackDistance = 2f;
-    
-    public SharedData sharedData;
-    public Transform head;
-    public GameObject torch;
-    public Light flameLight;
-    public Animator attackAnimations;
-    public AudioClip attackHitSound;
-    public AudioClip attackMissSound;
-    public AudioSource attackAudioSource;
+    [SerializeField] private bool StartWithTorchActive = true;
+    [SerializeField] private float AttackDelay = 0.5f;
+    [SerializeField] private float AttackDistance = 2f;
+    [SerializeField] private Transform Head;
+    [SerializeField] private GameObject Torch;
+    [SerializeField] private Light FlameLight;
+    [SerializeField] private Animator AttackAnimations;
+    [SerializeField] private AudioClip AttackHitSound;
+    [SerializeField] private AudioClip AttackMissSound;
+    [SerializeField] private AudioSource AttackAudioSource;
 
-    private bool canAttack;
-    private BurnableObject attackTarget;
+    private bool _canAttack;
+    private BurnableObject _attackTarget;
 
+    public static Action<bool> UpdateCrosshair;
 
     private void Start()
     {
-        sharedData.displayAttackIcon = false;
-        if (startWithTorchActive)
+        if (StartWithTorchActive)
         {
-            torch.SetActive(true);
-            canAttack = true;
+            Torch.SetActive(true);
+            _canAttack = true;
         }
         else
         {
-            torch.SetActive(false);
-            canAttack = false;
+            Torch.SetActive(false);
+            _canAttack = false;
         }
     }
 
     private void Update()
     {
-        if (torch.activeInHierarchy)
+        if (Torch.activeInHierarchy)
             { CheckForAttackable(); }
     }
 
     // Check if the player is looking at an attackable object
     private void CheckForAttackable()
     {
-        if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, attackDistance))
+        if (Physics.Raycast(Head.position, Head.forward, out RaycastHit rayHit, AttackDistance))
         {
             if (rayHit.collider.TryGetComponent(out BurnableObject target))
             {
-                attackTarget = target;
-                sharedData.displayAttackIcon = true;
+                _attackTarget = target;
+                UpdateCrosshair?.Invoke(true);
             }
             else
                 { ClearAttackTarget(); }
@@ -61,65 +60,65 @@ public class PlayerAttacking : MonoBehaviour
 
     private void ClearAttackTarget()
     {
-        if (attackTarget != null)
+        if (_attackTarget != null)
         {
-            attackTarget = null;
-            sharedData.displayAttackIcon = false;
+            _attackTarget = null;
+            UpdateCrosshair?.Invoke(false);
         }
     }
 
     // INPUT
     public void OnAttack()
     {
-        if (canAttack && !Cursor.visible)
+        if (_canAttack && !Cursor.visible)
         {
             // Disable attacking
-            canAttack = false;
+            _canAttack = false;
             // Reset attack after a short duration
-            Invoke(nameof(ResetAttack), attackDelay);
-            attackAnimations.Play("AttackAnim", -1, 0f);
+            Invoke(nameof(ResetAttack), AttackDelay);
+            AttackAnimations.Play("AttackAnim", -1, 0f);
             
             // Reactons to what the player hits
-            if (attackTarget != null)
+            if (_attackTarget != null)
             {
-                attackTarget.Hit(flameLight.enabled);
-                attackAudioSource.PlayOneShot(attackHitSound);
+                _attackTarget.Hit(FlameLight.enabled);
+                AttackAudioSource.PlayOneShot(AttackHitSound);
             }
             else
             {
-                attackAudioSource.PlayOneShot(attackMissSound);
+                AttackAudioSource.PlayOneShot(AttackMissSound);
             }
         }
     }
 
     private void ResetAttack()
-        { canAttack = true; }
+        { _canAttack = true; }
 
     // GAME EVENTS //
 
     public void PickUpTorch()
     {
-        if (!torch.activeInHierarchy)
+        if (!Torch.activeInHierarchy)
         {
-            torch.SetActive(true);
-            canAttack = true;
+            Torch.SetActive(true);
+            _canAttack = true;
         }
     }
 
     public void LightTorch()
     {
-        if (torch.activeInHierarchy && !flameLight.enabled)
+        if (Torch.activeInHierarchy && !FlameLight.enabled)
         {
-            flameLight.enabled = true;
+            FlameLight.enabled = true;
             // Play sound
         }
     }
 
     public void ExtinguishTorch()
     {
-        if (torch.activeInHierarchy && flameLight.enabled)
+        if (Torch.activeInHierarchy && FlameLight.enabled)
         {
-            flameLight.enabled = false;
+            FlameLight.enabled = false;
             // Play sound
         }
     }

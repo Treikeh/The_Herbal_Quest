@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public float sensitivity = 10f;
-    public float rotationLimit = 89f;
-    public Transform orientation;
-    public Transform head;
+    [SerializeField] float Sensitivity = 10f;
+    [SerializeField] float RotationLimit = 89f;
+    [SerializeField] private Transform Orientation;
+    [SerializeField] private Transform Head;
 
-    private Vector2 lookInput;
-    private Vector2 rotation;
+    private Vector2 _lookInput;
+    private Vector2 _rotation;
 
 
     private void Start()
@@ -23,21 +23,21 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-        // Camera rotation
-        rotation.x = lookInput.x * (sensitivity * Time.deltaTime);
-        rotation.y -= lookInput.y * (sensitivity * Time.deltaTime);
+        // Camera _rotation
+        _rotation.x = _lookInput.x * (Sensitivity * Time.deltaTime);
+        _rotation.y -= _lookInput.y * (Sensitivity * Time.deltaTime);
         // Limit how far up and down the camera can rotate
-        rotation.y = Mathf.Clamp(rotation.y, -rotationLimit, rotationLimit);
-        // Convert rotation.y to Quaternion
-        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.right);
+        _rotation.y = Mathf.Clamp(_rotation.y, -RotationLimit, RotationLimit);
+        // Convert _rotation.y to Quaternion
+        var yQuat = Quaternion.AngleAxis(_rotation.y, Vector3.right);
 
-        // Apply rotation
-        orientation.Rotate(Vector3.up * rotation.x);
-        head.localRotation = yQuat;
+        // Apply _rotation
+        Orientation.Rotate(Vector3.up * _rotation.x);
+        Head.localRotation = yQuat;
     }
 
     public void OnLook(InputValue value)
     {
-        lookInput = value.Get<Vector2>();
+        _lookInput = value.Get<Vector2>();
     }
 }

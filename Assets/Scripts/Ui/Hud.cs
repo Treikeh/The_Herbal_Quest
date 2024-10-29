@@ -6,22 +6,65 @@ using TMPro;
 
 public class Hud : MonoBehaviour
 {
-    public SharedData sharedData;
+    [SerializeField] private TMP_Text ObjectiveText;
+    [SerializeField] private TMP_Text InteractText;
+    [SerializeField] private TMP_Text DialogText;
+    [SerializeField] private Image CrosshairImage;
 
-    public TMP_Text objectiveText;
-    public TMP_Text interactPromptText;
-    public Image crosshairImage;
-    public Sprite crosshiarSprite;
-    public Sprite attackIndicator;
+    [SerializeField] private Sprite NormalCrosshair;
+    [SerializeField] private Sprite AttackCrosshair;
 
-    public void Update()
+
+    private void OnEnable()
     {
-        objectiveText.text = sharedData.objectiveText;
-        interactPromptText.text = sharedData.interactPrompt;
-        // Attack icon
-        if (sharedData.displayAttackIcon)
-            { crosshairImage.sprite = attackIndicator; }
+        GameManager.UpdateObjectiveText += OnUpdateObjectiveText;
+        PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
+        DialogTrigger.UpdateDialogText += OnUpdateDialogText;
+        PlayerAttacking.UpdateCrosshair += OnUpdateCrosshair;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.UpdateObjectiveText -= OnUpdateObjectiveText;
+        PlayerInteract.UpdateInteractPrompt -= OnUpdateInteractPrompt;
+        DialogTrigger.UpdateDialogText -= OnUpdateDialogText;
+        PlayerAttacking.UpdateCrosshair -= OnUpdateCrosshair;
+    }
+
+
+    private void Start()
+    {
+        InteractText.text = "";
+        DialogText.text = "";
+        CrosshairImage.sprite = NormalCrosshair;
+    }
+
+    private void OnUpdateInteractPrompt(string prompt)
+    {
+        InteractText.text = prompt;
+    }
+
+    private void OnUpdateCrosshair(bool attackIcon)
+    {
+        if (attackIcon)
+        {
+            CrosshairImage.sprite = AttackCrosshair;
+        }
         else
-            { crosshairImage.sprite = crosshiarSprite; }
+        {
+            CrosshairImage.sprite = NormalCrosshair;
+        }
+    }
+
+    private void OnUpdateObjectiveText(string text)
+    {
+        ObjectiveText.text = text;
+    }
+
+    private void OnUpdateDialogText(string text, float duration)
+    {
+        DialogText.text = text;
+        // Remove text after a delay
+        // Make sure the text 
     }
 }

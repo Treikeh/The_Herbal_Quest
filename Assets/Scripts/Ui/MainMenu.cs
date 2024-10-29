@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public float fadeDuration = 0.5f;
-    public float fadeBuffer = 0.5f;
-    public Image fadePanel;
+    [SerializeField] private float FadeDuration = 0.5f;
+    [SerializeField] private float FadeBuffer = 0.5f;
+    
+    public Image FadePanel;
 
 
     private void Start()
     {
-        fadePanel.gameObject.SetActive(true);
-        Invoke(nameof(FadeOutPanel), fadeBuffer);
+        FadePanel.gameObject.SetActive(true);
+        Invoke(nameof(FadeOutPanel), FadeBuffer);
     }
 
     // INPUTS //
@@ -32,28 +33,28 @@ public class MainMenu : MonoBehaviour
 
     private void FadeOutPanel()
     {
-        fadePanel.color = Color.black;
-        fadePanel.CrossFadeAlpha(0f, fadeDuration, true);
+        FadePanel.color = Color.black;
+        FadePanel.CrossFadeAlpha(0f, FadeDuration, true);
     }
 
     private void FadeInnPanel()
     {
         // CrossFadeAlpha does not work without this work around
-        fadePanel.CrossFadeAlpha(0f, 0f, true);
-        fadePanel.CrossFadeAlpha(1f, fadeDuration, true);
+        FadePanel.CrossFadeAlpha(0f, 0f, true);
+        FadePanel.CrossFadeAlpha(1f, FadeDuration, true);
     }
 
     private IEnumerator PlayButtonFade()
     {
         FadeInnPanel();
-        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
+        yield return new WaitForSecondsRealtime(FadeDuration + FadeBuffer);
         SceneLoader.LoadNextBuildScene();
     }
 
     private IEnumerator QuitGameFade()
     {
         FadeInnPanel();
-        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
+        yield return new WaitForSecondsRealtime(FadeDuration + FadeBuffer);
         Application.Quit();
     }
 }

@@ -7,14 +7,15 @@ using UnityEngine.Events;
 
 public class OnEnterEventTrigger : MonoBehaviour
 {
-    public string objectTag;
+    [SerializeField] private string ObjectTag;
+
     public UnityEvent response;
 
 
     private void OnTriggerEnter(Collider other)
     {
         // Check to make it's a player
-        if (other.tag == objectTag)
+        if (other.tag == ObjectTag)
         {
             response.Invoke();
         }
