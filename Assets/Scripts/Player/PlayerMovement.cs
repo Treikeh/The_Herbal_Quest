@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
 
 
-    // The 3 functions bellow are only for testing the checkpoint system
+    // ! The 3 functions bellow are only for testing the checkpoint system
     private void OnEnable() {
         GameManager.CheckpointReload += OnCheckpointReloaded;
     }
@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnCheckpointReloaded()
     {
         PlayerInput playerInput = GetComponent<PlayerInput>();
+        gameObject.transform.position = GameManager.CheckpointPosition;
         playerInput.ActivateInput();
-        transform.position = GameManager.CheckpointPosition;
     }
 
 

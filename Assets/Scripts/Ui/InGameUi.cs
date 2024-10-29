@@ -114,6 +114,9 @@ public class InGameUi : MonoBehaviour
     private IEnumerator CheckpointFade()
     {
         FadePanelInn();
+        //  * I am using time scale here to fix an bug where the player position would only be reset for 1 frame
+        // ? I belive the issue has something to do with the movement code, and when update and fixed update gets triggered relative to reseting the position
+        Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(fadeDuration + fadeDuration);
         //
         HideMouseCursor();
@@ -122,7 +125,8 @@ public class InGameUi : MonoBehaviour
         GameManager.ReloadCheckpoint();
         //
         FadePanelOut();
-        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 1f;
     }
 
     private IEnumerator MainMenuFade()

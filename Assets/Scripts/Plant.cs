@@ -12,7 +12,9 @@ public class Plant : MonoBehaviour
     {
         pickUpEvent.TriggerEvent();
         AudioSource.PlayClipAtPoint(PickUpSound, transform.position);
-        GameManager.CheckpointPosition = transform.position;
+        // ! TESTING ONLY
+        // Find a better solution to saving the position of the player
+        GameManager.CheckpointPosition = GameObject.Find("Player").transform.position;
         gameObject.SetActive(false);
     }
 }

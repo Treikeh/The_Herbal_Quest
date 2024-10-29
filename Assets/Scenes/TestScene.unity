@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameUi
       objectReference: {fileID: 0}
+    - target: {fileID: 5294673899429472228, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5348400800412069193, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6966,15 +6970,35 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: objectives.Array.data[0].Title
+      value: 'Pick up plants '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: objectives.Array.data[1].Title
+      value: Enter win trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: objectives.Array.data[1].title
       value: Return to tea house
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: objectives.Array.data[0].MaxValue
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: objectives.Array.data[0].maxValue
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: objectives.Array.data[1].MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: objectives.Array.data[1].maxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: objectives.Array.data[0].DisplayValues
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
