@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class PlayerAttacking : MonoBehaviour
 {
-    [SerializeField] private bool StartWithTorchActive = true;
-    [SerializeField] private float AttackDelay = 0.5f;
-    [SerializeField] private float AttackDistance = 2f;
-    [SerializeField] private Transform Head;
-    [SerializeField] private GameObject Torch;
-    [SerializeField] private Light FlameLight;
-    [SerializeField] private Animator AttackAnimations;
-    [SerializeField] private AudioClip AttackHitSound;
-    [SerializeField] private AudioClip AttackMissSound;
-    [SerializeField] private AudioSource AttackAudioSource;
+    [SerializeField] private bool startWithTorchActive = true;
+    [SerializeField] private float attackDelay = 0.5f;
+    [SerializeField] private float attackDistance = 2f;
+    [SerializeField] private Transform head;
+    [SerializeField] private GameObject torch;
+    [SerializeField] private Light flameLight;
+    [SerializeField] private Animator attackAnimations;
+    [SerializeField] private AudioClip attackHitSound;
+    [SerializeField] private AudioClip attackMissSound;
+    [SerializeField] private AudioSource attackAudioSource;
 
     private bool _canAttack;
     private BurnableObject _attackTarget;
@@ -23,28 +23,28 @@ public class PlayerAttacking : MonoBehaviour
 
     private void Start()
     {
-        if (StartWithTorchActive)
+        if (startWithTorchActive)
         {
-            Torch.SetActive(true);
+            torch.SetActive(true);
             _canAttack = true;
         }
         else
         {
-            Torch.SetActive(false);
+            torch.SetActive(false);
             _canAttack = false;
         }
     }
 
     private void Update()
     {
-        if (Torch.activeInHierarchy)
+        if (torch.activeInHierarchy)
             { CheckForAttackable(); }
     }
 
     // Check if the player is looking at an attackable object
     private void CheckForAttackable()
     {
-        if (Physics.Raycast(Head.position, Head.forward, out RaycastHit rayHit, AttackDistance))
+        if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, attackDistance))
         {
             if (rayHit.collider.TryGetComponent(out BurnableObject target))
             {
@@ -75,18 +75,18 @@ public class PlayerAttacking : MonoBehaviour
             // Disable attacking
             _canAttack = false;
             // Reset attack after a short duration
-            Invoke(nameof(ResetAttack), AttackDelay);
-            AttackAnimations.Play("AttackAnim", -1, 0f);
+            Invoke(nameof(ResetAttack), attackDelay);
+            attackAnimations.Play("AttackAnim", -1, 0f);
             
             // Reactons to what the player hits
             if (_attackTarget != null)
             {
-                _attackTarget.Hit(FlameLight.enabled);
-                AttackAudioSource.PlayOneShot(AttackHitSound);
+                _attackTarget.Hit(flameLight.enabled);
+                attackAudioSource.PlayOneShot(attackHitSound);
             }
             else
             {
-                AttackAudioSource.PlayOneShot(AttackMissSound);
+                attackAudioSource.PlayOneShot(attackMissSound);
             }
         }
     }
@@ -98,27 +98,27 @@ public class PlayerAttacking : MonoBehaviour
 
     public void PickUpTorch()
     {
-        if (!Torch.activeInHierarchy)
+        if (!torch.activeInHierarchy)
         {
-            Torch.SetActive(true);
+            torch.SetActive(true);
             _canAttack = true;
         }
     }
 
     public void LightTorch()
     {
-        if (Torch.activeInHierarchy && !FlameLight.enabled)
+        if (torch.activeInHierarchy && !flameLight.enabled)
         {
-            FlameLight.enabled = true;
+            flameLight.enabled = true;
             // Play sound
         }
     }
 
     public void ExtinguishTorch()
     {
-        if (Torch.activeInHierarchy && FlameLight.enabled)
+        if (torch.activeInHierarchy && flameLight.enabled)
         {
-            FlameLight.enabled = false;
+            flameLight.enabled = false;
             // Play sound
         }
     }

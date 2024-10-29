@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] private float InteractDistance = 2f;
-    [SerializeField] private Transform Head;
+    [SerializeField] private float interactDistance = 2f;
+    [SerializeField] private Transform head;
 
-    private Interactable _interactTarget;
+    private Interactable interactTarget;
 
     public static Action<string> UpdateInteractPrompt;
 
@@ -17,11 +17,11 @@ public class PlayerInteract : MonoBehaviour
     private void Update()
     {
         // Check for interactable
-        if (Physics.Raycast(Head.position, Head.forward, out RaycastHit rayHit, InteractDistance))
+        if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, interactDistance))
         {
             if (rayHit.collider.TryGetComponent(out Interactable target))
             {
-                _interactTarget = target;
+                interactTarget = target;
                 UpdateInteractPrompt?.Invoke(target.Prompt);
             } 
             else
@@ -34,14 +34,14 @@ public class PlayerInteract : MonoBehaviour
     private void ClearInteractTarget()
     {
         UpdateInteractPrompt?.Invoke("");
-        if (_interactTarget != null)
-            { _interactTarget = null; }
+        if (interactTarget != null)
+            { interactTarget = null; }
     }
 
     public void OnInteract()
     {
-        // Only allow interaction when the cursor is hidden and when _interactTarget is valid
-        if (!Cursor.visible && _interactTarget != null)
-            { _interactTarget.Interact(); }
+        // Only allow interaction when the cursor is hidden and when interactTarget is valid
+        if (!Cursor.visible && interactTarget != null)
+            { interactTarget.Interact(); }
     }
 }

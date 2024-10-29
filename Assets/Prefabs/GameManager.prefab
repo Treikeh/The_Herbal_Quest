@@ -45,12 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4715815aeacd8084eae841996b96121a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedData: {fileID: 11400000, guid: 7b3b5589f86d67044ae823a2c9444ce6, type: 2}
   objectives:
-  - title: 'Plants to pick up '
-    maxValue: 1
-    currentValue: 0
-    displayValues: 1
+  - Title: Objective
+    MaxValue: 1
+    CurrentValue: 0
+    DisplayValues: 0
     OnObjectiveCompleted:
       m_PersistentCalls:
         m_Calls: []

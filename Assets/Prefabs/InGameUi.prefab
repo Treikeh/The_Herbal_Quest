@@ -3646,7 +3646,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1535112753438000492}
         m_TargetAssemblyTypeName: InGameUi, Assembly-CSharp
-        m_MethodName: OnRestartButtonPressed
+        m_MethodName: OnCheckpointButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4395,12 +4395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85559ab82272cc54893c63e02fda73da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectiveText: {fileID: 6641145919476478859}
-  InteractText: {fileID: 4927219338305063664}
-  DialogText: {fileID: 393832396192932648}
-  CrosshairImage: {fileID: 6070430636566783537}
-  NormalCrosshair: {fileID: 21300000, guid: ca50f50335719ae4fa4e156ee96e388e, type: 3}
-  AttackCrosshair: {fileID: 21300000, guid: 7a15c5b17ff687549a065cf3a641f3ad, type: 3}
+  objectiveText: {fileID: 6641145919476478859}
+  interactText: {fileID: 4927219338305063664}
+  dialogText: {fileID: 393832396192932648}
+  crosshairImage: {fileID: 6070430636566783537}
+  normalCrosshair: {fileID: 21300000, guid: ca50f50335719ae4fa4e156ee96e388e, type: 3}
+  attackCrosshair: {fileID: 21300000, guid: 7a15c5b17ff687549a065cf3a641f3ad, type: 3}
 --- !u!1 &8848001535882917347
 GameObject:
   m_ObjectHideFlags: 0

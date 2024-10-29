@@ -6,13 +6,12 @@ using TMPro;
 
 public class Hud : MonoBehaviour
 {
-    [SerializeField] private TMP_Text ObjectiveText;
-    [SerializeField] private TMP_Text InteractText;
-    [SerializeField] private TMP_Text DialogText;
-    [SerializeField] private Image CrosshairImage;
-
-    [SerializeField] private Sprite NormalCrosshair;
-    [SerializeField] private Sprite AttackCrosshair;
+    [SerializeField] private TMP_Text objectiveText;
+    [SerializeField] private TMP_Text interactText;
+    [SerializeField] private TMP_Text dialogText;
+    [SerializeField] private Image crosshairImage;
+    [SerializeField] private Sprite normalCrosshair;
+    [SerializeField] private Sprite attackCrosshair;
 
 
     private void OnEnable()
@@ -34,36 +33,36 @@ public class Hud : MonoBehaviour
 
     private void Start()
     {
-        InteractText.text = "";
-        DialogText.text = "";
-        CrosshairImage.sprite = NormalCrosshair;
+        interactText.text = "";
+        dialogText.text = "";
+        crosshairImage.sprite = normalCrosshair;
     }
 
     private void OnUpdateInteractPrompt(string prompt)
     {
-        InteractText.text = prompt;
+        interactText.text = prompt;
     }
 
     private void OnUpdateCrosshair(bool attackIcon)
     {
         if (attackIcon)
         {
-            CrosshairImage.sprite = AttackCrosshair;
+            crosshairImage.sprite = attackCrosshair;
         }
         else
         {
-            CrosshairImage.sprite = NormalCrosshair;
+            crosshairImage.sprite = normalCrosshair;
         }
     }
 
     private void OnUpdateObjectiveText(string text)
     {
-        ObjectiveText.text = text;
+        objectiveText.text = text;
     }
 
     private void OnUpdateDialogText(string text, float duration)
     {
-        DialogText.text = text;
+        dialogText.text = text;
         // Remove text after a delay
         // Make sure the text 
     }

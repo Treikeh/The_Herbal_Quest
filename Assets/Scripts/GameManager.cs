@@ -16,11 +16,13 @@ public class GameManager : MonoBehaviour
         Finished,
     }
     
-    [HideInInspector] public static GameStates currenctGameState;
-    [SerializeField] private List<Objective> _objectives = new List<Objective>();
+    [HideInInspector] public static GameStates CurrenctGameState;
+    public static Vector3 CheckpointPosition;
 
-    private int _currentObjective = 0;
+    [SerializeField] private List<Objective> objectives = new List<Objective>();
+    private int currentObjective = 0;
 
+    public static Action CheckpointReload;
     public static Action<string> UpdateObjectiveText;
 
 
@@ -36,13 +38,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Rest pause when switching scenes
-        Time.timeScale = 1f;
-        currenctGameState = GameStates.Running;
-    }
-
 
     private void Start()
     {
@@ -51,20 +46,33 @@ public class GameManager : MonoBehaviour
         UpdateObjectiveString();
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Rest pause when switching scenes
+        Time.timeScale = 1f;
+        CurrenctGameState = GameStates.Running;
+    }
+
+    public static void ReloadCheckpoint()
+    {
+        CheckpointReload?.Invoke();
+        CurrenctGameState = GameStates.Running;
+    }
+
     public void AddObjectiveProgress()
     {
-        if (currenctGameState != GameStates.Running)
+        if (CurrenctGameState != GameStates.Running)
             { return; }
 
-        _objectives[_currentObjective].CurrentValue++;
-        // Check if _currentObjective is completed
-        if (_objectives[_currentObjective].CurrentValue >= _objectives[_currentObjective].MaxValue)
+        objectives[currentObjective].CurrentValue++;
+        // Check if currentObjective is completed
+        if (objectives[currentObjective].CurrentValue >= objectives[currentObjective].MaxValue)
         {
-            _objectives[_currentObjective].OnObjectiveCompleted.Invoke();
-            _currentObjective++;
-            // Check if all _objectives are completed
-            if (_currentObjective >= _objectives.Count) 
-                { currenctGameState = GameStates.Finished; }
+            objectives[currentObjective].OnObjectiveCompleted.Invoke();
+            currentObjective++;
+            // Check if all objectives are completed
+            if (currentObjective >= objectives.Count) 
+                { CurrenctGameState = GameStates.Finished; }
             else
                 { UpdateObjectiveString(); }
         }
@@ -74,11 +82,11 @@ public class GameManager : MonoBehaviour
 
     private void UpdateObjectiveString()
     {
-        string Title = _objectives[_currentObjective].Title;
-        if (_objectives[_currentObjective].DisplayValues == true)
+        string Title = objectives[currentObjective].Title;
+        if (objectives[currentObjective].DisplayValues == true)
         {
-            string MaxValue = _objectives[_currentObjective].MaxValue.ToString();
-            string CurrentValue = _objectives[_currentObjective].CurrentValue.ToString();
+            string MaxValue = objectives[currentObjective].MaxValue.ToString();
+            string CurrentValue = objectives[currentObjective].CurrentValue.ToString();
             UpdateObjectiveText?.Invoke(Title + CurrentValue + " / " + MaxValue);
         }
         else

@@ -5,40 +5,40 @@ using UnityEngine.UI;
 
 public class InGameUi : MonoBehaviour
 {
-    [SerializeField] private float FadeDuration = 0.5f;
-    [SerializeField] private float FadeBuffer = 0.5f;
-    [SerializeField] private Image FadePanel;
-    [SerializeField] private GameObject Hud;
-    [SerializeField] private GameObject PauseMenu;
-    [SerializeField] private GameObject WinScreen;
-    [SerializeField] private GameObject GameOverScreen;
+    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private float fadeBuffer = 0.5f;
+    [SerializeField] private Image fadePanel;
+    [SerializeField] private GameObject hud;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject gameOverScreen;
 
 
     private void Start()
     {
-        FadePanel.gameObject.SetActive(true);
-        Invoke(nameof(FadeOutPanel), FadeBuffer);
+        fadePanel.gameObject.SetActive(true);
+        Invoke(nameof(FadePanelOut), fadeBuffer);
     }
 
     // INPUTS //
 
     public void OnPause()
     {
-        if (GameManager.currenctGameState == GameManager.GameStates.Running)
+        if (GameManager.CurrenctGameState == GameManager.GameStates.Running)
         {
             ShowMouseCursor();
-            Hud.SetActive(false);
-            PauseMenu.SetActive(true);
-            GameManager.currenctGameState = GameManager.GameStates.Paused;
+            hud.SetActive(false);
+            pauseMenu.SetActive(true);
+            GameManager.CurrenctGameState = GameManager.GameStates.Paused;
             Time.timeScale = 0f;
         }
 
-        else if (GameManager.currenctGameState == GameManager.GameStates.Paused)
+        else if (GameManager.CurrenctGameState == GameManager.GameStates.Paused)
         {
             HideMouseCursor();
-            Hud.SetActive(true);
-            PauseMenu.SetActive(false);
-            GameManager.currenctGameState = GameManager.GameStates.Running;
+            hud.SetActive(true);
+            pauseMenu.SetActive(false);
+            GameManager.CurrenctGameState = GameManager.GameStates.Running;
             Time.timeScale = 1f;
         }
     }
@@ -51,6 +51,11 @@ public class InGameUi : MonoBehaviour
     public void OnRestartButtonPressed()
     {
         StartCoroutine(RestartLevelFade());
+    }
+
+    public void OnCheckpointButtonPressed()
+    {
+        StartCoroutine(CheckpointFade());
     }
 
     public void OnMainMenuButtonPressed()
@@ -79,44 +84,58 @@ public class InGameUi : MonoBehaviour
 
     // FADE INN AND FADE OUT //
 
-    private void FadeOutPanel()
+    private void FadePanelOut()
     {
-        FadePanel.color = Color.black;
-        FadePanel.CrossFadeAlpha(0f, FadeDuration, true);
+        fadePanel.color = Color.black;
+        fadePanel.CrossFadeAlpha(0f, fadeDuration, true);
     }
 
-    private void FadeInnPanel()
+    private void FadePanelInn()
     {
         // CrossFadeAlpha does not work without this work around
-        FadePanel.CrossFadeAlpha(0f, 0f, true);
-        FadePanel.CrossFadeAlpha(1f, FadeDuration, true);
+        fadePanel.CrossFadeAlpha(0f, 0f, true);
+        fadePanel.CrossFadeAlpha(1f, fadeDuration, true);
     }
 
     private IEnumerator NextLevelFade()
     {
-        FadeInnPanel();
-        yield return new WaitForSecondsRealtime(FadeDuration + FadeBuffer);
+        FadePanelInn();
+        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
         SceneLoader.LoadNextBuildScene();
     }
 
     private IEnumerator RestartLevelFade()
     {
-        FadeInnPanel();
-        yield return new WaitForSecondsRealtime(FadeDuration + FadeBuffer);
+        FadePanelInn();
+        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
         SceneLoader.ReloadScene();
+    }
+
+    private IEnumerator CheckpointFade()
+    {
+        FadePanelInn();
+        yield return new WaitForSecondsRealtime(fadeDuration + fadeDuration);
+        //
+        HideMouseCursor();
+        gameOverScreen.SetActive(false);
+        hud.SetActive(true);
+        GameManager.ReloadCheckpoint();
+        //
+        FadePanelOut();
+        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
     }
 
     private IEnumerator MainMenuFade()
     {
-        FadeInnPanel();
-        yield return new WaitForSecondsRealtime(FadeDuration + FadeBuffer);
+        FadePanelInn();
+        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
         SceneLoader.LoadSceneByName("MainMenu");
     }
 
     private IEnumerator QuitGameFade()
     {
-        FadeInnPanel();
-        yield return new WaitForSecondsRealtime(FadeDuration + FadeBuffer);
+        FadePanelInn();
+        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
         Application.Quit();
     }
 }

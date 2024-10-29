@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,114 +6,132 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float WalkSpeed = 5f;
-    [SerializeField] private float AirAcceleration = 5f;
-    [SerializeField] private float GroundAcceleration = 10f;
-    [SerializeField] float MaxFloorAngle = 40f;
-    [SerializeField] private float GroundCheckDistance = 1.3f;
-    [SerializeField] private LayerMask GroundLayer;
-    [SerializeField] private float  JumpForce = 5f;
-    [SerializeField] private float JumpCooldown = 0.25f;
-    [SerializeField] private float JumpBufferDuration = 0.2f;
-    [SerializeField] private AudioClip JumpSound;
-    [SerializeField] private Transform Orientation;
+    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float airAcceleration = 5f;
+    [SerializeField] private float groundAcceleration = 10f;
+    [SerializeField] float maxFloorAngle = 40f;
+    [SerializeField] private float groundCheckDistance = 1.3f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float  jumpForce = 5f;
+    [SerializeField] private float jumpBufferDuration = 0.2f;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private Transform orientation;
 
-    private Rigidbody _rBody;
-    private RaycastHit _groundHit;
-    private bool _isGrounded;
-    private bool _canJump = true;
-    private bool _exitGround;
-    private float _jumpBufferCount;
-    private Vector2 _moveInput;
-    private Vector3 _moveDirection;
+    private Rigidbody rBody;
+    private RaycastHit groundHit;
+    private bool isGrounded;
+    private bool canJump = true;
+    private bool exitGround;
+    private float jumpCooldown = 0.25f;
+    private float jumpBufferCount;
+    private Vector2 moveInput;
+    private Vector3 moveDirection;
+
+
+    // The 3 functions bellow are only for testing the checkpoint system
+    private void OnEnable() {
+        GameManager.CheckpointReload += OnCheckpointReloaded;
+    }
+
+    private void OnDisable() {
+        GameManager.CheckpointReload -= OnCheckpointReloaded;
+    }
+
+    private void OnCheckpointReloaded()
+    {
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        playerInput.ActivateInput();
+        transform.position = GameManager.CheckpointPosition;
+    }
+
 
 
     private void Start()
     {
-        _rBody = GetComponent<Rigidbody>();
+        rBody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
         // Ground check
-        _isGrounded = IsOnWalkableSlope();
+        isGrounded = IsOnWalkableSlope();
         // Disable gravity while grounded
-        _rBody.useGravity = !_isGrounded;
+        rBody.useGravity = !isGrounded;
 
-        // Align _moveDirection to Orientation
-        _moveDirection = (Orientation.forward * _moveInput.y + Orientation.right * _moveInput.x).normalized;
+        // Align moveDirection to orientation
+        moveDirection = (orientation.forward * moveInput.y + orientation.right * moveInput.x).normalized;
 
         // Jump while jump buffer active
-        _jumpBufferCount -= Time.deltaTime;
-        if (_isGrounded && _canJump && _jumpBufferCount > 0f)
+        jumpBufferCount -= Time.deltaTime;
+        if (isGrounded && canJump && jumpBufferCount > 0f)
         {
-            _canJump = false;
-            _exitGround = true;
-            _jumpBufferCount = 0f;
+            canJump = false;
+            exitGround = true;
+            jumpBufferCount = 0f;
             // Reset jump after a short duration
-            Invoke(nameof(ResetJump), JumpCooldown);
-            _rBody.velocity = new Vector3(_rBody.velocity.x, JumpForce, _rBody.velocity.z);
-            AudioSource.PlayClipAtPoint(JumpSound, transform.position);
+            Invoke(nameof(ResetJump), jumpCooldown);
+            rBody.velocity = new Vector3(rBody.velocity.x, jumpForce, rBody.velocity.z);
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
     }
 
     private void FixedUpdate()
     {
-        Vector3 velocity = _rBody.velocity;
+        Vector3 velocity = rBody.velocity;
 
-        if (_isGrounded && !_exitGround)
+        if (isGrounded && !exitGround)
         {
             Vector3 slopeDirection = GetSlopeMoveDirection();
-            velocity.x = Mathf.Lerp(velocity.x, slopeDirection.x * WalkSpeed, GroundAcceleration * Time.fixedDeltaTime);
-            velocity.y = Mathf.Lerp(velocity.y, slopeDirection.y * WalkSpeed, GroundAcceleration * Time.fixedDeltaTime);
-            velocity.z = Mathf.Lerp(velocity.z, slopeDirection.z * WalkSpeed, GroundAcceleration * Time.fixedDeltaTime);
+            velocity.x = Mathf.Lerp(velocity.x, slopeDirection.x * walkSpeed, groundAcceleration * Time.fixedDeltaTime);
+            velocity.y = Mathf.Lerp(velocity.y, slopeDirection.y * walkSpeed, groundAcceleration * Time.fixedDeltaTime);
+            velocity.z = Mathf.Lerp(velocity.z, slopeDirection.z * walkSpeed, groundAcceleration * Time.fixedDeltaTime);
         }
         else
         {
-            velocity.x = Mathf.Lerp(velocity.x, _moveDirection.x * WalkSpeed, AirAcceleration * Time.fixedDeltaTime);
-            velocity.z = Mathf.Lerp(velocity.z, _moveDirection.z * WalkSpeed, AirAcceleration * Time.fixedDeltaTime);
+            velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * walkSpeed, airAcceleration * Time.fixedDeltaTime);
+            velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * walkSpeed, airAcceleration * Time.fixedDeltaTime);
         }
 
-        _rBody.velocity = velocity;
+        rBody.velocity = velocity;
     }
 
     // Move input
     public void OnMove(InputValue value)
     {
-        _moveInput = value.Get<Vector2>();
+        moveInput = value.Get<Vector2>();
     }
 
     // Jump input
     public void OnJump()
     {
-        if (GameManager.currenctGameState == GameManager.GameStates.Running)
-            { _jumpBufferCount = JumpBufferDuration; }
+        if (GameManager.CurrenctGameState == GameManager.GameStates.Running)
+            { jumpBufferCount = jumpBufferDuration; }
     }
 
     private void ResetJump()
     {
-        _canJump = true;
-        _exitGround = false;
+        canJump = true;
+        exitGround = false;
     }
 
     // Check if player is on a slope shallow enough to walk on
     private bool IsOnWalkableSlope()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out _groundHit, GroundCheckDistance, GroundLayer))
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, groundCheckDistance, groundLayer))
         {
-            float floorAngle = Vector3.Angle(_groundHit.normal, Vector3.up);
-            return floorAngle < MaxFloorAngle;
+            float floorAngle = Vector3.Angle(groundHit.normal, Vector3.up);
+            return floorAngle < maxFloorAngle;
         }
         return false;
     }
 
-    // Align _moveDirection to ground normal
+    // Align moveDirection to ground normal
     private Vector3 GetSlopeMoveDirection()
     {
-        return Vector3.ProjectOnPlane(_moveDirection, _groundHit.normal);
+        return Vector3.ProjectOnPlane(moveDirection, groundHit.normal);
     }
 
     private void OnDrawGizmosSelected() {
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.down * GroundCheckDistance));
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3.down * groundCheckDistance));
     }
 }

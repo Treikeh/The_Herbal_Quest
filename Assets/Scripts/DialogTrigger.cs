@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class DialogTrigger : MonoBehaviour
 {
-    [SerializeField] private string DialogText;
-    [SerializeField] private float DialogDuration;
+    [SerializeField] private string dialogText;
+    [SerializeField] private float dialogDuration;
 
-    private bool _triggred = false;
+    private bool beenTriggred = false;
 
     public static Action<string, float> UpdateDialogText;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!_triggred)
+        if (!beenTriggred)
         {
-            _triggred = true;
-            UpdateDialogText?.Invoke(DialogText, DialogDuration);
+            beenTriggred = true;
+            UpdateDialogText?.Invoke(dialogText, dialogDuration);
         }
     }
 }
