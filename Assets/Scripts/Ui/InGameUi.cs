@@ -123,7 +123,7 @@ public class InGameUi : MonoBehaviour
         gameOverScreen.SetActive(false);
         pauseMenu.SetActive(false);
         hud.SetActive(true);
-        GameManager.ReloadCheckpoint();
+        CheckpointManager.ReloadCheckpoint();
         //
         FadePanelOut();
         yield return new WaitForSecondsRealtime(0.1f);

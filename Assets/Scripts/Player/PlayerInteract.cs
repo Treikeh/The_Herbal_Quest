@@ -42,6 +42,6 @@ public class PlayerInteract : MonoBehaviour
     {
         // Only allow interaction when the cursor is hidden and when interactTarget is valid
         if (!Cursor.visible && interactTarget != null)
-            { interactTarget.Interact(transform); }
+            { interactTarget.Interact(); }
     }
 }

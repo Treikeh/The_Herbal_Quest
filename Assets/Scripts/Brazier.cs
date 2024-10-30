@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brazier : MonoBehaviour
+public class Brazier : MonoBehaviour, IHitable
 {
     [SerializeField] private bool startLit;
     [SerializeField] private GameEvent lightTorchEvent;
@@ -25,13 +25,13 @@ public class Brazier : MonoBehaviour
         }
     }
 
-    public void RegisterHit(bool onFire, Transform hitterTransform)
+    public void Hit(bool onFire)
     {
         // Light brazier
         if (onFire && !isLit)
         {
             LightBrazier();
-            GameManager.CheckpointPosition = hitterTransform.position;
+            CheckpointManager.SaveCheckpoint();
         }
         // Light torch
         else if (!onFire && isLit)

@@ -8,13 +8,11 @@ public class Plant : MonoBehaviour
     [SerializeField] private AudioClip PickUpSound;
 
 
-    public void OnPickUp(Transform interacterTransform)
+    public void OnPickUp()
     {
         pickUpEvent.TriggerEvent();
         AudioSource.PlayClipAtPoint(PickUpSound, transform.position);
+        CheckpointManager.SaveCheckpoint();
         gameObject.SetActive(false);
-        // ! TESTING ONLY
-        // TODO Find a better solution to saving the position of the player
-        GameManager.CheckpointPosition = interacterTransform.position;
     }
 }

@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 423985681288722525}
   - component: {fileID: 4331827552153381899}
   - component: {fileID: 4416406633694687115}
-  - component: {fileID: 8696750538230878688}
   - component: {fileID: 7999970338521436287}
   m_Layer: 0
   m_Name: Brazier
@@ -226,33 +225,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8696750538230878688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8622875649366823066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22eaa076145f7dc479f9cc52cdc45ceb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7999970338521436287}
-        m_TargetAssemblyTypeName: Brazier, Assembly-CSharp
-        m_MethodName: RegisterHit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7999970338521436287
 MonoBehaviour:
   m_ObjectHideFlags: 0

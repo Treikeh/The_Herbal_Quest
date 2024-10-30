@@ -17,7 +17,7 @@ public class PlayerAttacking : MonoBehaviour
     [SerializeField] private AudioSource attackAudioSource;
 
     private bool canAttack;
-    private Hitable attackTarget;
+    private IHitable attackTarget;
 
     public static Action<bool> UpdateCrosshair;
 
@@ -46,7 +46,7 @@ public class PlayerAttacking : MonoBehaviour
     {
         if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, attackDistance))
         {
-            if (rayHit.collider.TryGetComponent(out Hitable target))
+            if (rayHit.collider.TryGetComponent(out IHitable target))
             {
                 attackTarget = target;
                 UpdateCrosshair?.Invoke(true);
@@ -81,7 +81,7 @@ public class PlayerAttacking : MonoBehaviour
             // Reactons to what the player hits
             if (attackTarget != null)
             {
-                attackTarget.Hit(flameLight.enabled, transform);
+                attackTarget.Hit(flameLight.enabled);
                 attackAudioSource.PlayOneShot(attackHitSound);
             }
             else

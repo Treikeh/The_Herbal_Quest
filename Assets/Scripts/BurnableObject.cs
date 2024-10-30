@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BurnableObject : MonoBehaviour
+public class BurnableObject : MonoBehaviour, IHitable
 {
     [SerializeField] private float burnDuration = 3f;
     private bool isBurning = false;
 
     public UnityEvent OnStartBurning;
 
-
-    public void RegisterHit(bool onFire, Transform hitterTransform)
+    public void Hit(bool onFire)
     {
         if (onFire && !isBurning)
         {

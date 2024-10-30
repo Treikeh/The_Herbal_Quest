@@ -17,12 +17,10 @@ public class GameManager : MonoBehaviour
     }
     
     [HideInInspector] public static GameStates CurrenctGameState;
-    [HideInInspector] public static Vector3 CheckpointPosition;
 
     [SerializeField] private List<Objective> objectives = new List<Objective>();
     private int currentObjective = 0;
 
-    public static Action CheckpointReload;
     public static Action<string> UpdateObjectiveText;
 
 
@@ -50,12 +48,6 @@ public class GameManager : MonoBehaviour
         // Limit frame rate
         Application.targetFrameRate = 90;
         UpdateObjectiveString();
-    }
-
-    public static void ReloadCheckpoint()
-    {
-        CheckpointReload?.Invoke();
-        CurrenctGameState = GameStates.Running;
     }
 
     public void AddObjectiveProgress()

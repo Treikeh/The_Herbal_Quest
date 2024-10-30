@@ -27,30 +27,25 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferCount;
     private Vector2 moveInput;
     private Vector3 moveDirection;
+    private Vector3 checkpointPosition;
 
 
-    // ! The 3 functions bellow are only for testing the checkpoint system
     private void OnEnable() {
-        GameManager.CheckpointReload += OnCheckpointReloaded;
+        CheckpointManager.CheckpointSaved += OnCheckpointSaved;
+        CheckpointManager.CheckpointReloaded += OnCheckpointReloaded;
     }
 
     private void OnDisable() {
-        GameManager.CheckpointReload -= OnCheckpointReloaded;
+        CheckpointManager.CheckpointSaved -= OnCheckpointSaved;
+        CheckpointManager.CheckpointReloaded -= OnCheckpointReloaded;
     }
 
-    private void OnCheckpointReloaded()
-    {
-        PlayerInput playerInput = GetComponent<PlayerInput>();
-        playerInput.ActivateInput();
-        rBody.velocity = Vector3.zero;
-        transform.position = GameManager.CheckpointPosition;
-    }
 
 
     private void Start()
     {
         rBody = GetComponent<Rigidbody>();
-        GameManager.CheckpointPosition = transform.position;
+        OnCheckpointSaved();
     }
 
     private void Update()
@@ -131,6 +126,19 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, groundHit.normal);
+    }
+
+    private void OnCheckpointSaved()
+    {
+        checkpointPosition = transform.position;
+    }
+
+    private void OnCheckpointReloaded()
+    {
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        playerInput.ActivateInput();
+        rBody.velocity = Vector3.zero;
+        transform.position = checkpointPosition;
     }
 
     private void OnDrawGizmosSelected() {
