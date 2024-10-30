@@ -15,11 +15,11 @@ public class Interactable : MonoBehaviour
         get{ return prompt + "\n" + "[E]";}
     }
 
-    public UnityEvent OnInteracted;
+    public UnityEvent<Transform> OnInteracted;
 
 
-    public void Interact()
+    public void Interact(Transform interacterTransform)
     {
-        OnInteracted.Invoke();
+        OnInteracted.Invoke(interacterTransform);
     }
 }

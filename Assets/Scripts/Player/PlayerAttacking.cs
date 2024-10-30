@@ -16,8 +16,8 @@ public class PlayerAttacking : MonoBehaviour
     [SerializeField] private AudioClip attackMissSound;
     [SerializeField] private AudioSource attackAudioSource;
 
-    private bool _canAttack;
-    private BurnableObject _attackTarget;
+    private bool canAttack;
+    private Hitable attackTarget;
 
     public static Action<bool> UpdateCrosshair;
 
@@ -26,12 +26,12 @@ public class PlayerAttacking : MonoBehaviour
         if (startWithTorchActive)
         {
             torch.SetActive(true);
-            _canAttack = true;
+            canAttack = true;
         }
         else
         {
             torch.SetActive(false);
-            _canAttack = false;
+            canAttack = false;
         }
     }
 
@@ -46,9 +46,9 @@ public class PlayerAttacking : MonoBehaviour
     {
         if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, attackDistance))
         {
-            if (rayHit.collider.TryGetComponent(out BurnableObject target))
+            if (rayHit.collider.TryGetComponent(out Hitable target))
             {
-                _attackTarget = target;
+                attackTarget = target;
                 UpdateCrosshair?.Invoke(true);
             }
             else
@@ -60,9 +60,9 @@ public class PlayerAttacking : MonoBehaviour
 
     private void ClearAttackTarget()
     {
-        if (_attackTarget != null)
+        if (attackTarget != null)
         {
-            _attackTarget = null;
+            attackTarget = null;
             UpdateCrosshair?.Invoke(false);
         }
     }
@@ -70,18 +70,18 @@ public class PlayerAttacking : MonoBehaviour
     // INPUT
     public void OnAttack()
     {
-        if (_canAttack && !Cursor.visible)
+        if (canAttack && !Cursor.visible)
         {
             // Disable attacking
-            _canAttack = false;
+            canAttack = false;
             // Reset attack after a short duration
             Invoke(nameof(ResetAttack), attackDelay);
             attackAnimations.Play("AttackAnim", -1, 0f);
             
             // Reactons to what the player hits
-            if (_attackTarget != null)
+            if (attackTarget != null)
             {
-                _attackTarget.Hit(flameLight.enabled);
+                attackTarget.Hit(flameLight.enabled, transform);
                 attackAudioSource.PlayOneShot(attackHitSound);
             }
             else
@@ -92,7 +92,7 @@ public class PlayerAttacking : MonoBehaviour
     }
 
     private void ResetAttack()
-        { _canAttack = true; }
+        { canAttack = true; }
 
     // GAME EVENTS //
 
@@ -101,7 +101,7 @@ public class PlayerAttacking : MonoBehaviour
         if (!torch.activeInHierarchy)
         {
             torch.SetActive(true);
-            _canAttack = true;
+            canAttack = true;
         }
     }
 

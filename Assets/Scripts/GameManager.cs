@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     }
     
     [HideInInspector] public static GameStates CurrenctGameState;
-    public static Vector3 CheckpointPosition;
+    [HideInInspector] public static Vector3 CheckpointPosition;
 
     [SerializeField] private List<Objective> objectives = new List<Objective>();
     private int currentObjective = 0;
@@ -37,6 +37,12 @@ public class GameManager : MonoBehaviour
         // Reset values when a new scene is loaded
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Rest pause when switching scenes
+        Time.timeScale = 1f;
+        CurrenctGameState = GameStates.Running;
+    }
 
 
     private void Start()
@@ -44,13 +50,6 @@ public class GameManager : MonoBehaviour
         // Limit frame rate
         Application.targetFrameRate = 90;
         UpdateObjectiveString();
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Rest pause when switching scenes
-        Time.timeScale = 1f;
-        CurrenctGameState = GameStates.Running;
     }
 
     public static void ReloadCheckpoint()

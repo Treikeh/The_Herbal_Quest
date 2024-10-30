@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private Transform orientation;
 
+
     private Rigidbody rBody;
     private RaycastHit groundHit;
     private bool isGrounded;
@@ -40,15 +41,16 @@ public class PlayerMovement : MonoBehaviour
     private void OnCheckpointReloaded()
     {
         PlayerInput playerInput = GetComponent<PlayerInput>();
-        gameObject.transform.position = GameManager.CheckpointPosition;
         playerInput.ActivateInput();
+        rBody.velocity = Vector3.zero;
+        transform.position = GameManager.CheckpointPosition;
     }
-
 
 
     private void Start()
     {
         rBody = GetComponent<Rigidbody>();
+        GameManager.CheckpointPosition = transform.position;
     }
 
     private void Update()
@@ -76,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {        
         Vector3 velocity = rBody.velocity;
 
         if (isGrounded && !exitGround)

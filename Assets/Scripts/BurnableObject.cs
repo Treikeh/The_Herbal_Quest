@@ -11,9 +11,9 @@ public class BurnableObject : MonoBehaviour
     public UnityEvent OnStartBurning;
 
 
-public void Hit(bool startBurning)
+    public void RegisterHit(bool onFire, Transform hitterTransform)
     {
-        if (startBurning && !isBurning)
+        if (onFire && !isBurning)
         {
             isBurning = true;
             OnStartBurning.Invoke();

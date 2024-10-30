@@ -121,6 +121,7 @@ public class InGameUi : MonoBehaviour
         //
         HideMouseCursor();
         gameOverScreen.SetActive(false);
+        pauseMenu.SetActive(false);
         hud.SetActive(true);
         GameManager.ReloadCheckpoint();
         //
