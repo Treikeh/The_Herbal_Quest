@@ -66,7 +66,9 @@ public class Hud : MonoBehaviour
     {
         dialogText.text = text;
         if (clearDialogCoroutine != null)
-            { StopCoroutine(clearDialogCoroutine); }
+        {
+            StopCoroutine(clearDialogCoroutine);
+        }
         clearDialogCoroutine = StartCoroutine(ClearDialogText(duration));
     }
 

@@ -7,6 +7,7 @@ public class SimpleObjectMover : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Vector3 moveDirection;
 
+    private bool isMoving;
     private Vector3 checkpointPosition;
 
 
@@ -31,7 +32,20 @@ public class SimpleObjectMover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime));
+        if (isMoving)
+        {
+            transform.Translate(moveDirection * (moveSpeed * Time.fixedDeltaTime));
+        }
+    }
+
+    public void StartMoving()
+    {
+        isMoving = true;
+    }
+
+    public void StopMoving()
+    {
+        isMoving = false;
     }
 
     private void OnCheckpointSaved()

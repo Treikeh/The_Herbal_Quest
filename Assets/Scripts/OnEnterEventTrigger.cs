@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class OnEnterEventTrigger : MonoBehaviour
 {
-    [SerializeField] private string objectTag;
+    [SerializeField] private string objectTag = "Player";
 
     public UnityEvent response;
 
