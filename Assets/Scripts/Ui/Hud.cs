@@ -13,6 +13,8 @@ public class Hud : MonoBehaviour
     [SerializeField] private Sprite normalCrosshair;
     [SerializeField] private Sprite attackCrosshair;
 
+    private Coroutine clearDialogCoroutine;
+
 
     private void OnEnable()
     {
@@ -63,7 +65,14 @@ public class Hud : MonoBehaviour
     private void OnUpdateDialogText(string text, float duration)
     {
         dialogText.text = text;
-        // Remove text after a delay
-        // Make sure the text 
+        if (clearDialogCoroutine != null)
+            { StopCoroutine(clearDialogCoroutine); }
+        clearDialogCoroutine = StartCoroutine(ClearDialogText(duration));
+    }
+
+    private IEnumerator ClearDialogText(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        dialogText.text = "";
     }
 }
