@@ -6,7 +6,7 @@ public class Brazier : MonoBehaviour, IHitable
 {
     [SerializeField] private bool startLit;
     [SerializeField] private GameEvent lightTorchEvent;
-    [SerializeField] private Light flameLight;
+    [SerializeField] private GameObject flameEffect;
 
     private bool isLit;
 
@@ -16,12 +16,12 @@ public class Brazier : MonoBehaviour, IHitable
         if (startLit)
         {
             isLit = true;
-            flameLight.enabled = true;
+            flameEffect.SetActive(true);
         }
         else
         {
             isLit = false;
-            flameLight.enabled = false;
+            flameEffect.SetActive(false);
         }
     }
 
@@ -43,6 +43,6 @@ public class Brazier : MonoBehaviour, IHitable
     private void LightBrazier()
     {
         isLit = true;
-        flameLight.enabled = true;
+        flameEffect.SetActive(true);
     }
 }

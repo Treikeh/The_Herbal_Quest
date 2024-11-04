@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float  jumpForce = 5f;
     [SerializeField] private float jumpBufferDuration = 0.2f;
-    [SerializeField] private float coyoteTimeDuration = 1f;
+    [SerializeField] private float coyoteTimeDuration = 0.2f;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private Transform orientation;
 

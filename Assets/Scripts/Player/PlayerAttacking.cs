@@ -10,7 +10,7 @@ public class PlayerAttacking : MonoBehaviour
     [SerializeField] private float attackDistance = 2f;
     [SerializeField] private Transform head;
     [SerializeField] private GameObject torch;
-    [SerializeField] private Light flameLight;
+    [SerializeField] private GameObject flameEffect;
     [SerializeField] private Animator attackAnimations;
     [SerializeField] private AudioClip attackHitSound;
     [SerializeField] private AudioClip attackMissSound;
@@ -81,7 +81,7 @@ public class PlayerAttacking : MonoBehaviour
             // Reactons to what the player hits
             if (attackTarget != null)
             {
-                attackTarget.Hit(flameLight.enabled);
+                attackTarget.Hit(flameEffect.activeInHierarchy);
                 attackAudioSource.PlayOneShot(attackHitSound);
             }
             else
@@ -107,18 +107,18 @@ public class PlayerAttacking : MonoBehaviour
 
     public void LightTorch()
     {
-        if (torch.activeInHierarchy && !flameLight.enabled)
+        if (torch.activeInHierarchy && !flameEffect.activeInHierarchy)
         {
-            flameLight.enabled = true;
+            flameEffect.SetActive(true);
             // Play sound
         }
     }
 
     public void ExtinguishTorch()
     {
-        if (torch.activeInHierarchy && flameLight.enabled)
+        if (torch.activeInHierarchy && flameEffect.activeInHierarchy)
         {
-            flameLight.enabled = false;
+            flameEffect.SetActive(false);
             // Play sound
         }
     }
