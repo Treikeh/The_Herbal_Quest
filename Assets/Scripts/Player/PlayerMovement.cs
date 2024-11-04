@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float  jumpForce = 5f;
     [SerializeField] private float jumpBufferDuration = 0.2f;
+    [SerializeField] private float coyoteTimeDuration = 1f;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private Transform orientation;
 
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private bool exitGround;
     private float jumpCooldown = 0.25f;
     private float jumpBufferCount;
+    private float coyoteTimeCount;
     private Vector2 moveInput;
     private Vector3 moveDirection;
     private Vector3 checkpointPosition;
@@ -62,13 +64,7 @@ public class PlayerMovement : MonoBehaviour
         jumpBufferCount -= Time.deltaTime;
         if (isGrounded && canJump && jumpBufferCount > 0f)
         {
-            canJump = false;
-            exitGround = true;
-            jumpBufferCount = 0f;
-            // Reset jump after a short duration
-            Invoke(nameof(ResetJump), jumpCooldown);
-            rBody.velocity = new Vector3(rBody.velocity.x, jumpForce, rBody.velocity.z);
-            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+            ApplyJumpForce();
         }
     }
 
@@ -78,15 +74,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && !exitGround)
         {
+            // Grounded
             Vector3 slopeDirection = GetSlopeMoveDirection();
             velocity.x = Mathf.Lerp(velocity.x, slopeDirection.x * walkSpeed, groundAcceleration * Time.fixedDeltaTime);
             velocity.y = Mathf.Lerp(velocity.y, slopeDirection.y * walkSpeed, groundAcceleration * Time.fixedDeltaTime);
             velocity.z = Mathf.Lerp(velocity.z, slopeDirection.z * walkSpeed, groundAcceleration * Time.fixedDeltaTime);
+            coyoteTimeCount = coyoteTimeDuration;
         }
         else
         {
+            // Airborne
             velocity.x = Mathf.Lerp(velocity.x, moveDirection.x * walkSpeed, airAcceleration * Time.fixedDeltaTime);
             velocity.z = Mathf.Lerp(velocity.z, moveDirection.z * walkSpeed, airAcceleration * Time.fixedDeltaTime);
+            // Coyote time
+            coyoteTimeCount -= Time.fixedDeltaTime;
         }
 
         rBody.velocity = velocity;
@@ -102,7 +103,26 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump()
     {
         if (GameManager.CurrenctGameState == GameManager.GameStates.Running)
-            { jumpBufferCount = jumpBufferDuration; }
+        {
+            // Coyote time
+            if (!exitGround && canJump && coyoteTimeCount > 0f)
+            {
+                ApplyJumpForce();
+            }
+            jumpBufferCount = jumpBufferDuration;
+        }
+    }
+
+    private void ApplyJumpForce()
+    {
+        canJump = false;
+        exitGround = true;
+        coyoteTimeCount = 0f;
+        jumpBufferCount = 0f;
+        // Reset jump after a short duration
+        Invoke(nameof(ResetJump), jumpCooldown);
+        rBody.velocity = new Vector3(rBody.velocity.x, jumpForce, rBody.velocity.z);
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
     }
 
     private void ResetJump()
