@@ -10,8 +10,8 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private Transform orientation;
     [SerializeField] private Transform head;
 
-    private Vector2 _lookInput;
-    private Vector2 _rotation;
+    private Vector2 lookInput;
+    private Vector2 rotation;
 
 
     private void Start()
@@ -21,23 +21,23 @@ public class PlayerCamera : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Camera _rotation
-        _rotation.x = _lookInput.x * (sensitivity * Time.deltaTime);
-        _rotation.y -= _lookInput.y * (sensitivity * Time.deltaTime);
+        rotation.x = lookInput.x * (sensitivity * Time.fixedDeltaTime);
+        rotation.y -= lookInput.y * (sensitivity * Time.fixedDeltaTime);
         // Limit how far up and down the camera can rotate
-        _rotation.y = Mathf.Clamp(_rotation.y, -rotationLimit, rotationLimit);
+        rotation.y = Mathf.Clamp(rotation.y, -rotationLimit, rotationLimit);
         // Convert _rotation.y to Quaternion
-        var yQuat = Quaternion.AngleAxis(_rotation.y, Vector3.right);
+        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.right);
 
         // Apply _rotation
-        orientation.Rotate(Vector3.up * _rotation.x);
+        orientation.Rotate(Vector3.up * rotation.x);
         head.localRotation = yQuat;
     }
 
     public void OnLook(InputValue value)
     {
-        _lookInput = value.Get<Vector2>();
+        lookInput = value.Get<Vector2>();
     }
 }
