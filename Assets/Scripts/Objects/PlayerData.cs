@@ -7,6 +7,8 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public float cameraSensitivity;
+    public float attackDamage;
+    public float DefaultDamage;
     public string interactPrompt;
     public bool displayAttackIcon;
     public bool torchLit = true;
