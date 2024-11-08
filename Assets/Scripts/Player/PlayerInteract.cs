@@ -1,60 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    public PlayerData playerData;
-    public Transform cameraPitch;
-    public float interactDistance = 2f;
+    [SerializeField] private float interactDistance = 2f;
+    [SerializeField] private Transform head;
 
     private Interactable interactTarget;
 
+    public static Action<string> UpdateInteractPrompt;
 
-    private void Start()
-    {
-        playerData.interactPrompt = "";
-    }
+
 
     private void Update()
     {
-        CheckForInteractable();
-    }
-
-    private void CheckForInteractable()
-    {
-        Ray ray = new Ray(cameraPitch.position, cameraPitch.forward);
-        if (Physics.Raycast(ray, out RaycastHit rayHit, interactDistance))
+        // Check for interactable
+        if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, interactDistance))
         {
             if (rayHit.collider.TryGetComponent(out Interactable target))
             {
                 interactTarget = target;
-                playerData.interactPrompt = target.Prompt;
-            }
-            else if (interactTarget != null) // Clear if rayHit collider does not have an Interactable component
-            {
-                interactTarget = null;
-                playerData.interactPrompt = "";
-            }
-        }
-        else if (interactTarget != null) // Clear if raycast is not hitting anything
-        {
-            interactTarget = null;
-            playerData.interactPrompt = "";
-        }
+                UpdateInteractPrompt?.Invoke(target.Prompt);
+            } 
+            else
+                { ClearInteractTarget(); } // Clear if rayHi.collider does not have an Interactable component
+        } 
+        else
+            { ClearInteractTarget(); } // Clear if raycast is not hitting anything
+    }
+
+    private void ClearInteractTarget()
+    {
+        UpdateInteractPrompt?.Invoke("");
+        if (interactTarget != null)
+            { interactTarget = null; }
     }
 
     public void OnInteract()
     {
-        // Disable interacting when the cursor is visable
-        if (Cursor.visible == true)
-        {
-            return;
-        }
-
-        if (interactTarget != null)
-        {
-            interactTarget.Interact();
-        }
+        // Only allow interaction when the cursor is hidden and when interactTarget is valid
+        if (!Cursor.visible && interactTarget != null)
+            { interactTarget.Interact(); }
     }
 }

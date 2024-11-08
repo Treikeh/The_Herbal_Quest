@@ -7161,7 +7161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e0055438637b9418adea503ac87e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectTag: Player
+  objectTag: 
   response:
     m_PersistentCalls:
       m_Calls:
@@ -19083,6 +19083,14 @@ PrefabInstance:
     - target: {fileID: 4389838338560606176, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: objectives.Array.data[0].MaxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
+      propertyPath: objectives.Array.data[0].DisplayValues
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31205,7 +31213,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -73442,7 +73450,7 @@ SceneRoots:
   - {fileID: 134200572}
   - {fileID: 555036061}
   - {fileID: 348762052}
-  - {fileID: 33678636}
+  - {fileID: 1730926857}
   - {fileID: 352942062}
   - {fileID: 705507995}
   - {fileID: 960825268}

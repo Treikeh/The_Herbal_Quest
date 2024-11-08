@@ -3,19 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 // This component is responsable for handling game systems like winning, losing and progression
 // This is a simple test
 
 public class GameManager : MonoBehaviour
 {
-    public StringAsset objectiveString;
-    public List<Objective> objectives = new List<Objective>();
+    public enum GameStates {
+        Running,
+        Paused,
+        Finished,
+    }
+    
+    [HideInInspector] public static GameStates CurrenctGameState;
 
-    public static bool isGameOver;
-    public static bool isGamePaused;
-
+    [SerializeField] private List<Objective> objectives = new List<Objective>();
     private int currentObjective = 0;
+
+    public static Action<string> UpdateObjectiveText;
+
+
+    private void OnEnable()
+    {
+        // Reset values when a new scene is loaded
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        // Reset values when a new scene is loaded
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Rest pause when switching scenes
+        Time.timeScale = 1f;
+        CurrenctGameState = GameStates.Running;
+    }
 
 
     private void Start()
@@ -27,45 +52,37 @@ public class GameManager : MonoBehaviour
 
     public void AddObjectiveProgress()
     {
-        if (isGameOver)
-        {
-            return;
-        }
+        if (CurrenctGameState != GameStates.Running)
+            { return; }
 
-        objectives[currentObjective].currentValue++;
+        objectives[currentObjective].CurrentValue++;
         // Check if currentObjective is completed
-        if (objectives[currentObjective].currentValue >= objectives[currentObjective].maxValue)
+        if (objectives[currentObjective].CurrentValue >= objectives[currentObjective].MaxValue)
         {
             objectives[currentObjective].OnObjectiveCompleted.Invoke();
             currentObjective++;
             // Check if all objectives are completed
-            if (currentObjective >= objectives.Count)
-            {
-                isGameOver = true;
-            }
+            if (currentObjective >= objectives.Count) 
+                { CurrenctGameState = GameStates.Finished; }
             else
-            {
-                UpdateObjectiveString();
-            }
+                { UpdateObjectiveString(); }
         }
         else
-        {
-            UpdateObjectiveString();
-        }
+            { UpdateObjectiveString(); }
     }
 
     private void UpdateObjectiveString()
     {
-        string title = objectives[currentObjective].title;
-        if (objectives[currentObjective].displayValues == true)
+        string Title = objectives[currentObjective].Title;
+        if (objectives[currentObjective].DisplayValues == true)
         {
-            string maxValue = objectives[currentObjective].maxValue.ToString();
-            string currentValue = objectives[currentObjective].currentValue.ToString();
-            objectiveString.value = title + currentValue + " / " + maxValue;
+            string MaxValue = objectives[currentObjective].MaxValue.ToString();
+            string CurrentValue = objectives[currentObjective].CurrentValue.ToString();
+            UpdateObjectiveText?.Invoke(Title + CurrentValue + " / " + MaxValue);
         }
         else
         {
-            objectiveString.value = title;
+            UpdateObjectiveText?.Invoke(Title);
         }
     }
 }
@@ -73,9 +90,9 @@ public class GameManager : MonoBehaviour
 [System.Serializable]
 public class Objective
 {
-    public string title;
-    public int maxValue;
-    public int currentValue;
-    public bool displayValues = false;
+    public string Title;
+    public int MaxValue;
+    public int CurrentValue;
+    public bool DisplayValues = false;
     public UnityEvent OnObjectiveCompleted;
 }

@@ -6,26 +6,75 @@ using TMPro;
 
 public class Hud : MonoBehaviour
 {
-    public PlayerData playerData;
-    public StringAsset objectiveString;
+    [SerializeField] private TMP_Text objectiveText;
+    [SerializeField] private TMP_Text interactText;
+    [SerializeField] private TMP_Text dialogText;
+    [SerializeField] private Image crosshairImage;
+    [SerializeField] private Sprite normalCrosshair;
+    [SerializeField] private Sprite attackCrosshair;
 
-    public TMP_Text objectiveText;
-    public TMP_Text interactPromptText;
-    public Image crosshairImage;
-    public Sprite crosshiarSprite;
-    public Sprite attackIndicator;
+    private Coroutine clearDialogCoroutine;
 
-    public void Update()
+
+    private void OnEnable()
     {
-        objectiveText.text = objectiveString.value;
-        interactPromptText.text = playerData.interactPrompt;
-        if (playerData.displayAttackIcon)
+        GameManager.UpdateObjectiveText += OnUpdateObjectiveText;
+        PlayerInteract.UpdateInteractPrompt += OnUpdateInteractPrompt;
+        DialogTrigger.UpdateDialogText += OnUpdateDialogText;
+        PlayerAttacking.UpdateCrosshair += OnUpdateCrosshair;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.UpdateObjectiveText -= OnUpdateObjectiveText;
+        PlayerInteract.UpdateInteractPrompt -= OnUpdateInteractPrompt;
+        DialogTrigger.UpdateDialogText -= OnUpdateDialogText;
+        PlayerAttacking.UpdateCrosshair -= OnUpdateCrosshair;
+    }
+
+
+    private void Start()
+    {
+        interactText.text = "";
+        dialogText.text = "";
+        crosshairImage.sprite = normalCrosshair;
+    }
+
+    private void OnUpdateInteractPrompt(string prompt)
+    {
+        interactText.text = prompt;
+    }
+
+    private void OnUpdateCrosshair(bool attackIcon)
+    {
+        if (attackIcon)
         {
-            crosshairImage.sprite = attackIndicator;
+            crosshairImage.sprite = attackCrosshair;
         }
         else
         {
-            crosshairImage.sprite = crosshiarSprite;
+            crosshairImage.sprite = normalCrosshair;
         }
+    }
+
+    private void OnUpdateObjectiveText(string text)
+    {
+        objectiveText.text = text;
+    }
+
+    private void OnUpdateDialogText(string text, float duration)
+    {
+        dialogText.text = text;
+        if (clearDialogCoroutine != null)
+        {
+            StopCoroutine(clearDialogCoroutine);
+        }
+        clearDialogCoroutine = StartCoroutine(ClearDialogText(duration));
+    }
+
+    private IEnumerator ClearDialogText(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        dialogText.text = "";
     }
 }
