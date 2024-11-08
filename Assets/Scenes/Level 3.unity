@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.9
+  m_AmbientIntensity: 1.3
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.21059729, g: 0.20808114, b: 0.26415092, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
@@ -2414,7 +2414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8428657180859455548, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24928,7 +24928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083355326068586845, guid: a6bfbb17248cb0640b43ae9c31effcca, type: 3}
       propertyPath: startWithTorchActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7608015390787821994, guid: a6bfbb17248cb0640b43ae9c31effcca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34539,15 +34539,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1030977888, guid: abc00000000006602576887993213211, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.330856
+      value: 38.03
       objectReference: {fileID: 0}
     - target: {fileID: 1030977888, guid: abc00000000006602576887993213211, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.25
+      value: 3.26
       objectReference: {fileID: 0}
     - target: {fileID: 1030977888, guid: abc00000000006602576887993213211, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.129686
+      value: 20.79
       objectReference: {fileID: 0}
     - target: {fileID: 1030977888, guid: abc00000000006602576887993213211, type: 3}
       propertyPath: m_LocalRotation.w
