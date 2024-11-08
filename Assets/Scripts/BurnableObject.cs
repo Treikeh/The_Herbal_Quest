@@ -5,17 +5,18 @@ using UnityEngine.Events;
 
 public class BurnableObject : MonoBehaviour, IHitable
 {
-    public float durnDuration = 3f;
-    public UnityEvent OnStartBurning;
-
+    [SerializeField] private float burnDuration = 3f;
     private bool isBurning = false;
 
+    public UnityEvent OnStartBurning;
 
-public void Hit(bool startBurning)
+    public void Hit(bool onFire)
     {
-        if (startBurning && !isBurning)
+        if (onFire && !isBurning)
         {
-            StartBurning();
+            isBurning = true;
+            OnStartBurning.Invoke();
+            Invoke(nameof(BurningFinished), burnDuration);
         }
         else
         {
@@ -23,17 +24,8 @@ public void Hit(bool startBurning)
         }
     }
 
-    public void StartBurning()
+    private void BurningFinished()
     {
-        isBurning = true;
-        OnStartBurning.Invoke();
-        StartCoroutine(BurningCorutine());
-    }
-
-    private IEnumerator BurningCorutine()
-    {
-        Debug.Log("Start burning");
-        yield return new WaitForSeconds(durnDuration);
         gameObject.SetActive(false);
     }
 }

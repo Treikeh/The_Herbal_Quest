@@ -23,7 +23,7 @@ Material:
   m_Name: M_Foliage_Bonsai_Winded1
   m_Shader: {fileID: -6465566751694194690, guid: c9e71d78c5373734997da64c85f43ae8, type: 3}
   m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords:
   - _ALPHATEST_ON
   m_InvalidKeywords:
@@ -226,7 +226,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
-    - _FallOff: 0
+    - _FallOff: 1
     - _GradientOffset: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5

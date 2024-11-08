@@ -17,6 +17,7 @@ public class Interactable : MonoBehaviour
 
     public UnityEvent OnInteracted;
 
+
     public void Interact()
     {
         OnInteracted.Invoke();

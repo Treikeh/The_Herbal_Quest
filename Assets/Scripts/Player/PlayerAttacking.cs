@@ -1,29 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerAttacking : MonoBehaviour
 {
-    public PlayerData playerData;
-    public Transform cameraPitch;
-    public GameObject torch;
-    public Light flameLight;
-    public bool startWithTorchActive = true;
-    public float attackDistance = 2f;
-    public float attackSpeed = 0.5f;
-    public AudioClip attackHitSound;
-    public AudioClip attackMissSound;
-    public AudioSource attackAudioSource;
-    public Animator attackAnimations;
+    [SerializeField] private bool startWithTorchActive = true;
+    [SerializeField] private float attackDelay = 0.5f;
+    [SerializeField] private float attackDistance = 2f;
+    [SerializeField] private Transform head;
+    [SerializeField] private GameObject torch;
+    [SerializeField] private GameObject flameEffect;
+    [SerializeField] private Animator attackAnimations;
+    [SerializeField] private AudioClip attackHitSound;
+    [SerializeField] private AudioClip attackMissSound;
+    [SerializeField] private AudioSource attackAudioSource;
 
     private bool canAttack;
     private IHitable attackTarget;
 
+    public static Action<bool> UpdateCrosshair;
 
     private void Start()
     {
-        playerData.displayAttackIcon = false;
         if (startWithTorchActive)
         {
             torch.SetActive(true);
@@ -39,52 +38,50 @@ public class PlayerAttacking : MonoBehaviour
     private void Update()
     {
         if (torch.activeInHierarchy)
-        {
-            CheckForAttackable();
-        }
+            { CheckForAttackable(); }
     }
 
     // Check if the player is looking at an attackable object
     private void CheckForAttackable()
     {
-        Ray ray = new Ray(cameraPitch.position, cameraPitch.forward);
-        if (Physics.Raycast(ray, out RaycastHit rayHit, attackDistance))
+        if (Physics.Raycast(head.position, head.forward, out RaycastHit rayHit, attackDistance))
         {
             if (rayHit.collider.TryGetComponent(out IHitable target))
             {
                 attackTarget = target;
-                playerData.displayAttackIcon = true;
+                UpdateCrosshair?.Invoke(true);
             }
-            else if (attackTarget != null) // Clear if rayHit collider does not have an health component
-            {
-                attackTarget = null;
-                playerData.displayAttackIcon = false;
-            }
+            else
+                { ClearAttackTarget(); }
         }
-        else if (attackTarget != null) // Clear if raycast is not hitting anything
+        else
+            { ClearAttackTarget(); }
+    }
+
+    private void ClearAttackTarget()
+    {
+        if (attackTarget != null)
         {
             attackTarget = null;
-            playerData.displayAttackIcon = false;
+            UpdateCrosshair?.Invoke(false);
         }
     }
 
+    // INPUT
     public void OnAttack()
     {
-        // Disable attacking when the cursor is visable
-        if (Cursor.visible)
+        if (canAttack && !Cursor.visible)
         {
-            Debug.Log("Player can't attack");
-            return;
-        }
-        else if (canAttack)
-        {
+            // Disable attacking
             canAttack = false;
-            StartCoroutine(AttackDelay());
+            // Reset attack after a short duration
+            Invoke(nameof(ResetAttack), attackDelay);
             attackAnimations.Play("AttackAnim", -1, 0f);
             
+            // Reactons to what the player hits
             if (attackTarget != null)
             {
-                attackTarget.Hit(playerData.torchLit);
+                attackTarget.Hit(flameEffect.activeInHierarchy);
                 attackAudioSource.PlayOneShot(attackHitSound);
             }
             else
@@ -94,7 +91,10 @@ public class PlayerAttacking : MonoBehaviour
         }
     }
 
-// Game events //
+    private void ResetAttack()
+        { canAttack = true; }
+
+    // GAME EVENTS //
 
     public void PickUpTorch()
     {
@@ -107,30 +107,19 @@ public class PlayerAttacking : MonoBehaviour
 
     public void LightTorch()
     {
-        if (torch.activeInHierarchy && !flameLight.enabled)
+        if (torch.activeInHierarchy && !flameEffect.activeInHierarchy)
         {
-            flameLight.enabled = true;
-            playerData.torchLit = true;
+            flameEffect.SetActive(true);
             // Play sound
         }
     }
 
     public void ExtinguishTorch()
     {
-        if (torch.activeInHierarchy && flameLight.enabled)
+        if (torch.activeInHierarchy && flameEffect.activeInHierarchy)
         {
-            flameLight.enabled = false;
-            playerData.torchLit = false;
+            flameEffect.SetActive(false);
             // Play sound
         }
-    }
-
-// IEnumerators //
-
-    // Delay when the player can attack again
-    private IEnumerator AttackDelay()
-    {
-        yield return new WaitForSeconds(attackSpeed);
-        canAttack = true;
     }
 }
