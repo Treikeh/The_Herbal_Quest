@@ -46,7 +46,7 @@ Material:
   - _DISABLE_SSR_TRANSPARENT
   - _DOUBLESIDED_ON
   - _NORMALMAP_TANGENT_SPACE
-  m_LightmapFlags: 4
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: 2475
@@ -334,15 +334,15 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _BranchesDarkTones: {r: 0.6509804, g: 0.7490196, b: 0.16862746, a: 1}
-    - _BranchesLightTones: {r: 0.8549928, g: 0.83879924, b: 0.43965724, a: 1}
-    - _BranchesMidTones: {r: 0.6666667, g: 0.7490196, b: 0.23137255, a: 1}
-    - _CanopBottomDarkTones: {r: 0.8934636, g: 1, b: 0.5613208, a: 1}
-    - _CanopBottomLightTones: {r: 0.2746774, g: 0.3419144, b: 0.06480328, a: 1}
-    - _CanopBottomMidTones: {r: 0.2746774, g: 0.3419144, b: 0.06480328, a: 1}
-    - _CanopDarkTones: {r: 0.7019608, g: 0.7490196, b: 0.16862746, a: 1}
-    - _CanopLightTones: {r: 0.4, g: 0.5647059, b: 0.17254902, a: 1}
-    - _CanopMidTones: {r: 0.7372549, g: 0.7490196, b: 0.20392157, a: 1}
+    - _BranchesDarkTones: {r: 0.051269468, g: 0.10702311, b: 0.028426038, a: 1}
+    - _BranchesLightTones: {r: 0.10224175, g: 0.13563336, b: 0.06847818, a: 1}
+    - _BranchesMidTones: {r: 0.027803786, g: 0.06289297, b: 0.0061310655, a: 1}
+    - _CanopBottomDarkTones: {r: 0.09305898, g: 0.21952623, b: 0.015996292, a: 1}
+    - _CanopBottomLightTones: {r: 0.051269468, g: 0.09989874, b: 0.03071345, a: 1}
+    - _CanopBottomMidTones: {r: 0.116970696, g: 0.27467737, b: 0.022173883, a: 1}
+    - _CanopDarkTones: {r: 0.11747948, g: 0.31446534, b: 0.068233006, a: 1}
+    - _CanopLightTones: {r: 0.011612245, g: 0.04091521, b: 0.0074990317, a: 1}
+    - _CanopMidTones: {r: 0.09084173, g: 0.23074007, b: 0.016807375, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
