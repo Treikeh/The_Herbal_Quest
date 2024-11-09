@@ -63,7 +63,9 @@ public class GameManager : MonoBehaviour
             currentObjective++;
             // Check if all objectives are completed
             if (currentObjective >= objectives.Count) 
-                { CurrenctGameState = GameStates.Finished; }
+            {
+                CurrenctGameState = GameStates.Finished;
+            }
             else
                 { UpdateObjectiveString(); }
         }
