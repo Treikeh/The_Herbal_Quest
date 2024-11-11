@@ -6,16 +6,26 @@ using UnityEngine.UI;
 
 public class Lvl3LightningStrike : MonoBehaviour
 {
-    [SerializeField] private GameObject lightningImage;
+    [SerializeField] private Material lightningMaterial;
     [SerializeField] private Light lightningLight;
 
-    private void Start()
+    private bool triggerd = false;
+
+    private void Update()
     {
-        lightningImage.SetActive(false);
+        if (triggerd)
+        {
+            var temp = lightningMaterial.color;
+            temp.a -= Time.deltaTime / 1.5f;
+            lightningLight.intensity -= Time.deltaTime * 30f;
+            lightningMaterial.color = temp;
+        }
     }
 
     public void TriggerLightningStrike()
     {
-        lightningImage.SetActive(true);
+        lightningMaterial.color = Color.white;
+        lightningLight.intensity = 40f;
+        triggerd = true;
     }
 }
