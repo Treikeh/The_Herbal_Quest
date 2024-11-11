@@ -21,4 +21,13 @@ public class DialogTrigger : MonoBehaviour
             UpdateDialogText?.Invoke(dialogText, dialogDuration);
         }
     }
+
+    public void ManualTrigger()
+    {
+        if (!beenTriggred)
+        {
+            beenTriggred = true;
+            UpdateDialogText?.Invoke(dialogText, dialogDuration);
+        }
+    }
 }
