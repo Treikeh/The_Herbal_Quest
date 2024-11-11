@@ -82,6 +82,11 @@ public class InGameUi : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void EndLevel1()
+    {
+        //
+    }
+
     // FADE INN AND FADE OUT //
 
     private void FadePanelOut()

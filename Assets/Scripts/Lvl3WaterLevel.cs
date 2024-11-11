@@ -7,6 +7,7 @@ public class Lvl3WaterLevel : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float stopPosition;
 
+    private bool hasStartedMoving;
     private bool isMoving;
     private Vector3 checkpointPosition;
 
@@ -40,6 +41,7 @@ public class Lvl3WaterLevel : MonoBehaviour
     public void StartMoving()
     {
         isMoving = true;
+        hasStartedMoving = true;
     }
 
     public void StopMoving()
@@ -56,6 +58,9 @@ public class Lvl3WaterLevel : MonoBehaviour
     {
         StopMoving();
         transform.position = checkpointPosition;
-        Invoke(nameof(StartMoving), 2.0f);
+        if (hasStartedMoving)
+        {
+            Invoke(nameof(StartMoving), 2.0f);
+        }
     }
 }
