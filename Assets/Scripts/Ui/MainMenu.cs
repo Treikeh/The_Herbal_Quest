@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TMP_Text xiyuanText;
     [SerializeField] private TMP_Text lixinText;
     private bool dialogActive = false;
+    private bool lixinTalking = false;
     private int xiyuanDialogIndex = 0;
     private int lixinDialogIndex = 0;
 
@@ -35,7 +36,48 @@ public class MainMenu : MonoBehaviour
     {
         if (dialogActive)
         {
-            // Change dialog lines
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Move on to the next level when both characters are finished talking
+                if (xiyuanDialogIndex >= (xiyuanDialog.Count - 1) && lixinDialogIndex >= (lixinDialog.Count - 1))
+                {
+                    // Move on to the next level
+                    StartCoroutine(DialogEndFade());
+                }
+                // Lixin dialog
+                if (lixinTalking)
+                {
+                    // Lixin is not fisnished talking
+                    if (lixinDialogIndex < (lixinDialog.Count - 1))
+                    {    
+                        lixinDialogIndex ++;
+                        lixinText.text = lixinDialog[lixinDialogIndex];
+                        lixinTalking = false;
+                    }
+                    // Lixin is finished talking
+                    else
+                    {
+                        Debug.Log("Lixin finished talking");
+                    }
+                }
+                // Xiyuan talking
+                else
+                {
+                    // Xiyaun is not finished talking
+                    if (xiyuanDialogIndex < (xiyuanDialog.Count - 1))
+                    {
+                        xiyuanDialogIndex ++;
+                        xiyuanText.text = xiyuanDialog[xiyuanDialogIndex];
+                        lixinTalking = true;
+                    }
+                    // Xiyuan is finished talking
+                    else
+                    {
+                        Debug.Log("Xiyuan finished talking");
+                        lixinTalking = true;
+                    }
+                }
+            }
         }
     }
 

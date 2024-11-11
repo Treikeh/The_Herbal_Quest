@@ -837,9 +837,13 @@ MonoBehaviour:
   levelSelect: {fileID: 869016119}
   introDialog: {fileID: 46028251}
   xiyuanDialog:
-  - No
+  - First
+  - Middle
+  - End
   lixinDialog:
-  - Yes
+  - First
+  - Middle
+  - End
   xiyuanText: {fileID: 1171975821}
   lixinText: {fileID: 1380199034}
 --- !u!1 &407444051
@@ -3330,9 +3334,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 22179228e3ecf6e448d4dabc8d19c7a7, type: 2}
-        m_TargetAssemblyTypeName: GlobalMethods, Assembly-CSharp
-        m_MethodName: LoadNextBuildScene
+      - m_Target: {fileID: 351641500}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: OnPlayButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
