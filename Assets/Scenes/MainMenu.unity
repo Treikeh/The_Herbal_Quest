@@ -1749,13 +1749,13 @@ MonoBehaviour:
   introDialog: {fileID: 165830423}
   xiyuanDialog:
   - "\u201CWhat's the matter?\u201D"
-  - '"Is it bad? I will go and get them."'
+  - '"Is it serious? I will go and get them."'
   - '"No problem, I''ll be right back!"'
   lixinDialog:
   - "\"A sick customer just arrived. He needs treatment, but it seems like we're
     missing the herbs needed for the tea\u2026\""
-  - '"Yes, he''s very sick. So we don''t have a lot of time."'
-  - "\"Be careful, and stay away from the water. Remember, you cannot swim\u2026\""
+  - '"Yes, he''s very sick. So we don''t have much time."'
+  - "\"Be careful, and stay away from the water. Remember, you can't swim\u2026\""
   xiyuanText: {fileID: 297114207}
   lixinText: {fileID: 160702303}
 --- !u!114 &523143111
