@@ -9203,11 +9203,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: objectives.Array.data[0].Title
-      value: 'collect items '
+      value: 'Collect items '
       objectReference: {fileID: 0}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: objectives.Array.data[1].Title
-      value: Objective
+      value: Exit the cave
       objectReference: {fileID: 0}
     - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
       propertyPath: objectives.Array.data[0].MaxValue
@@ -57272,7 +57272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1029220836047655205, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1122791353383029933, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_SizeDelta.x
@@ -66665,91 +66665,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030977983, guid: abc00000000011189989399888312812, type: 3}
   m_PrefabInstance: {fileID: 2047097180}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2047189940
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307897578814541167, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4389838338560606176, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: m_Name
-      value: GameManager (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: objectives.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: objectives.Array.data[0].Title
-      value: 'collect items '
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: objectives.Array.data[1].Title
-      value: Objective
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: objectives.Array.data[0].MaxValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: objectives.Array.data[0].maxValue
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: objectives.Array.data[1].MaxValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8784744819955575484, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
-      propertyPath: objectives.Array.data[0].DisplayValues
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c4c7c35f5c5854642878c6a111919bbd, type: 3}
 --- !u!1001 &2047572722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68906,7 +68821,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 767919454}
   - {fileID: 174164460}
-  - {fileID: 2047189940}
   - {fileID: 252766790}
   - {fileID: 1685711585}
   - {fileID: 543492593}
