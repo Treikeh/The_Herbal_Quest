@@ -38373,7 +38373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 142602023136381673, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -240
+      value: -230
       objectReference: {fileID: 0}
     - target: {fileID: 206854782376165015, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_Colors.m_NormalColor.a
@@ -38669,7 +38669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383106327667315200, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 260
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 2600243490384576843, guid: f612e8f2aa0ba164fb9266c6f09645a0, type: 3}
       propertyPath: m_fontSize
