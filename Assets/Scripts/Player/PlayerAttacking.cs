@@ -14,6 +14,8 @@ public class PlayerAttacking : MonoBehaviour
     [SerializeField] private Animator attackAnimations;
     [SerializeField] private AudioClip attackHitSound;
     [SerializeField] private AudioClip attackMissSound;
+    [SerializeField] private AudioClip torchLitSound;
+    [SerializeField] private AudioClip torchExtinguishedSound;
     [SerializeField] private AudioSource attackAudioSource;
 
     private bool canAttack;
@@ -110,7 +112,7 @@ public class PlayerAttacking : MonoBehaviour
         if (torch.activeInHierarchy && !flameEffect.activeInHierarchy)
         {
             flameEffect.SetActive(true);
-            // Play sound
+            AudioSource.PlayClipAtPoint(torchLitSound, transform.position);
         }
     }
 
@@ -119,7 +121,7 @@ public class PlayerAttacking : MonoBehaviour
         if (torch.activeInHierarchy && flameEffect.activeInHierarchy)
         {
             flameEffect.SetActive(false);
-            // Play sound
+            AudioSource.PlayClipAtPoint(torchExtinguishedSound, transform.position);
         }
     }
 }

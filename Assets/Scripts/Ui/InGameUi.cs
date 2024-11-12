@@ -8,6 +8,7 @@ public class InGameUi : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private float fadeBuffer = 0.5f;
     [SerializeField] private Image fadePanel;
+    [SerializeField] private Image level1FadePanel;
     [SerializeField] private GameObject hud;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject winScreen;
@@ -84,7 +85,18 @@ public class InGameUi : MonoBehaviour
 
     public void EndLevel1()
     {
-        //
+        level1FadePanel.gameObject.SetActive(true);
+        fadePanel = level1FadePanel;
+        ShowMouseCursor();
+        StartCoroutine(EndLevel1Fade());
+    }
+
+    private IEnumerator EndLevel1Fade()
+    {
+        FadePanelInn();
+        yield return new WaitForSecondsRealtime(fadeDuration + fadeBuffer);
+        winScreen.SetActive(true);
+
     }
 
     // FADE INN AND FADE OUT //
