@@ -15,12 +15,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject introDialog;
 
     // Intro dialog
+    [SerializeField] private bool lixinTalking = false;
     [SerializeField] private List<string> xiyuanDialog;
     [SerializeField] private List<string> lixinDialog;
     [SerializeField] private TMP_Text xiyuanText;
     [SerializeField] private TMP_Text lixinText;
     private bool dialogActive = false;
-    private bool lixinTalking = false;
     private int xiyuanDialogIndex = 0;
     private int lixinDialogIndex = 0;
 

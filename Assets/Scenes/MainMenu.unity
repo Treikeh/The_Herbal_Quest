@@ -1747,11 +1747,13 @@ MonoBehaviour:
   mainMenuMenu: {fileID: 1165144747}
   levelSelect: {fileID: 616032666}
   introDialog: {fileID: 165830423}
+  lixinTalking: 1
   xiyuanDialog:
   - "\u201CWhat's the matter?\u201D"
   - '"Is it serious? I will go and get them."'
   - '"No problem, I''ll be right back!"'
   lixinDialog:
+  - 
   - "\"A sick customer just arrived. He needs treatment, but it seems like we're
     missing the herbs needed for the tea\u2026\""
   - '"Yes, he''s very sick. So we don''t have much time."'
@@ -2012,7 +2014,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 371, y: 0}
+  m_AnchoredPosition: {x: 390, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &555036061
@@ -2398,7 +2400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -389, y: 0}
+  m_AnchoredPosition: {x: -390, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &895276550

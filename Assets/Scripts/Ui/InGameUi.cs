@@ -8,6 +8,7 @@ public class InGameUi : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private float fadeBuffer = 0.5f;
     [SerializeField] private Image fadePanel;
+    [SerializeField] private Image normalFadePanel;
     [SerializeField] private Image level1FadePanel;
     [SerializeField] private GameObject hud;
     [SerializeField] private GameObject pauseMenu;
@@ -46,6 +47,7 @@ public class InGameUi : MonoBehaviour
 
     public void OnNextLevelButtonPressed()
     {
+        fadePanel = normalFadePanel;
         StartCoroutine(NextLevelFade());
     }
 
