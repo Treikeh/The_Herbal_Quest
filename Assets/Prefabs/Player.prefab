@@ -485,6 +485,8 @@ MonoBehaviour:
   attackAnimations: {fileID: 6442050870083813925}
   attackHitSound: {fileID: 8300000, guid: 0f5ff4c41a8275c4da92351be8f2afd4, type: 3}
   attackMissSound: {fileID: 8300000, guid: 430441b64a2c22844a69389f4396c114, type: 3}
+  torchLitSound: {fileID: 8300000, guid: a8d7c1d4cb6805d418fd5688da3bef4b, type: 3}
+  torchExtinguishedSound: {fileID: 8300000, guid: f7bc0ccef2f6d884cbaeead6c9f3bf42, type: 3}
   attackAudioSource: {fileID: 4506944473570211425}
 --- !u!82 &4506944473570211425
 AudioSource:

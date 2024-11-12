@@ -17,8 +17,8 @@ public class Lvl3LightningStrike : MonoBehaviour
         {
             var temp = lightningMaterial.color;
             temp.a -= Time.deltaTime / 1.5f;
-            lightningLight.intensity -= Time.deltaTime * 30f;
             lightningMaterial.color = temp;
+            lightningLight.intensity -= Time.deltaTime * 30f;
         }
     }
 
